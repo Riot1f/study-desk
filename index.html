@@ -631,6 +631,9 @@ body .say.anylang{display:grid}
 .fcard>div{justify-self:stretch;width:100%;text-align:left}
 .iw .jp:not(:lang(ja)){font-family:var(--f-ui);font-weight:800;font-size:1.35rem}
 .iw .jp:lang(zh-CN){font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",var(--f-ui)}
+
+u.blank{text-decoration:none;border-bottom:3px solid var(--c);padding:0 6px;color:var(--c)}
+mark.cap{background:color-mix(in srgb,var(--purple) 22%,transparent);color:var(--head);border-radius:6px;padding:0 4px}
 </style>
 <script>window.SD_APP=true</script>
 </head><body>
@@ -2274,6 +2277,7 @@ function subjectRows(){
     {t:'Japanese path',n:PDONE.length,of:LESSONS.length,c:'Japanese',go:()=>unitIntro(nextUnit())},
     {t:'Human rights',n:pre('udhr:')+pre('bor:'),of:UDHR.length+BOR.length,c:'Human rights',go:()=>openRights('udhr')},
     {t:'Basics',n:pre('bx:'),of:BASICS.length,c:'Science',go:()=>dailyQuiz()},
+    {t:'English class',n:pre('ela:'),of:Object.values(ELA).reduce((a,x)=>a+x.length,0),c:'Grammar',go:()=>openEnglish()},
     {t:'History',n:pre('hist:')+pre('pres:')+pre('who:'),of:HIST.length+PRES.length+HPEOPLE.length,c:'History',go:()=>openHistory()},
     ...myLangs().filter(c=>c!=='ja').map(c=>({t:LANG_META[c].name,n:lpDone(c).length,of:langLessons(c).length,c:'Languages',lang:c,go:()=>openLangLesson(c,lpNext(c))})),
     {t:'Old sayings',n:pre('say:'),of:SAYINGS.length,c:'Sayings',go:()=>openSayings()},
@@ -4945,9 +4949,265 @@ const LANGS={
   ]}
 };
 
+// Beginner English course for Spanish speakers. Adds to the existing LANGS object.
+LANGS.en={name:"English",native:"English",flag:"us",speech:"en-US",rtl:false,space:true,gloss:"es",glossName:"Spanish",units:[
+    {title:"Greetings",titleEs:"Saludos",
+     tip:"En inglés, \"Good night\" solo se usa para despedirse en la noche. Para saludar en la noche se dice \"Good evening\" o simplemente \"Hi\".",
+     words:[
+      ["hello","","hola"],
+      ["goodbye","","adiós"],
+      ["good morning","","buenos días"],
+      ["good afternoon","","buenas tardes"],
+      ["good night","","buenas noches"],
+      ["thank you","","gracias"],
+      ["please","","por favor"],
+      ["you're welcome","","de nada"],
+      ["sorry","","lo siento"],
+      ["excuse me","","disculpa"]
+     ],
+     phrases:[
+      ["How are you?","","¿Cómo estás?",["How","are","you?"]],
+      ["I'm fine, thanks","","Estoy bien, gracias",["I'm","fine,","thanks"]],
+      ["Nice to meet you","","Mucho gusto",["Nice","to","meet","you"]],
+      ["See you tomorrow","","Hasta mañana",["See","you","tomorrow"]],
+      ["Have a nice day","","Que tengas un buen día",["Have","a","nice","day"]]
+     ]},
+    {title:"About me",titleEs:"Sobre mí",
+     tip:"En inglés la edad se dice con el verbo \"to be\": \"I'm fifteen\" (tengo quince años). No se dice \"I have fifteen years\".",
+     words:[
+      ["I","","yo"],
+      ["you","","tú, usted"],
+      ["my","","mi"],
+      ["name","","nombre"],
+      ["student","","estudiante"],
+      ["from","","de"],
+      ["I am","","soy, estoy"],
+      ["years old","","años de edad"],
+      ["boy","","chico"],
+      ["girl","","chica"]
+     ],
+     phrases:[
+      ["My name is Ana","","Me llamo Ana",["My","name","is","Ana"]],
+      ["What's your name?","","¿Cómo te llamas?",["What's","your","name?"]],
+      ["I'm from Mexico","","Soy de México",["I'm","from","Mexico"]],
+      ["I'm fifteen years old","","Tengo quince años",["I'm","fifteen","years","old"]],
+      ["I'm a student","","Soy estudiante",["I'm","a","student"]]
+     ]},
+    {title:"Numbers 1-20",titleEs:"Números del 1 al 20",
+     tip:"En los números que terminan en -teen (13 a 19), la fuerza de la voz va al final: thir-TEEN, fif-TEEN.",
+     words:[
+      ["one","","uno"],
+      ["two","","dos"],
+      ["three","","tres"],
+      ["four","","cuatro"],
+      ["five","","cinco"],
+      ["ten","","diez"],
+      ["twelve","","doce"],
+      ["thirteen","","trece"],
+      ["fifteen","","quince"],
+      ["twenty","","veinte"]
+     ],
+     phrases:[
+      ["I have two brothers","","Tengo dos hermanos",["I","have","two","brothers"]],
+      ["How old are you?","","¿Cuántos años tienes?",["How","old","are","you?"]],
+      ["It's three o'clock","","Son las tres",["It's","three","o'clock"]],
+      ["I need five minutes","","Necesito cinco minutos",["I","need","five","minutes"]],
+      ["There are twenty students","","Hay veinte estudiantes",["There","are","twenty","students"]]
+     ]},
+    {title:"Food and drink",titleEs:"Comida y bebida",
+     tip:"El hambre y la sed se dicen con \"to be\": \"I'm hungry\" (tengo hambre) y \"I'm thirsty\" (tengo sed).",
+     words:[
+      ["water","","agua"],
+      ["milk","","leche"],
+      ["bread","","pan"],
+      ["apple","","manzana"],
+      ["rice","","arroz"],
+      ["chicken","","pollo"],
+      ["juice","","jugo"],
+      ["breakfast","","desayuno"],
+      ["lunch","","almuerzo"],
+      ["dinner","","cena"]
+     ],
+     phrases:[
+      ["I'm hungry","","Tengo hambre",["I'm","hungry"]],
+      ["I'm thirsty","","Tengo sed",["I'm","thirsty"]],
+      ["Can I have some water?","","¿Me puedes dar agua?",["Can","I","have","some","water?"]],
+      ["I like pizza","","Me gusta la pizza",["I","like","pizza"]],
+      ["What's for lunch?","","¿Qué hay de almuerzo?",["What's","for","lunch?"]]
+     ]},
+    {title:"Family",titleEs:"La familia",
+     tip:"\"Parents\" significa \"padres\" (mamá y papá), no \"parientes\". Para decir \"hermanos\" en general se usa \"siblings\".",
+     words:[
+      ["mom","","mamá"],
+      ["dad","","papá"],
+      ["brother","","hermano"],
+      ["sister","","hermana"],
+      ["grandma","","abuela"],
+      ["grandpa","","abuelo"],
+      ["parents","","padres"],
+      ["family","","familia"],
+      ["aunt","","tía"],
+      ["uncle","","tío"]
+     ],
+     phrases:[
+      ["This is my mom","","Esta es mi mamá",["This","is","my","mom"]],
+      ["I have one sister","","Tengo una hermana",["I","have","one","sister"]],
+      ["My dad is a teacher","","Mi papá es maestro",["My","dad","is","a","teacher"]],
+      ["I love my family","","Quiero mucho a mi familia",["I","love","my","family"]],
+      ["Do you have siblings?","","¿Tienes hermanos?",["Do","you","have","siblings?"]]
+     ]},
+    {title:"School",titleEs:"La escuela",
+     tip:"A los maestros se les llama \"Mr.\" (señor) o \"Ms.\" (señora) más el apellido, como \"Mr. Smith\". Decir solo \"Teacher\" suena raro.",
+     words:[
+      ["teacher","","maestro, maestra"],
+      ["book","","libro"],
+      ["pencil","","lápiz"],
+      ["notebook","","cuaderno"],
+      ["classroom","","salón de clases"],
+      ["homework","","tarea"],
+      ["test","","examen"],
+      ["class","","clase"],
+      ["backpack","","mochila"],
+      ["desk","","pupitre"]
+     ],
+     phrases:[
+      ["I have a test today","","Tengo un examen hoy",["I","have","a","test","today"]],
+      ["I forgot my homework","","Se me olvidó la tarea",["I","forgot","my","homework"]],
+      ["Can I go to the bathroom?","","¿Puedo ir al baño?",["Can","I","go","to","the","bathroom?"]],
+      ["I don't understand","","No entiendo",["I","don't","understand"]],
+      ["Can you repeat that?","","¿Lo puede repetir?",["Can","you","repeat","that?"]]
+     ]},
+    {title:"Places and directions",titleEs:"Lugares y direcciones",
+     tip:"Con \"home\" no se usa \"to\": se dice \"I'm going home\" (me voy a casa), no \"I'm going to home\".",
+     words:[
+      ["home","","casa"],
+      ["school","","escuela"],
+      ["store","","tienda"],
+      ["park","","parque"],
+      ["bathroom","","baño"],
+      ["library","","biblioteca"],
+      ["left","","izquierda"],
+      ["right","","derecha"],
+      ["near","","cerca"],
+      ["far","","lejos"]
+     ],
+     phrases:[
+      ["Where is the bathroom?","","¿Dónde está el baño?",["Where","is","the","bathroom?"]],
+      ["Turn left","","Dobla a la izquierda",["Turn","left"]],
+      ["It's on the right","","Está a la derecha",["It's","on","the","right"]],
+      ["Is it far?","","¿Está lejos?",["Is","it","far?"]],
+      ["I'm going home","","Me voy a casa",["I'm","going","home"]]
+     ]},
+    {title:"Days and time",titleEs:"Los días y la hora",
+     tip:"En inglés los días de la semana siempre llevan mayúscula: \"Monday\", \"Friday\". Y \"on Monday\" significa \"el lunes\".",
+     words:[
+      ["Monday","","lunes"],
+      ["Tuesday","","martes"],
+      ["Wednesday","","miércoles"],
+      ["Thursday","","jueves"],
+      ["Friday","","viernes"],
+      ["Saturday","","sábado"],
+      ["Sunday","","domingo"],
+      ["today","","hoy"],
+      ["tomorrow","","mañana"],
+      ["week","","semana"]
+     ],
+     phrases:[
+      ["What time is it?","","¿Qué hora es?",["What","time","is","it?"]],
+      ["It's ten o'clock","","Son las diez",["It's","ten","o'clock"]],
+      ["See you on Monday","","Nos vemos el lunes",["See","you","on","Monday"]],
+      ["Today is Friday","","Hoy es viernes",["Today","is","Friday"]],
+      ["I have school tomorrow","","Mañana tengo clases",["I","have","school","tomorrow"]]
+     ]},
+    {title:"Feelings",titleEs:"Los sentimientos",
+     tip:"\"I'm bored\" significa \"estoy aburrido\", pero \"I'm boring\" significa \"soy aburrido\". ¡Cuidado con la diferencia!",
+     words:[
+      ["happy","","feliz"],
+      ["sad","","triste"],
+      ["tired","","cansado, cansada"],
+      ["angry","","enojado, enojada"],
+      ["scared","","asustado, asustada"],
+      ["bored","","aburrido, aburrida"],
+      ["excited","","emocionado, emocionada"],
+      ["nervous","","nervioso, nerviosa"],
+      ["sick","","enfermo, enferma"]
+     ],
+     phrases:[
+      ["I'm so tired","","Estoy muy cansado",["I'm","so","tired"]],
+      ["Are you okay?","","¿Estás bien?",["Are","you","okay?"]],
+      ["I'm not sad","","No estoy triste",["I'm","not","sad"]],
+      ["Don't worry","","No te preocupes",["Don't","worry"]],
+      ["I feel sick","","Me siento mal",["I","feel","sick"]]
+     ]},
+    {title:"Everyday actions",titleEs:"Acciones diarias",
+     tip:"Con \"he\", \"she\" e \"it\", el verbo lleva una -s al final: \"I play\", pero \"she plays\".",
+     words:[
+      ["eat","","comer"],
+      ["drink","","tomar, beber"],
+      ["sleep","","dormir"],
+      ["go","","ir"],
+      ["want","","querer"],
+      ["speak","","hablar"],
+      ["read","","leer"],
+      ["write","","escribir"],
+      ["play","","jugar"],
+      ["listen","","escuchar"]
+     ],
+     phrases:[
+      ["I want to eat","","Quiero comer",["I","want","to","eat"]],
+      ["I like music","","Me gusta la música",["I","like","music"]],
+      ["I speak Spanish","","Hablo español",["I","speak","Spanish"]],
+      ["She reads every day","","Ella lee todos los días",["She","reads","every","day"]],
+      ["Do you want to play?","","¿Quieres jugar?",["Do","you","want","to","play?"]]
+     ]},
+    {title:"Shopping and money",titleEs:"Compras y dinero",
+     tip:"El signo de dólar se escribe antes del número, pero se dice después: \"$5\" se lee \"five dollars\".",
+     words:[
+      ["money","","dinero"],
+      ["price","","precio"],
+      ["cheap","","barato"],
+      ["expensive","","caro"],
+      ["dollar","","dólar"],
+      ["shirt","","camisa"],
+      ["shoes","","zapatos"],
+      ["buy","","comprar"],
+      ["pay","","pagar"],
+      ["cash","","efectivo"]
+     ],
+     phrases:[
+      ["How much is this?","","¿Cuánto cuesta esto?",["How","much","is","this?"]],
+      ["It's too expensive","","Es demasiado caro",["It's","too","expensive"]],
+      ["I'm just looking","","Solo estoy mirando",["I'm","just","looking"]],
+      ["Can I pay with cash?","","¿Puedo pagar en efectivo?",["Can","I","pay","with","cash?"]],
+      ["I'll take it","","Me lo llevo",["I'll","take","it"]]
+     ]},
+    {title:"Hanging out with friends",titleEs:"Con los amigos",
+     tip:"\"What's up?\" es un saludo casual. No se contesta \"I'm fine\"; se dice \"Not much\" (nada nuevo).",
+     words:[
+      ["friend","","amigo, amiga"],
+      ["best friend","","mejor amigo, mejor amiga"],
+      ["fun","","divertido"],
+      ["game","","juego"],
+      ["movie","","película"],
+      ["party","","fiesta"],
+      ["weekend","","fin de semana"],
+      ["awesome","","increíble"],
+      ["hang out","","pasar el rato"],
+      ["text","","mandar un mensaje"]
+     ],
+     phrases:[
+      ["What's up?","","¿Qué onda?",["What's","up?"]],
+      ["See you later","","Nos vemos luego",["See","you","later"]],
+      ["That's cool","","¡Qué genial!",["That's","cool"]],
+      ["Do you want to hang out?","","¿Quieres salir un rato?",["Do","you","want","to","hang","out?"]],
+      ["Text me later","","Mándame un mensaje más tarde",["Text","me","later"]]
+     ]}
+]};
+
 /* ================= Other languages (Spanish, French, Mandarin, Hindi, Arabic) ================= */
-const LANG_ORDER=['ja','es','fr','zh','hi','ar'];
-const LANG_META={ja:{name:'Japanese',native:'日本語',flag:'jp'},...Object.fromEntries(Object.entries(LANGS).map(([k,v])=>[k,{name:v.name,native:v.native,flag:v.flag}]))};
+const LANG_ORDER=['ja','es','fr','zh','hi','ar','en'];
+const LANG_META={ja:{name:'Japanese',native:'日本語',flag:'jp'},...Object.fromEntries(Object.entries(LANGS).map(([k,v])=>[k,{name:v.name,native:v.gloss==='es'?'Para hispanohablantes':v.native,flag:v.flag}]))};
+const utitle=u=>u.titleEs?`${u.title} · ${u.titleEs}`:u.title;
 const lflag=code=>flag((LANG_META[code]||{}).flag||'un');
 /* romanization lookup so word tiles can show how to say them */
 const LROM={};Object.entries(LANGS).forEach(([c,L])=>{const m={};L.units.forEach(u=>u.words.forEach(w=>{if(w[1])m[w[0]]=w[1]}));LROM[c]=m});
@@ -4983,7 +5243,7 @@ function openLangLesson(code,li){
   const L=LANGS[code],les=langLessons(code)[li],u=L.units[les.unit],all=langLessons(code);
   push('jp',el=>{
     const list=les.kind==='words'?u.words:u.phrases;
-    page(el,L.name,`<div class="hero"><span class="flabel" style="color:var(--c)">Unit ${les.unit+1} · lesson ${li+1} of ${all.length}</span><h2>${esc(u.title)}: ${les.sub.toLowerCase()}</h2>
+    page(el,L.name,`<div class="hero"><span class="flabel" style="color:var(--c)">Unit ${les.unit+1} · lesson ${li+1} of ${all.length}</span><h2>${esc(utitle(u))}: ${les.sub.toLowerCase()}</h2>
       <p>${les.kind==='words'?`You'll meet ${u.words.length} words, three at a time, then practice them.`:`Put real sentences together from word tiles.`}</p></div>
       <p class="note">${esc(u.tip)}</p>
       <div>${list.map(w=>`<div class="iw"><span class="jp" lang="${L.speech}"${L.rtl?' dir="rtl"':''}>${esc(w[0])}${w[1]?`<small class="lrom">${esc(w[1])}</small>`:''}</span><span class="en">${esc(w[2])}</span>${sayBtn(w[0],L.speech)}</div>`).join('')}</div>`,
@@ -5001,18 +5261,20 @@ function openPhrasebook(code){const L=LANGS[code];
   push('jp',el=>{let q='';
     const draw=()=>{const ql=norm(q);const lin=page(el,'Phrasebook',`<div class="hero">${bi('',{flag:lflag(code),s:64})}<h2>${esc(L.name)} phrasebook</h2><p>Every word and phrase in the course. Tap the speaker to hear it.</p></div>
       <input class="search" id="q" placeholder="Search in English or ${esc(L.name)}" value="${esc(q)}" autocomplete="off">
-      ${L.units.map((u,i)=>{const rows=[...u.words,...u.phrases].filter(w=>!ql||norm(w[0]+' '+w[1]+' '+w[2]).includes(ql));if(!rows.length)return'';return`<p class="h2" style="margin:8px 0 0">${i+1}. ${esc(u.title)}</p><div class="list">${rows.map(w=>`<div class="li"><div style="min-width:0"><b lang="${L.speech}"${L.rtl?' dir="rtl"':''} style="color:var(--head);font-size:1.15rem">${esc(w[0])}</b>${w[1]?`<span class="s">${esc(w[1])}</span>`:''}<span class="s">${esc(w[2])}</span></div>${sayBtn(w[0],L.speech)}</div>`).join('')}</div>`}).join('')}`);
+      ${L.units.map((u,i)=>{const rows=[...u.words,...u.phrases].filter(w=>!ql||norm(w[0]+' '+w[1]+' '+w[2]).includes(ql));if(!rows.length)return'';return`<p class="h2" style="margin:8px 0 0">${i+1}. ${esc(utitle(u))}</p><div class="list">${rows.map(w=>`<div class="li"><div style="min-width:0"><b lang="${L.speech}"${L.rtl?' dir="rtl"':''} style="color:var(--head);font-size:1.15rem">${esc(w[0])}</b>${w[1]?`<span class="s">${esc(w[1])}</span>`:''}<span class="s">${esc(w[2])}</span></div>${sayBtn(w[0],L.speech)}</div>`).join('')}</div>`}).join('')}`);
       const qi=el.querySelector('#q');let t;qi.oninput=e=>{clearTimeout(t);t=setTimeout(()=>{q=e.target.value;const p=qi.selectionStart;draw();const n=el.querySelector('#q');n.focus();n.setSelectionRange(p,p)},200)}};
     draw()});
 }
 function openLangTranslate(code){const L=LANGS[code];
   push('jp',el=>{
-    page(el,'Translate',`<div class="hero">${bi('',{flag:lflag(code),s:64})}<h2>Say it in ${esc(L.name)}</h2><p>Type how you'd actually say it, slang and all. You'll get the natural way to say it, with how to pronounce it.</p></div>
+    page(el,'Translate',`<div class="hero">${bi('',{flag:lflag(code),s:64})}<h2>Say it in ${esc(L.name)}</h2><p>${code==='en'?'Escribe en español como hablas y te damos cómo lo diría un americano.':'Type how you\'d actually say it, slang and all. You\'ll get the natural way to say it, with how to pronounce it.'}</p></div>
       <textarea class="ta" id="src" rows="3" placeholder="bro I'm so tired, we got a quiz tomorrow"></textarea><p class="status" id="st"></p><div id="out"></div>`,
       '<button class="btn c block" id="go">Translate</button>');
     const go=el.querySelector('#go'),st=el.querySelector('#st'),out=el.querySelector('#out');
     go.onclick=async()=>{const v=el.querySelector('#src').value.trim();if(!v)return;busy(go,'Translating');st.textContent='';out.innerHTML='';
-      try{const r=await askJSON(`Translate this casual English from a US high schooler into natural, everyday ${L.name}${code==='es'?' (Latin American)':''}${code==='ar'?' (Modern Standard Arabic)':''}${code==='zh'?' (Simplified Chinese)':''}, the way a native speaker their age would say it. Keep the meaning and tone, replace slang with the closest natural equivalent, but keep it school-appropriate.
+      try{const r=await askJSON(code==='en'?`Translate this Spanish (or Spanglish) from a teenager into natural, casual American English the way an American teen would say it. Keep it school-appropriate.
+Spanish: """${v}"""
+Return JSON: {"translation":"...","romanization":"","literal":"Spanish back-translation of your English","notes":["1 to 3 short notes IN SPANISH about word choices"],"words":[{"t":"English word","r":"","en":"meaning in Spanish"}]}`:`Translate this casual English from a US high schooler into natural, everyday ${L.name}${code==='es'?' (Latin American)':''}${code==='ar'?' (Modern Standard Arabic)':''}${code==='zh'?' (Simplified Chinese)':''}, the way a native speaker their age would say it. Keep the meaning and tone, replace slang with the closest natural equivalent, but keep it school-appropriate.
 English: """${v}"""
 Return JSON: {"translation":"...","romanization":"${['zh','hi','ar'].includes(code)?(code==='zh'?'pinyin with tone marks':'simple readable romanization'):''}","literal":"word-for-word English back-translation","notes":["1 to 3 short notes on word choices or slang swaps"],"words":[{"t":"word","r":"romanization or empty","en":"meaning"}]}`);
         out.innerHTML=`<div class="card"><span class="eyebrow">${esc(L.name)}</span><p lang="${L.speech}"${L.rtl?' dir="rtl"':''} style="font-size:1.5rem;font-weight:800;color:var(--head)">${esc(r.translation||'')}</p>${r.romanization?`<p class="muted">${esc(r.romanization)}</p>`:''}<div>${sayBtn(r.translation||'',L.speech)}</div>${r.literal?`<p class="small muted">Word for word: ${esc(r.literal)}</p>`:''}</div>
@@ -5033,11 +5295,386 @@ function langViewHTML(code){
   const L=LANGS[code],ls=langLessons(code),d=lpDone(code),nu=lpNext(code);const offs=[0,44,70,44,0,-44,-70,-44];let last=-1;
   [['lt-tr',()=>openLangTranslate(code)],['lt-pb',()=>openPhrasebook(code)],['lt-rv',()=>langReview(code)],['lt-nt',()=>openLangNotes(code)]].forEach(([k,f])=>ACT[k]=f);
   const tools=`<div class="jtools">${[['lt-tr','pencil','Translate'],['lt-pb','book','Phrasebook'],['lt-rv','sparkle','Review'],['lt-nt','notebook','My sentences']].map(([id,ic,t])=>`<button class="mini" data-act="${id}">${bi(ic,{s:52})}<b>${t}</b></button>`).join('')}</div>`;
-  const path=ls.map((l,i)=>{let ban='';if(l.unit!==last){last=l.unit;ban=`${i?'</div>':''}<div class="banner"${i?' style="margin-top:14px"':''}><small>Unit ${l.unit+1}</small><b>${esc(l.title)}</b><span>${esc(L.units[l.unit].words.slice(0,3).map(w=>w[0]).join(', '))}…</span></div><div class="path">`}
+  const path=ls.map((l,i)=>{let ban='';if(l.unit!==last){last=l.unit;ban=`${i?'</div>':''}<div class="banner"${i?' style="margin-top:14px"':''}><small>Unit ${l.unit+1}</small><b>${esc(utitle(L.units[l.unit]))}</b><span>${esc(L.units[l.unit].words.slice(0,3).map(w=>w[0]).join(', '))}…</span></div><div class="path">`}
     const done=d.includes(l.id),isNext=i===nu&&!done;ACT['lu'+i]=()=>openLangLesson(code,i);
     return`${ban}<button class="node${done?' done':''}${isNext?' next':''}${l.kind==='phrases'?' wordsnode':''}" data-act="lu${i}" style="transform:translateX(${offs[i%8]}px)">${isNext?'<span class="bubble">START</span>':''}<span class="disc">${done?ICON.check:l.kind==='words'?String(l.unit+1):`<svg viewBox="0 0 24 24" style="width:44%;height:44%">${IC.speech}</svg>`}</span><span class="lbl">${esc(l.sub)}</span></button>`}).join('')+'</div>';
   return tools+path;
 }
+
+const ELA={
+confused:[
+["___ going to love this book.","You're",["Your"],"You're is short for you are."],
+["Don't forget ___ backpack on the bus.","your",["you're"],"Your shows ownership: your backpack."],
+["The students left ___ jackets in the gym.","their",["there","they're"],"Their shows ownership: it belongs to them."],
+["___ going to the game after school.","They're",["Their","There"],"They're is short for they are."],
+["Put the boxes over ___ by the door.","there",["their","they're"],"There is a place. It has 'here' inside it."],
+["The dog wagged ___ tail.","its",["it's"],"Its (no apostrophe) shows ownership, like his or her."],
+["___ raining again today.","It's",["Its"],"It's means it is or it has."],
+["___ been a long week.","It's",["Its"],"It's can mean it has. Try saying 'it has been' to check."],
+["I want to come ___!","too",["to","two"],"Too means also or more than enough."],
+["We have ___ tests on Friday.","two",["to","too"],"Two is the number 2."],
+["This soup is ___ hot to eat.","too",["to","two"],"Too means more than enough: too hot."],
+["My brother is taller ___ me.","than",["then"],"Use than to compare things."],
+["Finish your homework, and ___ you can play.","then",["than"],"Then is about time: first this, then that."],
+["Lack of sleep can ___ your grades.","affect",["effect"],"Affect is usually the verb (the action)."],
+["The new rule had a big ___ on the team.","effect",["affect"],"Effect is usually the noun (the result)."],
+["What ___ did the storm have on the town?","effect",["affect"],"An effect is a result. Remember: the effect."],
+["I ___ your apology.","accept",["except"],"Accept means to receive or agree to."],
+["Everyone ___ Sam finished the test early.","except",["accept"],"Except means leaving something out."],
+["Don't ___ your phone at the concert.","lose",["loose"],"Lose means to misplace or not win."],
+["My shoelace came ___ during the race.","loose",["lose"],"Loose means not tight. It rhymes with goose."],
+["___ coming to the party tonight?","Who's",["Whose"],"Who's is short for who is or who has."],
+["___ jacket is this?","Whose",["Who's"],"Whose shows ownership."],
+["___ did you park the car?","Where",["Were","We're"],"Where asks about a place."],
+["___ going to be late if we don't hurry.","We're",["Were","Where"],"We're is short for we are."],
+["They ___ at the library all afternoon.","were",["where","we're"],"Were is a past form of the verb be."],
+["There are ___ students in class today.","fewer",["less"],"Use fewer for things you can count one by one."],
+["I drink ___ soda than I used to.","less",["fewer"],"Use less for amounts you measure, not count."],
+["I have ___ of homework tonight.","a lot",["alot"],"A lot is always two words."],
+["I ___ won if I had practiced more.","could have",["could of"],"It's could have (could've), never could of."],
+["You ___ told me about the quiz earlier.","should have",["should of"],"It's should have (should've), never should of."],
+["I ___ down for a nap every afternoon.","lie",["lay"],"Lie means to rest. You lie down yourself."],
+["Please ___ the book on the table.","lay",["lie"],"Lay means to put something down. It needs an object."],
+["My cat likes to ___ in the sun.","lie",["lay"],"Lie means to rest or recline, with no object."],
+["The ___ called my parents about the field trip.","principal",["principle"],"The principal is your pal who runs the school."],
+["Honesty is an important ___.","principle",["principal"],"A principle is a rule or belief."],
+["She gave me a nice ___ on my essay.","compliment",["complement"],"A compliment is praise. I like compliments."],
+["The red scarf will ___ your coat.","complement",["compliment"],"Complement means to complete or go well with."],
+["The exercise bike is ___, so it doesn't move.","stationary",["stationery"],"Stationary means standing still. Think 'a' for stay."],
+["She wrote the letter on fancy ___.","stationery",["stationary"],"Stationery is paper. Think 'e' for envelope."],
+["I can't decide ___ to laugh or cry.","whether",["weather"],"Whether is used for choices or possibilities."],
+["The ___ is perfect for a picnic.","weather",["whether"],"Weather is rain, sun, and wind."],
+["We had ice cream for ___.","dessert",["desert"],"Dessert has two s's, like strawberry shortcake."],
+["Camels can survive in the hot ___.","desert",["dessert"],"A desert is dry and sandy, with just one s."],
+["Take a deep ___ before you start.","breath",["breathe"],"Breath (no e) is the noun."],
+["It's hard to ___ at high altitudes.","breathe",["breath"],"Breathe (with e) is the verb."],
+["Please be ___ in the library.","quiet",["quite"],"Quiet means making little or no noise."],
+["The movie was ___ long.","quite",["quiet"],"Quite means very or completely."],
+["My coach gave me some good ___.","advice",["advise"],"Advice is the noun. It rhymes with nice."],
+["I ___ you to start studying early.","advise",["advice"],"Advise is the verb. It rhymes with wise."],
+
+["She sings really ___.","well",["good"],"Well is the adverb that describes how you do something."],
+["You did a ___ job on the project.","good",["well"],"Good is the adjective that describes a noun, like job."],
+["Don't ___ at your presents before your birthday.","peek",["peak","pique"],"Peek means a quick look. You peek with your eyes (ee)."],
+["We hiked to the ___ of the mountain.","peak",["peek","pique"],"A peak is the top. Think of the pointy A in peak."],
+["The movie trailer will ___ your interest.","pique",["peak","peek"],"Pique means to spark interest or curiosity."],
+["Austin is the ___ of Texas.","capital",["capitol"],"A capital is a city that is the seat of government."],
+["Lawmakers met inside the ___ building.","capitol",["capital"],"A capitol is a building. Many have a dome, like an o."],
+["Please read the poem ___ to the class.","aloud",["allowed"],"Aloud means out loud."],
+["Phones are not ___ during the test.","allowed",["aloud"],"Allowed means permitted."],
+["We ___ the library on the way home.","passed",["past"],"Passed is a verb, the past tense of pass."],
+["In the ___, people wrote letters by hand.","past",["passed"],"Past means an earlier time (or beyond)."]
+],
+spelling:[
+["definitely",["definately","definitly","defenitely"],"It has the word finite in it."],
+["separate",["seperate","separete","seperete"],"There is a rat in separate."],
+["necessary",["neccessary","necesary","neccesary"],"One collar (c) and two sleeves (ss)."],
+["receive",["recieve","receeve","resieve"],"I before e, except after c."],
+["believe",["beleive","belive","beleave"],"Never believe a lie."],
+["occurrence",["occurence","ocurrence","occurrance"],"Double c, double r, and end with -ence."],
+["embarrass",["embarass","embarras","embaress"],"Two r's and two s's, like turning really red."],
+["accommodate",["accomodate","acommodate","acomodate"],"It's big enough to fit two c's and two m's."],
+["conscience",["concience","conscence","consience"],"Your conscience has science inside it."],
+["conscious",["concious","consious","conscous"],"It starts with con plus sci."],
+["rhythm",["rythm","rhythym","rythym"],"Rhythm Helps Your Two Hips Move."],
+["government",["goverment","govermant","governmant"],"It's govern plus ment."],
+["February",["Febuary","Febraury","Februery"],"Say it slowly: Feb-ru-ar-y."],
+["library",["libary","liberry","librery"],"Don't forget the first r: li-brar-y."],
+["Wednesday",["Wensday","Wednsday","Wedensday"],"Think of it as Wed-nes-day."],
+["privilege",["priviledge","privelege","privilage"],"There is no d in privilege."],
+["restaurant",["restaraunt","resturant","restaurent"],"It ends with rant: restau-rant."],
+["maintenance",["maintainance","maintenence","maintanance"],"Main, then ten, then ance."],
+["millennium",["millenium","milennium","millenneum"],"Two l's and two n's."],
+["recommend",["reccommend","recomend","reccomend"],"One c and two m's."],
+["mischievous",["mischievious","mischevious","mischeivous"],"It has three syllables: mis-chie-vous."],
+["conscientious",["conscentious","consciencious","conscientous"],"Think of conscience, then change the ending to -tious."],
+["guarantee",["garantee","guarentee","guarantie"],"Don't forget the u after the g."],
+["harass",["harrass","harras","haress"],"One r and two s's."],
+["independent",["independant","indepedent","independint"],"Every vowel after the d is an e: in-de-pen-dent."],
+["achieve",["acheive","achive","acheeve"],"I before e here."],
+["address",["adress","addres","adres"],"Two d's and two s's."],
+["apparent",["apparant","aparent","apparrent"],"A parent is apparent."],
+["argument",["arguement","argumint","arguemant"],"Argue drops its e in argument."],
+["beginning",["begining","beggining","beginnig"],"Double the n before -ing."],
+["business",["buisness","busness","bussiness"],"It's busy plus ness, with the y changed to i."],
+["calendar",["calandar","calander","calendur"],"It ends in -dar."],
+["cemetery",["cemetary","cematery","cemetry"],"It has three e's, like a scream: eee."],
+["column",["colum","collumn","colomn"],"Don't forget the silent n at the end."],
+["committee",["commitee","comittee","comitee"],"Double m, double t, double e."],
+["environment",["enviroment","enviorment","envirnment"],"There is iron in environment."],
+["exaggerate",["exagerate","exxagerate","exaggarate"],"Two g's, like a big exaggeration."],
+["existence",["existance","existense","exsistence"],"It ends in -ence."],
+["foreign",["foriegn","forein","foreighn"],"The e comes before the i."],
+["grammar",["grammer","gramar","grammor"],"Don't mar your grammar: it ends in -ar."],
+["immediately",["immediatly","imediately","immedietly"],"It's immediate plus ly."],
+["knowledge",["knowlege","knoledge","nowledge"],"There is a ledge in knowledge."],
+["leisure",["liesure","leasure","leisur"],"The e comes before the i."],
+["license",["liscense","lisence","lycense"],"Only one s, and it comes near the end."],
+["noticeable",["noticable","noticible","notecable"],"Keep the e from notice."],
+["occasion",["occassion","ocassion","ocasion"],"Two c's and one s."],
+["parallel",["paralell","parrallel","paralel"],"The two l's in the middle are parallel lines."],
+["possession",["posession","possesion","posesion"],"Four s's in all: two pairs."],
+["pronunciation",["pronounciation","pronunciacion","pronounciasion"],"There is no noun in pronunciation."],
+["questionnaire",["questionaire","questionnair","questionnare"],"Two n's in the middle."],
+["referred",["refered","reffered","referrd"],"One f, two r's."],
+["schedule",["schedual","schedul","skedule"],"It ends in -dule."],
+["sincerely",["sincerly","sincerelly","sinserely"],"It's sincere plus ly."],
+["surprise",["suprise","surprice","serprise"],"There is an r right after the su."],
+["tomorrow",["tommorow","tomorow","tommorrow"],"One m and two r's."],
+["until",["untill","untl","unitl"],"Until has just one l."],
+["vacuum",["vaccum","vacume","vaccuum"],"One c and two u's."],
+["weird",["wierd","weerd","wiered"],"Weird is weird: it breaks the i before e rule."],
+["truly",["truely","truley","trulee"],"True drops its e in truly."],
+["athlete",["athelete","athleet","athlet"],"Just two syllables: ath-lete."],
+["height",["heigth","hieght","heigt"],"It ends in -ght, like weight."],
+["ninth",["nineth","nynth","ninthe"],"Nine drops its e in ninth."],
+["occurred",["occured","ocurred","occurd"],"Double c and double r."],
+["interrupt",["interupt","intterupt","inturrupt"],"Two r's: inter plus rupt."],
+["acquire",["aquire","acquier","aqcuire"],"Don't forget the c before the q."],
+["disappoint",["dissapoint","disapoint","dissappoint"],"One s and two p's."],
+["Fahrenheit",["Farenheit","Fahrenhiet","Fahrenheight"],"It's named after a person. Remember the h after Fa."]
+],
+punct:[
+["Which sentence is punctuated correctly?","After the game ended, we went out for pizza.",["After the game ended we, went out for pizza.","After, the game ended we went out for pizza.","After the game ended; we went out for pizza."],"Put a comma after an introductory clause, not inside it, and don't use a semicolon there."],
+["Which sentence is punctuated correctly?","Before leaving for school, Maya checked her backpack.",["Before leaving for school Maya, checked her backpack.","Before leaving, for school Maya checked her backpack.","Before leaving for school; Maya checked her backpack."],"The comma goes right after the whole introductory phrase."],
+["Which sentence is punctuated correctly?","However, the test was easier than we expected.",["However the test, was easier than we expected.","However; the test was easier than we expected.","However the test was easier, than we expected."],"Put a comma after an introductory word like however."],
+["Which sentence is punctuated correctly?","Yes, I finished the reading.",["Yes I, finished the reading.","Yes; I finished the reading.","Yes I finished, the reading."],"Put a comma after an introductory word like yes or no."],
+["Which sentence is punctuated correctly?","I studied for hours, but I still felt nervous.",["I studied for hours but, I still felt nervous.","I studied, for hours but I still felt nervous.","I studied for hours, but, I still felt nervous."],"In a compound sentence, the comma goes before the joining word (FANBOYS), not after it."],
+["Which sentence is punctuated correctly?","We can watch a movie, or we can play a board game.",["We can watch a movie or, we can play a board game.","We can watch, a movie or we can play a board game.","We can watch a movie; or, we can play a board game."],"Put a comma before or when it joins two complete sentences."],
+["Which sentence is punctuated correctly?","It started to rain, so we went inside.",["It started to rain so, we went inside.","It started, to rain so we went inside.","It started to rain; so, we went inside."],"Put a comma before so when it joins two complete sentences."],
+["Which sentence is punctuated correctly?","The bell rang. Everyone rushed to the door.",["The bell rang, everyone rushed to the door.","The bell rang everyone rushed to the door.","The bell, rang everyone rushed to the door."],"A comma alone can't join two complete sentences. That's a comma splice."],
+["Which sentence is punctuated correctly?","It was late; we decided to head home.",["It was late, we decided to head home.","It was late we decided to head home.","It was; late we decided to head home."],"A semicolon can join two closely related complete sentences."],
+["Which sentence is punctuated correctly?","My sister loves soccer; my brother prefers chess.",["My sister loves soccer, my brother prefers chess.","My sister loves; soccer my brother prefers chess.","My sister loves soccer my brother prefers chess."],"Use a semicolon, not just a comma, between two complete sentences with no joining word."],
+["Which sentence is punctuated correctly?","I wanted to go; however, I was sick.",["I wanted to go, however, I was sick.","I wanted to go however; I was sick.","I wanted; to go, however I was sick."],"Use a semicolon before however when it joins two complete sentences, and a comma after it."],
+["Which sentence is punctuated correctly?","Because it was raining, the game was canceled.",["Because it was raining; the game was canceled.","Because it was raining the game, was canceled.","Because, it was raining the game was canceled."],"Use a comma, not a semicolon, after an introductory clause. A semicolon needs complete sentences on both sides."],
+["Which sentence is punctuated correctly?","Bring three things: a pencil, a notebook, and a calculator.",["Bring three things a pencil: a notebook, and a calculator.","Bring three things; a pencil, a notebook, and a calculator.","Bring: three things a pencil, a notebook, and a calculator."],"Use a colon after a complete sentence to introduce a list."],
+["Which sentence is punctuated correctly?","You need a sleeping bag, a flashlight, and snacks.",["You need: a sleeping bag, a flashlight, and snacks.","You need; a sleeping bag, a flashlight, and snacks.","You need a sleeping bag: a flashlight, and snacks."],"Don't put a colon or semicolon between a verb and the list that follows it."],
+["Which sentence is punctuated correctly?","Our class has one goal: finish the project by Friday.",["Our class has: one goal finish the project by Friday.","Our class has one goal; finish the project by Friday.","Our class, has one goal: finish the project by Friday."],"A colon can introduce an explanation after a complete sentence."],
+["Which sentence is punctuated correctly?","We packed sandwiches, chips, and apples.",["We packed, sandwiches, chips, and apples.","We packed sandwiches chips, and apples.","We packed sandwiches, chips, and, apples."],"Use commas to separate items in a series, but not before the first item or after and."],
+["Which sentence is punctuated correctly?","The teacher's desk was covered in papers.",["The teachers desk was covered in papers.","The teacher's desk was covered in paper's.","The teachers desk was covered in paper's."],"Add 's to show that one person owns something. Plain plurals get no apostrophe."],
+["Which sentence is punctuated correctly?","Both girls' bikes were locked outside.",["Both girl's bikes were locked outside.","Both girls bikes were locked outside.","Both girls' bike's were locked outside."],"For a plural noun ending in s, add just an apostrophe after the s."],
+["Which sentence is punctuated correctly?","The children's toys were all over the floor.",["The childrens' toys were all over the floor.","The childrens toys were all over the floor.","The children's toy's were all over the floor."],"For a plural that doesn't end in s, like children, add 's."],
+["Which sentence is punctuated correctly?","The team celebrated its first win.",["The team celebrated it's first win.","The team celebrated its' first win.","The team's celebrated its first win."],"The possessive its never has an apostrophe."],
+["Which sentence is punctuated correctly?","It's going to be a long day.",["Its going to be a long day.","Its' going to be a long day.","I'ts going to be a long day."],"It's with an apostrophe means it is or it has."],
+["Which sentence is punctuated correctly?","We bought three pizzas for the party.",["We bought three pizza's for the party.","We bought three pizzas' for the party.","We bought three pizza's' for the party."],"Don't use an apostrophe to make a word plural."],
+["Which sentence is punctuated correctly?",`"I'm almost done," said Leo.`,[`"I'm almost done", said Leo.`,`"I'm almost done" said Leo.`,`"I'm almost done." said Leo.`],"In American English, the comma goes inside the closing quotation mark."],
+["Which sentence is punctuated correctly?",`Ms. Ruiz said, "Turn in your papers."`,[`Ms. Ruiz said, "Turn in your papers".`,`Ms. Ruiz said, Turn in your papers."`,`Ms. Ruiz said; "Turn in your papers."`],"In American English, the period goes inside the closing quotation mark, and a quote needs both opening and closing marks."],
+["Which sentence is punctuated correctly?",`"Are you coming with us?" asked Dana.`,[`"Are you coming with us"? asked Dana.`,`"Are you coming with us?," asked Dana.`,`"Are you coming with us," asked Dana?`],"When the quote itself is a question, the question mark goes inside the quotation marks, with no extra comma."],
+["Which sentence is punctuated correctly?","Thanks for your help, Mom.",["Thanks, for your help Mom.","Thanks for your help Mom.","Thanks for, your help Mom."],"Use a comma to set off the name of the person you're talking to."],
+["Which sentence is punctuated correctly?","Jordan, please close the door.",["Jordan please, close the door.","Jordan please close, the door.","Jordan; please close the door."],"Put a comma right after a name used in direct address."],
+["Which sentence is punctuated correctly?","Let's eat, Grandma.",["Lets eat, Grandma.","Let's eat Grandma.","Let's, eat Grandma."],"A comma before Grandma shows you're talking to her, not about eating her."],
+["Which sentence is punctuated correctly?","My mom, who is a nurse, works the night shift.",["My mom, who is a nurse works the night shift.","My mom who is a nurse, works the night shift.","My mom, who is, a nurse works the night shift."],"A nonessential clause needs a comma on both sides."],
+["Which sentence is punctuated correctly?","Mount Everest, which is the tallest mountain on Earth, is in Asia.",["Mount Everest which is the tallest mountain on Earth, is in Asia.","Mount Everest, which is the tallest mountain on Earth is in Asia.","Mount Everest, which is the tallest, mountain on Earth is in Asia."],"Extra information in the middle of a sentence is set off by a pair of commas."],
+["Which sentence is punctuated correctly?","Students who finish early may read quietly.",["Students who finish early, may read quietly.","Students, who finish early may read quietly.","Students who, finish early may read quietly."],"An essential clause (needed to know who you mean) gets no commas, and never put one comma between a subject and its verb."],
+["Which sentence is punctuated correctly?","Our coach, Mr. Lee, gave a great speech.",["Our coach, Mr. Lee gave a great speech.","Our coach Mr. Lee, gave a great speech.","Our coach, Mr. Lee, gave, a great speech."],"An appositive that renames a noun is set off by a pair of commas."]
+],
+grammar:[
+["What part of speech is the CAPITALIZED word?","She ran QUICKLY to the bus.","adverb",["adjective","verb","noun"],"Quickly tells how she ran, so it's an adverb."],
+["What part of speech is the CAPITALIZED word?","The SLEEPY puppy curled up on the couch.","adjective",["adverb","noun","verb"],"Sleepy describes the noun puppy, so it's an adjective."],
+["What part of speech is the CAPITALIZED word?","We walked ACROSS the bridge.","preposition",["adverb","conjunction","verb"],"Across shows the relationship between walked and the bridge."],
+["What part of speech is the CAPITALIZED word?","I wanted pizza, BUT the shop was closed.","conjunction",["preposition","adverb","interjection"],"But joins two complete sentences, so it's a conjunction."],
+["What part of speech is the CAPITALIZED word?","WOW, that was an amazing catch!","interjection",["adjective","adverb","noun"],"Wow shows sudden feeling and stands apart from the sentence."],
+["What part of speech is the CAPITALIZED word?","Marcus gave HER the notebook.","pronoun",["noun","adjective","preposition"],"Her takes the place of a person's name."],
+["What part of speech is the CAPITALIZED word?","The ORCHESTRA practiced every day.","noun",["verb","adjective","pronoun"],"Orchestra names a group of people, so it's a noun."],
+["What part of speech is the CAPITALIZED word?","The birds SING every morning.","verb",["noun","adverb","adjective"],"Sing is the action the birds do."],
+["What part of speech is the CAPITALIZED word?","HAPPINESS is contagious.","noun",["adjective","verb","adverb"],"Happiness names a feeling. Ideas and feelings can be nouns."],
+["What part of speech is the CAPITALIZED word?","She is VERY talented.","adverb",["adjective","noun","pronoun"],"Very modifies the adjective talented. Words that modify adjectives are adverbs."],
+["What part of speech is the CAPITALIZED word?","THEY finished the race together.","pronoun",["noun","adjective","conjunction"],"They takes the place of the names of people."],
+["What part of speech is the CAPITALIZED word?","He felt nervous BEFORE the test.","preposition",["conjunction","adverb","adjective"],"Before is followed by a noun (the test), so here it's a preposition."],
+["What part of speech is the CAPITALIZED word?","We waited UNTIL the rain stopped.","conjunction",["preposition","verb","interjection"],"Until is followed by a clause with a subject and verb (the rain stopped), so here it's a conjunction."],
+["What part of speech is the CAPITALIZED word?","Lena WROTE a poem for class.","verb",["noun","adjective","preposition"],"Wrote is the action Lena did."],
+["Choose the verb that correctly completes the sentence.","Each of the students ___ a laptop.","has",["have","are having","were having"],"Each is singular, so it takes a singular verb. Ignore the phrase of the students."],
+["Choose the verb that correctly completes the sentence.","The box of chocolates ___ on the counter.","is",["are","were","have been"],"The subject is box (singular), not chocolates."],
+["Choose the verb that correctly completes the sentence.","My sister and her friend ___ at the mall.","are",["is","was","has been"],"Two subjects joined by and take a plural verb."],
+["Choose the verb that correctly completes the sentence.","Either the teacher or the students ___ going to lead the discussion.","are",["is","was","has been"],"With either/or, the verb agrees with the closer subject, students."],
+["Choose the verb that correctly completes the sentence.","One of the books ___ missing.","is",["are","were","have been"],"The subject is one, which is singular."],
+["Choose the verb that correctly completes the sentence.","There ___ three dogs in the yard.","are",["is","was","has been"],"In a sentence starting with there, the subject comes after the verb. Dogs is plural."],
+["Choose the verb that correctly completes the sentence.","Everybody ___ excited about the trip.","is",["are","were","have been"],"Everybody is singular, even though it refers to many people."],
+["Choose the verb that correctly completes the sentence.","The players on the team ___ tired after practice.","are",["is","was","has been"],"The subject is players (plural), not team."],
+["Which pronoun correctly completes the sentence?","This secret is just between you and ___.","me",["I","myself","mine"],"After a preposition like between, use the object pronoun me."],
+["Which pronoun correctly completes the sentence?","My friend and ___ went to the concert.","I",["me","myself","mine"],"Drop 'my friend and' to test it: I went to the concert."],
+["Which pronoun correctly completes the sentence?","Coach gave the award to Jada and ___.","me",["I","myself","mine"],"Drop 'Jada and' to test it: Coach gave the award to me."],
+["Which pronoun correctly completes the sentence?","___ and Tyler are partners for the lab.","He",["Him","His","Himself"],"Use the subject pronoun he. Test it: He is a partner."],
+["Which pronoun correctly completes the sentence?","The teacher asked Ava and ___ to stay after class.","him",["he","his","himself"],"Use the object pronoun him. Test it: The teacher asked him."],
+["Which pronoun correctly completes the sentence?","___ students need a longer lunch.","We",["Us","Our","Ourselves"],"Drop students to test it: We need a longer lunch."],
+["Is this a complete sentence, a fragment, or a run-on?","Because the bus was late.","Fragment",["Complete sentence","Run-on","Comma splice"],"It starts with because and leaves the thought unfinished."],
+["Is this a complete sentence, a fragment, or a run-on?","Running down the hallway with a backpack.","Fragment",["Complete sentence","Run-on","Comma splice"],"It has no subject and no main verb."],
+["Is this a complete sentence, a fragment, or a run-on?","The girl who won the spelling bee last year.","Fragment",["Complete sentence","Run-on","Comma splice"],"It names someone but never says what she did."],
+["Is this a complete sentence, a fragment, or a run-on?","I love reading mysteries they keep me guessing.","Run-on",["Complete sentence","Fragment","Comma splice"],"Two complete sentences are jammed together with no punctuation."],
+["Is this a complete sentence, a fragment, or a run-on?","The storm knocked out the power we used flashlights.","Run-on",["Complete sentence","Fragment","Comma splice"],"Two complete sentences run together with nothing between them."],
+["Is this a complete sentence, a fragment, or a run-on?","Although she was tired, Maria finished her homework.","Complete sentence",["Fragment","Run-on","Comma splice"],"It has a subject (Maria), a verb (finished), and a complete thought."],
+["Is this a complete sentence, a fragment, or a run-on?","Close the door.","Complete sentence",["Fragment","Run-on","Comma splice"],"Commands have an understood subject: (You) close the door."],
+["Which sentence is in the active voice?","","The chef cooked a delicious meal.",["A delicious meal was cooked by the chef.","The meal was cooked.","A delicious meal had been cooked by the chef."],"In active voice, the subject does the action. The chef cooked."],
+["Which sentence is in the active voice?","","Our class planted twenty trees.",["Twenty trees were planted by our class.","Twenty trees have been planted.","Twenty trees are being planted by our class."],"Our class is the subject, and it does the planting."],
+["Which sentence is in the passive voice?","","The window was broken by a baseball.",["A baseball broke the window.","The baseball flew through the window.","The kids broke the window with a baseball."],"In passive voice, the subject receives the action (was broken)."],
+["Which sentence is in the passive voice?","","The essays were graded over the weekend.",["Mr. Kim graded the essays over the weekend.","Mr. Kim was grading the essays over the weekend.","The essays looked great."],"The essays receive the action (were graded). Was grading is active, since Mr. Kim does it."],
+["Which choice rewrites this sentence in active voice?","The ball was kicked by Maya.","Maya kicked the ball.",["The ball was kicked.","Maya was kicked by the ball.","The ball kicked Maya."],"Make the doer (Maya) the subject and keep the meaning the same."],
+["Choose the verb that keeps the tense consistent.","Yesterday, I walked to the store and ___ some milk.","bought",["buy","buys","will buy"],"The sentence is in the past tense (walked), so use bought."],
+["Choose the verb that keeps the tense consistent.","Every morning, she wakes up early and ___ the dog.","walks",["walked","had walked","will have walked"],"The sentence is in the present tense (wakes), so use walks."],
+["Choose the verb that keeps the tense consistent.","The hero opened the door and ___ into the dark room.","stepped",["steps","step","will step"],"Opened is past tense, so stepped matches it."],
+["Choose the verb that keeps the tense consistent.","Last summer, we visited the beach and ___ sandcastles.","built",["build","builds","will build"],"Last summer and visited are past, so use built."],
+["Which sentence keeps verb tense consistent?","","When the bell rang, the students grabbed their bags and left.",["When the bell rang, the students grab their bags and left.","When the bell rings, the students grabbed their bags and leave.","When the bell rang, the students grab their bags and leave."],"All three verbs (rang, grabbed, left) are in the past tense."],
+["Which sentence uses parallel structure?","","I like hiking, swimming, and biking.",["I like hiking, swimming, and to bike.","I like to hike, swimming, and biking.","I like hiking, to swim, and biking."],"All three items use the same -ing form."],
+["Which sentence uses parallel structure?","","She was smart, kind, and funny.",["She was smart, kindness, and funny.","She was intelligence, kind, and funny.","She was smart, kind, and humor."],"All three items are adjectives."],
+["Which sentence uses parallel structure?","","The coach told us to stretch, to hydrate, and to rest.",["The coach told us to stretch, hydrating, and to rest.","The coach told us stretching, to hydrate, and rest.","The coach told us to stretch, to hydrate, and resting."],"All three items use the same to + verb form."],
+["Which sentence uses parallel structure?","","Studying is more useful than cramming.",["Studying is more useful than to cram.","To study is more useful than cramming.","Studying is more useful than when you cram."],"Both things being compared use the same -ing form."],
+["Which sentence uses parallel structure?","","We can either take the bus or ride our bikes.",["We can either take the bus or riding our bikes.","We can either take the bus or by riding our bikes.","We can either take the bus or our bikes we can ride."],"The words after either and or should match: take the bus, ride our bikes."]
+],
+lit:[
+["theme","The central message or big idea about life that a story explores.","Many stories share the theme that true friendship requires sacrifice."],
+["tone","The author's attitude toward the subject, shown through word choice.","A tone can be playful, serious, sarcastic, or hopeful."],
+["mood","The feeling a piece of writing creates in the reader.","A creaky house on a stormy night creates a spooky mood."],
+["plot","The sequence of events that make up a story.","Plot usually moves through exposition, rising action, climax, falling action, and resolution."],
+["exposition","The beginning of a story, where characters, setting, and background are introduced.","The first chapter that introduces the hero and her town."],
+["rising action","The series of events that build tension and lead to the climax.","The clues piling up as a detective gets closer to the truth."],
+["climax","The turning point of a story, where tension is highest.","The final showdown between the hero and the villain."],
+["falling action","The events after the climax that start to wrap up the story.","The characters dealing with what happened after the big battle."],
+["resolution","The end of a story, where the conflict is settled.","The friends make up and the story closes."],
+["conflict","The struggle between opposing forces that drives a story.","A character fighting a storm, a rival, or their own fears."],
+["internal conflict","A struggle inside a character's own mind.","A student torn between telling the truth and protecting a friend."],
+["external conflict","A struggle between a character and an outside force, like another person, nature, or society.","A sailor fighting to survive a hurricane."],
+["protagonist","The main character of a story, often the one we root for.","Harry Potter is the protagonist of his series."],
+["antagonist","The character or force that works against the protagonist.","The wolf is the antagonist in Little Red Riding Hood."],
+["foil","A character whose contrasting traits highlight the traits of another character.","Calm, careful Benvolio is a foil to hot-headed Tybalt in Romeo and Juliet."],
+["dynamic character","A character who changes in an important way over the course of the story.","Ebenezer Scrooge goes from greedy to generous in A Christmas Carol."],
+["static character","A character who stays basically the same throughout the story.","A loyal sidekick who acts the same from start to finish."],
+["characterization","The ways an author reveals what a character is like.","Showing a character through their words, actions, thoughts, looks, and how others react to them."],
+["first-person point of view","A story told by a narrator who is a character and uses I or we.","I walked into the room and froze."],
+["third-person limited point of view","A story told by an outside narrator who shares the thoughts of only one character.","She wondered if anyone had noticed her mistake."],
+["third-person omniscient point of view","A story told by an outside narrator who knows the thoughts and feelings of all the characters.","The narrator tells us what both the hero and the villain are secretly planning."],
+["narrator","The voice that tells the story.","Nick Carraway is the narrator of The Great Gatsby."],
+["unreliable narrator","A narrator whose account can't be fully trusted.","The narrator of The Tell-Tale Heart insists he is sane while describing a murder."],
+["setting","The time and place in which a story happens.","A small town in Alabama in the 1930s is the setting of To Kill a Mockingbird."],
+["symbolism","Using an object, person, or event to stand for a bigger idea.","A dove often symbolizes peace."],
+["motif","A repeated image, idea, or detail that helps develop a theme.","Repeated images of blood in Macbeth point to guilt."],
+["foreshadowing","Hints or clues about what will happen later in a story.","Dark clouds gathering before something bad happens."],
+["flashback","A scene that interrupts the story to show something that happened earlier.","A character suddenly remembers a day from her childhood."],
+["verbal irony","When a speaker says the opposite of what they really mean.","Saying 'What lovely weather!' during a downpour."],
+["situational irony","When what happens is the opposite of what was expected.","A fire station burns down."],
+["dramatic irony","When the audience knows something the characters do not.","In Romeo and Juliet, the audience knows Juliet is not really dead, but Romeo doesn't."],
+["allusion","A brief reference to a well-known person, place, event, or work.","Calling someone 'a real Romeo' alludes to Shakespeare."],
+["imagery","Descriptive language that appeals to the five senses.","The sharp smell of smoke and the crackle of burning logs."],
+["diction","An author's choice of words.","Choosing 'stroll' instead of 'walk' changes the feel of a sentence."],
+["syntax","The way words and sentences are arranged.","Short, choppy sentences can create a feeling of tension."],
+["connotation","The feelings or ideas a word suggests beyond its dictionary meaning.","'Childlike' sounds positive, while 'childish' sounds negative."],
+["denotation","The literal, dictionary meaning of a word.","The denotation of 'home' is the place where someone lives."],
+["archetype","A character type, symbol, or pattern that appears again and again across stories.","The wise old mentor, like Merlin or Gandalf."],
+["allegory","A story in which characters and events stand for bigger ideas, often moral or political.","Animal Farm uses farm animals to represent the Russian Revolution."],
+["satire","Writing that uses humor, exaggeration, or irony to criticize people or society.","A comedy sketch that mocks politicians to make a point."],
+["soliloquy","A speech in which a character alone on stage speaks their thoughts aloud.","Hamlet's 'To be, or not to be' speech."],
+["monologue","A long speech by one character to other characters or the audience.","A king giving a long speech to rally his troops."],
+["aside","A short remark a character makes to the audience that other characters on stage don't hear.","A character turns and quietly tells the audience what they really think."],
+["tragedy","A drama in which the main character suffers a downfall, often because of a personal flaw.","Romeo and Juliet and Macbeth are tragedies."],
+["tragic flaw","A character trait that leads to the hero's downfall.","Macbeth's ambition is his tragic flaw."],
+["iambic pentameter","A line of poetry with five iambs, each an unstressed syllable followed by a stressed one, for ten syllables in all.","Shakespeare's sonnets and much of his plays are written in iambic pentameter."],
+["stanza","A group of lines in a poem, like a paragraph in prose.","A poem made of four stanzas of four lines each."],
+["sonnet","A 14-line poem, usually written in iambic pentameter with a set rhyme scheme.","Shakespeare wrote 154 sonnets."],
+["ethos","An appeal to credibility or trust in the speaker.","As a doctor for 20 years, I can tell you this works."],
+["pathos","An appeal to the audience's emotions.","An ad showing a lonely shelter puppy to get you to donate."],
+["logos","An appeal to logic, facts, and reasoning.","Studies show that students who sleep 8 hours score higher on tests."],
+["thesis","The main argument or central point of an essay, usually stated in the introduction.","The last sentence of an intro paragraph often states the thesis."],
+["claim","A statement that something is true, which the writer supports with evidence.","Schools should start later because teens need more sleep."],
+["counterclaim","An opposing argument that a writer acknowledges and then responds to.","Some say later start times hurt after-school sports, but schedules can be adjusted."],
+["rhetorical question","A question asked for effect, not to get an answer.","Who doesn't want to be happy?"]
+],
+figur:[
+["The kitten's fur was as soft as a cloud.","simile","It compares fur to a cloud using as."],
+["The library was as quiet as a snowy field at midnight.","simile","It compares the library to a field using as."],
+["My little brother eats like a hungry raccoon.","simile","It compares how he eats to a raccoon using like."],
+["The crowd moved through the hallway like a slow river.","simile","It compares the crowd to a river using like."],
+["The fresh snow sparkled like tiny diamonds.","simile","It compares snow to diamonds using like."],
+["The classroom was a zoo after the bell rang.","metaphor","It says the classroom is a zoo without using like or as."],
+["The city at night is a sea of lights.","metaphor","It calls the city a sea without using like or as."],
+["His heart was a locked box that no one could open.","metaphor","It says his heart is a box without using like or as."],
+["The final exam was a mountain we had to climb.","metaphor","It calls the exam a mountain without using like or as."],
+["Books are doors to other worlds.","metaphor","It says books are doors without using like or as."],
+["The wind whispered through the trees.","personification","Wind can't whisper. That's a human action."],
+["My alarm clock screamed at me this morning.","personification","It gives a clock the human ability to scream."],
+["The sun smiled down on our picnic.","personification","The sun can't smile. That's a human action."],
+["The leaves danced in the autumn breeze.","personification","It gives leaves the human ability to dance."],
+["The old stairs complained with every step I took.","personification","Stairs can't complain. That's a human action."],
+["I have a million things to do today.","hyperbole","Nobody really has a million tasks. It's an exaggeration."],
+["The line for the roller coaster stretched all the way to the next state.","hyperbole","No line is that long. It's an exaggeration for effect."],
+["That homework took me a hundred years to finish.","hyperbole","It exaggerates how long the homework took."],
+["She checked her phone ten thousand times during dinner.","hyperbole","It exaggerates how often she checked her phone."],
+["The music was so loud the whole planet could hear it.","hyperbole","It exaggerates how loud the music was."],
+["Seven silly sisters sang songs on Saturday.","alliteration","It repeats the s sound at the start of words."],
+["The slippery snake slid silently through the sand.","alliteration","It repeats the s sound at the start of words."],
+["Peter's pet parrot practiced perfect pronunciation.","alliteration","It repeats the p sound at the start of words."],
+["Tiny turtles tumbled toward the tide.","alliteration","It repeats the t sound at the start of words."],
+["Big brown bears bought blue balloons.","alliteration","It repeats the b sound at the start of words."],
+["The bacon sizzled in the pan.","onomatopoeia","Sizzled sounds like the noise it describes."],
+["Buzz! A bee flew right past my ear.","onomatopoeia","Buzz imitates the sound a bee makes."],
+["The door slammed shut with a loud bang.","onomatopoeia","Bang sounds like the noise it names."],
+["Woof! Woof! The puppy wanted to play.","onomatopoeia","Woof imitates a dog's bark."],
+["Drip, drip, drip went the leaky faucet all night.","onomatopoeia","Drip imitates the sound of falling water."],
+["Jen let out a loud whisper from the back row.","oxymoron","A whisper is quiet, so a loud whisper pairs opposites."],
+["We ordered jumbo shrimp for dinner.","oxymoron","Jumbo means huge and shrimp means tiny."],
+["The bittersweet ending made me cry.","oxymoron","It pairs the opposites bitter and sweet."],
+["Only a small crowd showed up for the early game.","oxymoron","A crowd is a lot of people, but it's called small."],
+["The museum keeps the original copy of the poem.","oxymoron","A copy can't also be the original."],
+["Don't spill the beans about the surprise party.","idiom","Spill the beans means tell a secret, not drop beans."],
+["I'm feeling a little under the weather today.","idiom","Under the weather is a common saying that means sick."],
+["Break a leg in your play tonight!","idiom","Break a leg is a common saying that means good luck."],
+["We've been working for hours, so let's call it a day.","idiom","Call it a day is a common saying that means stop working."],
+["I need to hit the books before the quiz.","idiom","Hit the books is a common saying that means study."],
+["After the hurricane tore the roof off, Dad said it was a bit breezy.","understatement","It makes a huge storm sound much smaller than it was."],
+["He scored 50 points in the game, which was pretty decent.","understatement","Scoring 50 points is amazing, not just decent."],
+["The Sahara Desert gets a little warm in the summer.","understatement","The Sahara is extremely hot, not a little warm."],
+["After running a marathon, Jess admitted she was slightly tired.","understatement","A marathon leaves you exhausted, not slightly tired."],
+["Climbing Mount Everest is a bit of a challenge.","understatement","It's one of the hardest climbs on Earth, not a bit of a challenge."],
+["I used to be a banker, but I lost interest.","pun","Interest means both money from a bank and caring about something."],
+["I'm reading a book about anti-gravity. It's impossible to put down.","pun","Put down means stop reading and also set on a surface."],
+["A boiled egg every morning is hard to beat.","pun","Beat means to top something and also to whisk an egg."],
+["I'd tell you a chemistry joke, but I know I wouldn't get a reaction.","pun","Reaction means a response and also a chemical change."],
+["The baker quit because he couldn't make enough dough.","pun","Dough means bread mix and is also slang for money."]
+]
+};
+
+/* ================= English class (grammar, usage, literature) ================= */
+const ELA_KINDS={
+  confused:{t:'Mixed-up words',d:'your/you\'re, affect/effect, then/than',ic:'aa'},
+  spelling:{t:'Spelling',d:'Words everyone misspells',ic:'pencil'},
+  punct:{t:'Punctuation',d:'Commas, apostrophes, semicolons',ic:'dots'},
+  grammar:{t:'Grammar',d:'Parts of speech, agreement, run-ons',ic:'book'},
+  lit:{t:'Literary terms',d:'Theme, irony, foreshadowing and more',ic:'bookmark'},
+  figur:{t:'Figurative language',d:'Simile, metaphor, hyperbole…',ic:'sparkle'}
+};
+const ekb=(k,t)=>({k:'ela:'+k,t,c:'Grammar',i:''});
+function elaItems(kind){
+  const E=ELA[kind];
+  if(kind==='confused')return E.map(c=>({type:'mc',key:'ec:'+c[0],prompt:'Which word fits?',big:`<span class="bigdef">${esc(c[0]).replace('___','<u class="blank">&nbsp;?&nbsp;</u>')}</span>`,a:c[1],choices:shuffle([c[1],...c[2]]),extra:c[3],kb:ekb('c:'+c[1],`${c[1]}: ${c[3]}`),missText:c[1]}));
+  if(kind==='spelling')return E.map(s=>({type:'mc',key:'es:'+s[0],prompt:'Which spelling is right?',big:'',a:s[0],choices:shuffle([s[0],...s[1].slice(0,3)]),extra:s[2]||'',kb:ekb('s:'+s[0],`It's spelled "${s[0]}"`),missText:s[0]}));
+  if(kind==='punct')return E.map(p=>({type:'mc',key:'ep:'+p[1],prompt:p[0],big:'',a:p[1],choices:shuffle([p[1],...p[2]]),extra:p[3],kb:ekb('p:'+p[1],p[3]),missText:p[1]}));
+  if(kind==='grammar')return E.map(g=>({type:'mc',key:'eg:'+g[0]+g[1],prompt:g[0],big:g[1]?`<span class="bigdef">${esc(g[1]).replace(/\b([A-Z]{2,}(?:\s[A-Z]{2,})*)\b/g,'<mark class="cap">$1</mark>').replace('___','<u class="blank">&nbsp;?&nbsp;</u>')}</span>`:'',a:g[2],choices:shuffle([g[2],...g[3]]),extra:g[4],kb:ekb('g:'+g[0]+g[1],g[4]),missText:g[2]}));
+  if(kind==='lit')return E.map(l=>Math.random()<.55
+    ?{type:'mc',key:'el:'+l[0],prompt:'Which term is this?',big:`<span class="bigdef">${esc(l[1])}</span>`,a:l[0],choices:shuffle([l[0],...shuffle(E.filter(x=>x[0]!==l[0])).slice(0,3).map(x=>x[0])]),extra:l[2],kb:ekb('l:'+l[0],`${l[0]}: ${l[1]}`),missText:l[0]}
+    :{type:'mc',key:'el:'+l[0],prompt:`What is ${/^[aeiou]/i.test(l[0])?'an':'a'} ${l[0].toLowerCase()}?`,big:'',a:l[1],choices:shuffle([l[1],...shuffle(E.filter(x=>x[0]!==l[0])).slice(0,3).map(x=>x[1])]),extra:l[2],kb:ekb('l:'+l[0],`${l[0]}: ${l[1]}`),missText:l[0]});
+  if(kind==='figur'){const devs=[...new Set(E.map(f=>f[1]))];return E.map(f=>({type:'mc',key:'ef:'+f[0],prompt:'What kind of figurative language is this?',big:`<span class="bigdef">"${esc(f[0])}"</span>`,a:f[1],choices:shuffle([f[1],...shuffle(devs.filter(d=>d!==f[1])).slice(0,3)]),extra:f[2],kb:ekb('f:'+f[1],`${f[1]}: ${f[2]}`),missText:f[1]}))}
+  return[];
+}
+function elaQuiz(kind){
+  const items=kind==='mix'?shuffle(Object.keys(ELA_KINDS).flatMap(k=>prioritize(elaItems(k),2))):prioritize(elaItems(kind),10);
+  lesson({theme:'words',items,onFinish:()=>markDone('english'),again:()=>elaQuiz(kind)});
+}
+function openEnglish(){
+  push('words',el=>{
+    const known=Object.keys(KB).filter(k=>k.startsWith('ela:')).length;
+    page(el,'English class',`<div class="hero">${bi('aa',{s:76})}<h2>English class</h2><p>Grammar, the words everyone mixes up, punctuation, and the literary terms your teacher expects you to know.${known?` You've got ${known} down.`:''}</p></div>
+      <button class="fcard fill t-words" data-k="mix" style="min-height:0;width:100%">${bi('sparkle',{s:46})}<div><b>Mixed quiz</b><span>A little of everything</span></div><span class="fc-go">Start</span></button>
+      <div class="lgrid">${Object.entries(ELA_KINDS).map(([k,v])=>`<button class="lt t-words" data-k="${k}">${bi(v.ic,{s:44})}<b>${esc(v.t)}</b><span class="d">${esc(v.d)} · ${ELA[k].length}</span></button>`).join('')}</div>
+      <div class="rows"><button class="rowcard t-words" id="lt">${bi('book',{s:52})}<span><b>Literary terms list</b><span class="d">Every term with a definition and example</span></span>${ICON.chev}</button></div>`);
+    el.querySelector('.lin').addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(b)elaQuiz(b.dataset.k)});
+    el.querySelector('#lt').onclick=openLitTerms;
+  });
+}
+function openLitTerms(){push('words',el=>{let q='';const draw=()=>{const ql=norm(q);
+  const lin=page(el,'Literary terms',`<div class="hero"><h2>Literary terms</h2><p>Tap a term to add it to your knowledge book.</p></div><input class="search" id="q" placeholder="Search terms" value="${esc(q)}" autocomplete="off">
+  <div class="list">${[...ELA.lit].sort((a,b)=>a[0].localeCompare(b[0])).filter(l=>!ql||norm(l.join(' ')).includes(ql)).map(l=>`<button class="li term lterm" data-t="${esc(l[0])}"><div style="min-width:0;text-align:left"><b style="color:var(--head)">${esc(l[0])}</b><span class="s">${esc(l[1])}</span><span class="s"><i>${esc(l[2])}</i></span></div>${KB['ela:l:'+l[0]]?`<span class="r" style="color:var(--green)">${ICON.check}</span>`:'<span></span>'}</button>`).join('')}</div>`,'<button class="btn c block" id="qz">Quiz me</button>');
+  const qi=el.querySelector('#q');let t;qi.oninput=e=>{clearTimeout(t);t=setTimeout(()=>{q=e.target.value;const p=qi.selectionStart;draw();const n=el.querySelector('#q');n.focus();n.setSelectionRange(p,p)},200)};
+  el.querySelector('#qz').onclick=()=>elaQuiz('lit');
+  lin.onclick=e=>{const b=e.target.closest('.lterm');if(!b)return;const l=ELA.lit.find(x=>x[0]===b.dataset.t);addKnowledge(ekb('l:'+l[0],`${l[0]}: ${l[1]}`));tone(true);b.querySelector('span:last-child').outerHTML=`<span class="r" style="color:var(--green)">${ICON.check}</span>`}};draw()})}
+ACT.english=()=>openEnglish();
 
 /* ================= Onboarding: pick what to learn ================= */
 const SUBJECTS=[
@@ -5047,6 +5684,7 @@ const SUBJECTS=[
   {id:'math',t:'Quick math',d:'Faster mental math, every grade\'s terms',th:'mind',ic:'mix'},
   {id:'geo',t:'Geometry',d:'Logic, angles, proofs',th:'mind',ic:'compass'},
   {id:'reason',t:'Puzzles and reasoning',d:'Logic, patterns, predictions',th:'mind',ic:'puzzle'},
+  {id:'english',t:'English class',d:'Grammar, spelling, literary terms',th:'words',ic:'pencil'},
   {id:'words',t:'Vocab and old sayings',d:'Sharper words, idioms',th:'words',ic:'aa'},
   {id:'science',t:'Human body',d:'Muscles, bones, organs',th:'jp',text:'💪'},
   {id:'rights',t:'Human rights',d:'Your rights, in plain words',th:'world',ic:'scroll'}
@@ -5083,7 +5721,7 @@ function openOnboarding(edit){
       const nm=el.querySelector('#nm');if(nm)nm.oninput=e=>st.name=e.target.value.trim();
       const bk=el.querySelector('#bk');if(bk)bk.onclick=()=>{st.step--;draw()};
       el.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{const id=b.dataset.s;st.subjects=st.subjects.includes(id)?st.subjects.filter(x=>x!==id):[...st.subjects,id];tone('tap');draw()});
-      el.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{const id=b.dataset.l;st.langs=st.langs.includes(id)?st.langs.filter(x=>x!==id):[...st.langs,id];if(st.langs.includes(id))say(id==='ja'?'こんにちは':({es:'hola',fr:'bonjour',zh:'你好',hi:'नमस्ते',ar:'مرحبا'})[id],id==='ja'?null:LANGS[id].speech);tone('tap');draw()});
+      el.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{const id=b.dataset.l;st.langs=st.langs.includes(id)?st.langs.filter(x=>x!==id):[...st.langs,id];if(st.langs.includes(id))say(id==='ja'?'こんにちは':({es:'hola',fr:'bonjour',zh:'你好',hi:'नमस्ते',ar:'مرحبا',en:'hello'})[id],id==='ja'?null:LANGS[id].speech);tone('tap');draw()});
       el.querySelector('#nx').onclick=()=>{
         if(st.step<3){st.step++;tone('flip');draw();return}
         ONB={done:true,subjects:st.subjects,langs:st.langs,at:Date.now()};store.set('onb',ONB);
@@ -5121,6 +5759,7 @@ function render(){
     else if(hl){const ls=langLessons(hl),n=lpNext(hl),l=ls[n],dn=lpDone(hl).length;ACT.contin=()=>openLangLesson(hl,n);hero={eye:'Continue '+LANG_META[hl].name,title:`${l.title}: ${l.sub.toLowerCase()}`,sub:`Lesson ${n+1} of ${ls.length}`,glyph:lflag(hl),pct:Math.round(dn/ls.length*100),btn:dn?'Continue':'Start lesson 1'}}
     else{const k=Object.keys(KB).filter(x=>x.startsWith('hist:')).length;ACT.contin=()=>wants('history')?histQuiz('mix'):dailyQuiz();hero=wants('history')?{eye:'History',title:'Mixed history quiz',sub:`${k} of ${HIST.length} events learned`,glyph:'📜',pct:Math.round(k/HIST.length*100),btn:'Start'}:{eye:'Today',title:'Daily quiz',sub:'Review and forgotten basics',glyph:'✨',pct:dq?100:0,btn:'Start'}}
     const quickAll=[
+      {id:'h-ela',sub:'english',th:'words',ic:'pencil',t:'English class',d:'Grammar and usage',done:'english',run:()=>elaQuiz('mix')},
       {id:'h-hist',sub:'history',th:'world',ic:'scroll',t:'History',d:'Dates and people',done:'history',run:()=>histQuiz('mix')},
       ...ml.filter(c=>c!=='ja').map(c=>({id:'h-l'+c,sub:'lang',th:'jp',flag:lflag(c),t:LANG_META[c].name,d:'Next lesson',done:'',run:()=>openLangLesson(c,lpNext(c))})),
       {id:'h-math',sub:'math',th:'mind',ic:'mix',t:'1-minute math',d:'Mixed problems',done:'math',run:()=>{M.len='60s';openMath('mix',true)}},
@@ -5175,6 +5814,7 @@ function render(){
       <div class="tiles t-jp">${T({id:'l-body',text:'💪',t:'Human body',d:'Muscles, bones and organs. Tap the part.',wide:true,run:openBody})}</div>`},
       {id:'rights',h:`${sec('Human rights')}
       <div class="tiles t-world">${T({id:'r-ud',ic:'scroll',t:'Which right?',d:'The UN\'s 30',run:()=>openRights('udhr')})}${T({id:'r-un',ic:'hash',t:'Which article?',d:'Rights by number',run:()=>openRights('udhrn')})}</div>`},
+      {id:'english',h:`${sec('English class')}<div class="tiles t-words">${T({id:'en-hub',ic:'pencil',t:'English class',d:'Grammar, mixed-up words, punctuation, literary terms',wide:true,run:openEnglish})}${T({id:'en-cf',ic:'aa',t:'Mixed-up words',d:'your/you\'re, then/than',run:()=>elaQuiz('confused')})}${T({id:'en-lit',ic:'bookmark',t:'Literary terms',d:'Theme, irony, mood',run:()=>elaQuiz('lit')})}</div>`},
       {id:'history',h:`${sec('History',HIST.length+' events')}<div class="tiles t-world">${T({id:'hi-hub',ic:'scroll',t:'History',d:'Timeline, eras, people and every US president',wide:true,run:openHistory})}${T({id:'hi-mix',ic:'sparkle',t:'Mixed quiz',d:'Dates, people, order',run:()=>histQuiz('mix')})}${T({id:'hi-pres',ic:'star',t:'Presidents',d:'All 47, in order',run:()=>histQuiz('pres')})}</div>`},
     ];
     const mine=SECS.filter(x=>wants(x.id)),rest=SECS.filter(x=>!wants(x.id));
