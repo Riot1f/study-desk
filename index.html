@@ -559,6 +559,78 @@ html,body{overflow-x:clip;overscroll-behavior-x:none;max-width:100%}
 @media (max-width:350px){.duo,.qgrid,.lgrid{grid-template-columns:1fr}.fcard{min-height:0}}
 .subj.short .srow:nth-child(n+6){display:none}
 .card .more{justify-self:start}
+
+/* flag images (emoji flags don't render on Windows) */
+.fimg{display:inline-block;height:1em;width:auto;aspect-ratio:4/3;object-fit:cover;border-radius:.1em;box-shadow:0 0 0 1px rgba(0,0,0,.1);vertical-align:-.12em;background:var(--soft)}
+.flag .fimg{height:1.1em;border-radius:.06em;box-shadow:0 0 0 2px var(--line)}
+.flagbi .fimg{height:1em;border-radius:3px}
+.tile .flags{display:flex;gap:6px;align-items:center}
+.tile .flags .fimg{height:.9em}
+
+/* other languages */
+body .say.anylang{display:grid}
+.wordcard .wbig{font:800 clamp(2.2rem,11vw,3.4rem)/1.2 var(--f-ui);color:var(--head);text-align:center;word-break:break-word}
+.wordcard .wbig:lang(zh){font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",var(--f-ui)}
+.wordcard .wen{font-size:1.15rem;color:var(--muted);font-weight:800}
+.tl small{display:block;font-size:.68rem;font-weight:700;color:var(--muted);line-height:1.1;margin-top:2px}
+.tbank[dir="rtl"],.tline[dir="rtl"]{direction:rtl}
+
+/* history timeline */
+.tline-list{display:grid;gap:0;border-left:4px solid var(--line);margin-left:10px}
+.tev{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;text-align:left;background:none;border:0;padding:10px 0 14px 16px;position:relative;color:var(--ink)}
+.tev::before{content:"";position:absolute;left:-12px;top:14px;width:16px;height:16px;border-radius:50%;background:var(--card);border:4px solid var(--line)}
+.tev.known::before{background:var(--blue);border-color:var(--blue-lip)}
+.tev .ty{font-weight:900;color:var(--blue);min-width:64px;font-size:.95rem;padding-top:1px}
+.tev b{display:block;color:var(--head);font-weight:900;line-height:1.25}
+.tev .tb span{display:block;color:var(--muted);font-size:.88rem;line-height:1.35;margin-top:2px}
+.li .pn{width:34px;height:34px;border-radius:50%;background:var(--soft);display:grid;place-items:center;font-weight:900;color:var(--muted);flex:none;font-size:.9rem}
+.lword{display:block;font:800 clamp(1.9rem,9vw,2.8rem)/1.25 var(--f-ui);color:var(--head)}
+.lword:lang(zh-CN){font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",var(--f-ui)}
+.lrom{display:block;font-size:1rem;font-weight:800;color:var(--muted);margin-top:4px}
+.iw small.lrom{font-size:.8rem;margin-top:0}
+/* onboarding */
+.onb .lhead .ltitle{display:none}
+.obin{gap:16px;padding-bottom:20px}
+.obhero{display:grid;justify-items:center;text-align:center;gap:12px;padding:24px 0 8px}
+.obhero h1{font-size:2.2rem;font-weight:900}
+.obhero p{font-size:1.08rem;color:var(--muted);max-width:30ch}
+.oblabel{font-weight:900;color:var(--head);margin-top:8px}
+.obh{font-size:1.6rem;font-weight:900}
+.obp{color:var(--muted);margin-top:-8px}
+.obdots{display:flex;gap:6px}
+.obdots i{height:8px;flex:1;border-radius:99px;background:var(--line)}
+.obdots i.on,.obdots i.done{background:var(--green)}
+.obgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.obt{position:relative;display:grid;justify-items:start;align-content:start;gap:6px;padding:14px;border-radius:18px;border:2px solid var(--line);border-bottom-width:4px;background:var(--card);text-align:left;color:var(--ink);min-width:0}
+.obt b{font-weight:900;color:var(--head);line-height:1.2;margin-top:4px}
+.obt>span:not(.bi):not(.obflag){font-size:.82rem;font-weight:700;color:var(--muted);line-height:1.3}
+.obt.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 10%,var(--card))}
+.obck{position:absolute;top:10px;right:10px;width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;color:transparent;background:var(--card)}
+.obck svg{width:16px;height:16px}
+.obt.on .obck{background:var(--c);border-color:var(--c);color:#fff}
+.obflag{font-size:2.6rem;line-height:1;display:flex;gap:6px}
+.obflag .fimg{height:1em}
+.obflag:not(.big) .fimg{height:.8em}
+.obsum{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:12px;border:2px solid var(--c);color:var(--c-lip);font-weight:900;font-size:.9rem}
+.chip .fimg{height:1em}
+.sec.more{margin-top:28px;padding-top:18px;border-top:2px solid var(--line)}
+/* language switcher */
+.lchips{display:flex;gap:8px;overflow-x:auto;margin:0 -16px;padding:2px 16px 6px;scrollbar-width:none;overscroll-behavior-x:contain}
+.lchips::-webkit-scrollbar{display:none}
+.lchip{flex:none;display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:14px;border:2px solid var(--line);border-bottom-width:4px;background:var(--card);color:var(--ink);font-size:1.4rem}
+.lchip b{font-size:.9rem;font-weight:900;color:var(--head)}
+.lchip.on{border-color:var(--sel-line);background:var(--sel-bg)}
+.lchip.add{font-size:.9rem;font-weight:900;color:var(--sel-ink)}
+.hc-glyph .fimg{height:.95em;border-radius:6px}
+.tl:not(:lang(ja)){font:800 1.2rem/1.3 var(--f-ui);padding:8px 14px}
+.tl:lang(zh-CN){font:600 1.5rem/1.3 "PingFang SC","Hiragino Sans GB","Noto Sans SC",var(--f-ui)}
+.tline .tl:disabled{background:var(--card);color:var(--head);border-color:var(--line)}
+.tline .tl:disabled small{color:var(--muted)}
+.tl:disabled small{color:transparent}
+.fcard>div{justify-self:stretch;width:100%;text-align:left}
+.iw .jp:not(:lang(ja)){font-family:var(--f-ui);font-weight:800;font-size:1.35rem}
+.iw .jp:lang(zh-CN){font-family:"PingFang SC","Hiragino Sans GB","Noto Sans SC",var(--f-ui)}
 </style>
 <script>window.SD_APP=true</script>
 </head><body>
@@ -579,7 +651,10 @@ const pick=a=>a[Math.floor(Math.random()*a.length)];
 const rnd=(a,b)=>a+Math.floor(Math.random()*(b-a+1));
 const store={get(k,d){try{const v=localStorage.getItem('sd:'+k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem('sd:'+k,JSON.stringify(v))}catch(e){}}};
 function lev(a,b){const m=a.length,n=b.length;if(Math.abs(m-n)>2)return 9;let p=Array.from({length:n+1},(_,i)=>i);for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
-const flag=cc=>{const sub=SUBFLAG[cc];if(sub)return String.fromCodePoint(0x1F3F4,...[...sub].map(c=>0xE0000+c.charCodeAt(0)),0xE007F);return String.fromCodePoint(...[...cc].map(c=>0x1F1E6+c.charCodeAt(0)-65))};
+const flagFile=cc=>{cc=String(cc||'');const sub={ENG:'gb-eng',SCT:'gb-sct',WLS:'gb-wls'}[cc];return sub||cc.toLowerCase()};
+const flag=cc=>`<img class="fimg" src="flags/${flagFile(cc)}.svg" alt="" draggable="false" loading="lazy">`;
+/* old knowledge-book entries stored flag emojis; turn them back into a country code */
+const emojiToCode=s=>{const cps=[...String(s)].map(c=>c.codePointAt(0));if(cps.length===2&&cps.every(c=>c>=0x1F1E6&&c<=0x1F1FF))return cps.map(c=>String.fromCharCode(c-0x1F1E6+65)).join('');return null};
 const todayKey=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()};
 function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('show'),1600)}
 async function copyText(t){try{await navigator.clipboard.writeText(t);toast('Copied')}catch(e){toast('Couldn\'t copy')}}
@@ -1420,13 +1495,14 @@ document.addEventListener('pointerdown',e=>{if(e.target.closest('.opt:not(:disab
 let JA_VOICE=null;
 function loadVoices(){try{const v=speechSynthesis.getVoices();JA_VOICE=v.find(x=>/^ja/i.test(x.lang))||null;document.body.classList.toggle('can-say',!!JA_VOICE)}catch(e){}}
 try{if('speechSynthesis' in window){loadVoices();speechSynthesis.onvoiceschanged=loadVoices}}catch(e){}
-function say(t){if(!JA_VOICE)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\s+/g,''));u.voice=JA_VOICE;u.lang=JA_VOICE.lang;u.rate=.8;speechSynthesis.speak(u)}catch(e){}}
-const sayBtn=t=>`<button type="button" class="say" data-say="${esc(t)}" aria-label="Hear it">${ICON.speak}</button>`;
+function say(t,lang){try{if(lang&&!/^ja/i.test(lang)){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t));const v=speechSynthesis.getVoices();const pre=lang.slice(0,2).toLowerCase();u.voice=v.find(x=>x.lang.toLowerCase()===lang.toLowerCase())||v.find(x=>x.lang.toLowerCase().startsWith(pre))||null;u.lang=lang;u.rate=.85;speechSynthesis.speak(u);return}
+  if(!JA_VOICE)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(String(t).replace(/\s+/g,''));u.voice=JA_VOICE;u.lang=JA_VOICE.lang;u.rate=.8;speechSynthesis.speak(u)}catch(e){}}
+const sayBtn=(t,lang)=>`<button type="button" class="say${lang?' anylang':''}" data-say="${esc(t)}"${lang?` data-lang="${esc(lang)}"`:''} aria-label="Hear it">${ICON.speak}</button>`;
 
 let keyHandler=null;
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&stack.length){e.preventDefault();pop();return}if(keyHandler)keyHandler(e)});
 document.addEventListener('click',e=>{
-  const s=e.target.closest('[data-say]');if(s){say(s.dataset.say);return}
+  const s=e.target.closest('[data-say]');if(s){say(s.dataset.say,s.dataset.lang);return}
   if(e.target.closest('[data-pop]')){pop();return}
   const a=e.target.closest('[data-act]');if(a&&ACT[a.dataset.act])ACT[a.dataset.act]();
 });
@@ -1463,7 +1539,7 @@ function lesson(cfg){
   /* cfg: theme,title,items,mode('mc'|'type'), onFinish(firstRight,total), again() */
   push(cfg.theme,el=>{
     const queue=cfg.items.map(it=>({...it,type:it.type||(cfg.mode==='type'?'type':'mc')}));
-    const total=queue.filter(x=>x.type!=='intro').length,steps=queue.length;let i=0,first=0,cleared=0;const missed=[];
+    const total=queue.filter(x=>x.type!=='intro'&&x.type!=='card').length,steps=queue.length;let i=0,first=0,cleared=0;const missed=[];
     el.innerHTML=`<header class="lhead"><button class="iconbtn" data-pop aria-label="Close">${ICON.close}</button><div class="pbar"><i style="width:0%"></i></div></header><div class="lbody"><div class="lin" id="L"></div></div><div class="lfoot" id="F" hidden><div class="in"></div></div><div class="fb" id="FB"><div class="in"></div></div>`;
     const L=el.querySelector('#L'),F=el.querySelector('#F'),FB=el.querySelector('#FB'),bar=el.querySelector('.pbar i');
     const prog=()=>bar.style.width=Math.max(4,cleared/steps*100)+'%';
@@ -1471,6 +1547,10 @@ function lesson(cfg){
       const it=queue[i];let done=false;FB.className='fb';F.hidden=true;keyHandler=null;el.querySelector('.lbody').scrollTop=0;
       L.innerHTML=`${it.retry?'<span class="tag" style="justify-self:start;color:var(--c)">Try this one again</span>':''}<p class="prompt">${esc(it.prompt)}</p>${it.big?`<div class="qcard">${it.big}</div>`:''}<div id="A"></div>`;
       const A=L.querySelector('#A');
+      if(it.type==='card'){
+        L.innerHTML=`<p class="prompt">${esc(it.prompt||'New word')}</p><div class="introcard wordcard pop"><div class="wbig" lang="${esc(it.lang)}"${it.rtl?' dir="rtl"':''}>${esc(it.t)}</div>${it.rom?`<div class="ksound">${esc(it.rom)}</div>`:''}<p class="wen">${esc(it.en)}</p>${sayBtn(it.t,it.lang)}</div>`;
+        F.hidden=false;F.firstChild.innerHTML='<button class="btn c block" id="gotit">Got it</button>';say(it.t,it.lang);
+        const go=()=>{if(done)return;done=true;cleared++;prog();tone('flip');next()};F.querySelector('#gotit').onclick=go;keyHandler=e=>{if(e.key==='Enter'){e.preventDefault();go()}};return}
       if(it.type==='intro'){const c=it.char;
         L.innerHTML=`<p class="prompt">New character</p><div class="introcard pop"><div class="kbig" lang="ja">${esc(c)}</div><div class="ksound">${esc(c==='っ'?'(pause)':romaOf(c))}</div><p>${esc(mnemo(c))}</p>${sayBtn(c)}</div>`;
         F.hidden=false;F.firstChild.innerHTML='<button class="btn c block" id="gotit">Got it</button>';say(c);
@@ -1483,15 +1563,15 @@ function lesson(cfg){
         FB.className='fb '+(ok?'good':'bad');
         FB.firstChild.innerHTML=`<div class="top"><span class="badge">${ok?ICON.check:ICON.x}</span><h3>${it.type==='pairs'?(ok?'All matched':'Matched, with a few slips'):ok?(typo?'Right, check the spelling':pick(PRAISE)):'Correct answer:'}</h3></div>
           ${it.type!=='pairs'&&(!ok||typo||it.type==='tiles')?`<div class="ans">${ansHtml}</div>`:''}${!ok&&given?`<div class="ex">You said: ${esc(given)}</div>`:''}${it.extra?`<div class="ex">${esc(it.extra)}</div>`:''}${it.work?`<div class="work"><span>${it.workLabel||'How to solve it'}</span>${it.work.map(w=>`<div>${esc(w)}</div>`).join('')}</div>`:''}
-          <div class="row">${it.say?sayBtn(it.say):''}${!ok&&it.type==='type'&&given?'<button class="btn sm" id="over">I was right</button>':''}<button class="btn block ${ok?'good':'bad'}" id="cont">Continue</button></div>`;
+          <div class="row">${it.say?sayBtn(it.say,it.lang):''}${!ok&&it.type==='type'&&given?'<button class="btn sm" id="over">I was right</button>':''}<button class="btn block ${ok?'good':'bad'}" id="cont">Continue</button></div>`;
         requestAnimationFrame(()=>FB.classList.add('show'));
         const c=FB.querySelector('#cont');c.onclick=next;setTimeout(()=>c.focus({preventScroll:true}),60);
         const ov=FB.querySelector('#over');if(ov)ov.onclick=()=>{queue.pop();cleared++;first++;missed.pop();STATS[it.key].w--;STATS[it.key].r++;store.set('stats',STATS);prog();FB.className='fb good show';FB.querySelector('h3').textContent='Counted as right';ov.remove()};
-        if(ok&&it.say)say(it.say);
+        if(ok&&it.say)say(it.say,it.lang);
         keyHandler=e=>{if(e.key==='Enter'){e.preventDefault();next()}};
       };
       if(it.type==='mc'){
-        A.innerHTML=`<div class="opts${it.choices.some(c=>String(c).length>26)?' one':''}">${it.choices.map((c,k)=>`<button class="opt" data-k="${k}"><kbd>${k+1}</kbd><span class="${it.optClass||''}"${it.optClass?' lang="ja"':''}>${esc(c)}</span></button>`).join('')}</div>`;
+        A.innerHTML=`<div class="opts${it.choices.some(c=>String(c).length>26)?' one':''}">${it.choices.map((c,k)=>`<button class="opt" data-k="${k}"><kbd>${k+1}</kbd><span class="${it.optClass||''}"${it.optLang?` lang="${it.optLang}"`:it.optClass?' lang="ja"':''}${it.optRtl?' dir="rtl"':''}>${esc(c)}</span></button>`).join('')}</div>`;
         const bs=$$('.opt',A);
         const choose=k=>{if(done)return;const ok=norm(it.choices[k])===norm(it.a);bs.forEach((b,j)=>{b.disabled=true;if(norm(it.choices[j])===norm(it.a))b.classList.add('right');else if(j===k)b.classList.add('wrong')});finish(ok,ok?'':it.choices[k])};
         bs.forEach(b=>b.onclick=()=>choose(+b.dataset.k));
@@ -1516,13 +1596,14 @@ function lesson(cfg){
         const go=()=>{if(done)return;const v=inp.value.trim();inp.blur();if(!v){finish(false,'');return}const r=checkTyped(it,v);finish(r.ok,v,r.typo)};
         F.querySelector('#chk').onclick=go;inp.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();e.stopPropagation();go()}};
       }else if(it.type==='tiles'){
-        A.innerHTML=`<div class="tline" id="tl"></div><div class="tbank" id="tb">${it.tiles.map((t,k)=>`<button class="tl" data-t="${k}" lang="ja">${esc(t)}</button>`).join('')}</div>`;
+        const TL=it.lang||'ja',dir=it.rtl?' dir="rtl"':'';const tlab=t=>esc(t)+(it.tileRom&&it.tileRom[t]?`<small>${esc(it.tileRom[t])}</small>`:'');
+        A.innerHTML=`<div class="tline" id="tl"${dir}></div><div class="tbank" id="tb"${dir}>${it.tiles.map((t,k)=>`<button class="tl" data-t="${k}" lang="${TL}">${tlab(t)}</button>`).join('')}</div>`;
         F.hidden=false;F.firstChild.innerHTML='<button class="btn c block" id="chk" disabled>Check</button>';
         const picked=[],tl=A.querySelector('#tl'),tb=A.querySelector('#tb'),chk=F.querySelector('#chk');
-        const draw=()=>{tl.innerHTML=picked.map((k,p)=>`<button class="tl" data-p="${p}" lang="ja">${esc(it.tiles[k])}</button>`).join('');$$('.tl',tb).forEach(b=>b.disabled=picked.includes(+b.dataset.t));chk.disabled=!picked.length};
+        const draw=()=>{tl.innerHTML=picked.map((k,p)=>`<button class="tl" data-p="${p}" lang="${TL}">${tlab(it.tiles[k])}</button>`).join('');$$('.tl',tb).forEach(b=>b.disabled=picked.includes(+b.dataset.t));chk.disabled=!picked.length};
         tb.onclick=e=>{const b=e.target.closest('[data-t]');if(!b||done||b.disabled)return;picked.push(+b.dataset.t);draw()};
         tl.onclick=e=>{const b=e.target.closest('[data-p]');if(!b||done)return;picked.splice(+b.dataset.p,1);draw()};
-        chk.onclick=()=>{if(done)return;chk.disabled=true;$$('.tl',el).forEach(b=>b.disabled=true);finish(picked.map(k=>it.tiles[k]).join('')===it.ans.join(''))};
+        chk.onclick=()=>{if(done)return;chk.disabled=true;$$('.tl',el).forEach(b=>b.disabled=true);finish(picked.map(k=>it.tiles[k]).join('\u0001')===it.ans.join('\u0001'))};
       }
     }
     function next(){i++;if(i<queue.length)show();else end()}
@@ -1546,7 +1627,7 @@ function lesson(cfg){
 const G=Object.assign({cont:'ALL',mode:'choose',len:'10'},store.get('geo',{}));
 const inCont=c=>G.cont==='ALL'||(G.cont==='UN'?!c.terr:G.cont==='TERR'?c.terr:c.cont===G.cont);
 const GINFO={
- flags:{flags:'🇯🇵🇧🇷🇰🇪',ic:'flag',t:'Flags',d:'Every flag in the world',wide:true},
+ flags:{flags:flag('JP')+flag('BR')+flag('KE'),ic:'flag',t:'Flags',d:'Every flag in the world',wide:true},
  capitals:{ic:'capitol',t:'Capitals',d:'Name the capital'},
  countries:{ic:'pin',t:'Countries',d:'From the capital'},
  continent:{ic:'globe',t:'Continents',d:'Where is it?'},
@@ -1588,7 +1669,7 @@ function openGeo(deck){
   const I=GINFO[deck];
   push('world',el=>{
     const world=WORLD_DECKS.includes(deck);
-    page(el,'Geography',`<div class="hero">${I.flags?bi('',{flag:'🇯🇵',s:76}):bi(I.ic)}<h2>${esc(I.t)}</h2><p>${esc(I.d)}.</p></div>
+    page(el,'Geography',`<div class="hero">${I.flags?bi('',{flag:flag('JP'),s:76}):bi(I.ic)}<h2>${esc(I.t)}</h2><p>${esc(I.d)}.</p></div>
       ${world?`<div class="field"><span class="flabel">Region</span>${seg('sc',[{v:'ALL',l:'Everything'},{v:'UN',l:'Countries only'},...Object.entries(CONT).map(([v,l])=>({v,l})),{v:'TERR',l:'Territories'}],G.cont)}</div>`:''}
       ${CHOOSE_ONLY.includes(deck)?'':`<div class="field"><span class="flabel">Answer by</span>${seg('sm',[{v:'choose',l:'Tapping'},{v:'type',l:'Typing'}],G.mode)}</div>`}
       <div class="field"><span class="flabel">Round</span>${seg('sl',[{v:'10',l:'10'},{v:'20',l:'20'},{v:'all',l:'All of them'}],G.len)}</div>
@@ -2086,6 +2167,7 @@ function openSettings(){
     const inClaude=!!window.claude;
     page(el,'Settings',`<div class="hero"><h2>Settings</h2></div>
       ${`<button class="rowcard" data-act="account">${bi('key',{s:52})}<span><b>Account</b><span class="d">${FB.user?esc(FB.user.email||'Signed in'):cloud.ok?'Saved to your Claude account':'Sign in to keep your progress'}</span></span>${ICON.chev}</button>`}
+      <button class="rowcard t-world" data-act="onboard">${bi('sparkle',{s:52})}<span><b>What I'm learning</b><span class="d">${ONB?`${ONB.subjects.length} subjects${ONB.langs.length?`, ${ONB.langs.length} language${ONB.langs.length>1?'s':''}`:''}`:'Pick your subjects and languages'}</span></span>${ICON.chev}</button>
       <div class="set"><h3>Your name</h3><input class="ti" id="nm" placeholder="What should it call you?" value="${esc(SET.name||'')}" autocomplete="given-name"></div>
       <div class="set"><h3>Look</h3>${seg('th',[{v:'auto',l:'Match my phone'},{v:'light',l:'Light'},{v:'dark',l:'Dark'}],SET.theme)}</div>
       <div class="set t-jp"><label class="switch">Show sounds above Japanese<input type="checkbox" id="srt" ${SET.rt?'checked':''}></label><label class="switch">Sounds for right and wrong<input type="checkbox" id="ssd" ${SET.sound?'checked':''}></label></div>
@@ -2146,9 +2228,9 @@ const STATE_BY=Object.fromEntries(STATES.map(s=>[s.ab,s]));
 function kbFor(it){
   const k=String(it.key||'');const p=k.slice(0,k.indexOf(':')),v=k.slice(k.indexOf(':')+1);const C=COUNTRY_BY[v],S=STATE_BY[v];
   switch(p){
-    case'f':return C&&{k:'flag:'+v,t:'Flag of '+C.name,d:'Capital: '+C.capital,c:'Flags',i:flag(v)};
-    case'c':case'k':return C&&{k:'cap:'+v,t:`${C.capital} is the capital of ${C.name}`,d:CAP_NOTES[v]||'',c:'Capitals',i:flag(v)};
-    case't':return C&&{k:'cont:'+v,t:`${C.name} is in ${CONT[C.cont]}`,c:'Continents',i:flag(v)};
+    case'f':return C&&{k:'flag:'+v,t:'Flag of '+C.name,d:'Capital: '+C.capital,c:'Flags',i:'@'+v};
+    case'c':case'k':return C&&{k:'cap:'+v,t:`${C.capital} is the capital of ${C.name}`,d:CAP_NOTES[v]||'',c:'Capitals',i:'@'+v};
+    case't':return C&&{k:'cont:'+v,t:`${C.name} is in ${CONT[C.cont]}`,c:'Continents',i:'@'+v};
     case'h':case'b':case'q':return{k:'cf:'+v,t:p==='h'?`${stripTags(it.big)} is the highest point in ${it.a}`:p==='b'?`${v} is the largest country in ${it.a}`:`${it.a} ${stripTags(it.big).toLowerCase()}`,c:'Continents'};
     case'u':return S&&{k:'usc:'+v,t:`${S.capital} is the capital of ${S.name}`,c:'US states'};
     case'a':return S&&{k:'usa:'+v,t:`${v} stands for ${S.name}`,c:'US states'};
@@ -2163,7 +2245,7 @@ function kbFor(it){
   }
   return null;
 }
-const CAT={Flags:['world','flag'],Capitals:['world','capitol'],Continents:['world','globe'],'US states':['world','star'],Directions:['world','compass'],'Human rights':['world','scroll'],Words:['words','aa'],Grammar:['words','pencil'],Japanese:['jp','',' あ'],Math:['mind','mix'],Units:['mind','hash'],Science:['mind','bolt'],Civics:['world','capitol'],Geography:['world','globe'],History:['world','book'],'Fun facts':['fact','sparkle'],Sayings:['words','speech']};
+const CAT={Flags:['world','flag'],Capitals:['world','capitol'],Continents:['world','globe'],'US states':['world','star'],Directions:['world','compass'],'Human rights':['world','scroll'],Words:['words','aa'],Grammar:['words','pencil'],Japanese:['jp','',' あ'],Math:['mind','mix'],Units:['mind','hash'],Science:['mind','bolt'],Civics:['world','capitol'],Geography:['world','globe'],History:['world','book'],'Fun facts':['fact','sparkle'],Sayings:['words','speech'],Languages:['jp','speech']};
 const catIcon=(c,s=40)=>{const m=CAT[c]||['world','star'];return m[2]?bi('',{text:'あ',ja:true,th:m[0],s}):bi(m[1],{th:m[0],s})};
 const fmtTime=t=>new Date(t).toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'});
 const fmtDay=t=>{const d=new Date(t),n=new Date();const diff=Math.round((new Date(n.getFullYear(),n.getMonth(),n.getDate())-new Date(d.getFullYear(),d.getMonth(),d.getDate()))/864e5);return diff===0?'Today':diff===1?'Yesterday':diff<7?d.toLocaleDateString(undefined,{weekday:'long'}):d.toLocaleDateString(undefined,{month:'long',day:'numeric',year:d.getFullYear()===n.getFullYear()?undefined:'numeric'})};
@@ -2192,6 +2274,8 @@ function subjectRows(){
     {t:'Japanese path',n:PDONE.length,of:LESSONS.length,c:'Japanese',go:()=>unitIntro(nextUnit())},
     {t:'Human rights',n:pre('udhr:')+pre('bor:'),of:UDHR.length+BOR.length,c:'Human rights',go:()=>openRights('udhr')},
     {t:'Basics',n:pre('bx:'),of:BASICS.length,c:'Science',go:()=>dailyQuiz()},
+    {t:'History',n:pre('hist:')+pre('pres:')+pre('who:'),of:HIST.length+PRES.length+HPEOPLE.length,c:'History',go:()=>openHistory()},
+    ...myLangs().filter(c=>c!=='ja').map(c=>({t:LANG_META[c].name,n:lpDone(c).length,of:langLessons(c).length,c:'Languages',lang:c,go:()=>openLangLesson(c,lpNext(c))})),
     {t:'Old sayings',n:pre('say:'),of:SAYINGS.length,c:'Sayings',go:()=>openSayings()},
     {t:'Words',n:pre('w:'),of:0,c:'Words',go:openWordBank}
   ];
@@ -2243,7 +2327,7 @@ function openBook(){
       const list=all.filter(e=>(cat==='All'||e.c===cat)&&(!q||norm(e.t+' '+e.d+' '+e.c).includes(q)));
       let last='',html='';
       for(const e of list.slice(0,400)){const day=fmtDay(e.f);if(day!==last){html+=`${last?'</div>':''}<p class="dayhead">${esc(day)}</p><div class="list">`;last=day}
-        html+=`<div class="li kb">${e.i?`<span class="bi flagbi" style="--s:40px;${/[぀-ヿ]/.test(e.i)?'font:600 20px var(--f-jp)':''}">${esc(e.i)}</span>`:catIcon(e.c)}<div style="min-width:0"><b>${esc(e.t)}</b>${e.d?`<span class="s">${esc(e.d)}</span>`:''}<span class="s">${esc(e.c)}${e.s>1?` · practiced ${e.s} times`:''}</span></div><span class="r">${fmtTime(e.f)}</span></div>`}
+        html+=`<div class="li kb">${e.i?`<span class="bi flagbi" style="--s:40px;${/[぀-ヿ]/.test(e.i)?'font:600 20px var(--f-jp)':''}">${e.i[0]==='@'?flag(e.i.slice(1)):emojiToCode(e.i)?flag(emojiToCode(e.i)):esc(e.i)}</span>`:catIcon(e.c)}<div style="min-width:0"><b>${esc(e.t)}</b>${e.d?`<span class="s">${esc(e.d)}</span>`:''}<span class="s">${esc(e.c)}${e.s>1?` · practiced ${e.s} times`:''}</span></div><span class="r">${fmtTime(e.f)}</span></div>`}
       if(last)html+='</div>';
       const first=all.length?all[all.length-1].f:0;
       const lin=page(el,'Knowledge book',`<div class="hero">${bi('book',{s:76})}<h2>${all.length} thing${all.length===1?'':'s'} learned</h2><p>${all.length?`Since ${new Date(first).toLocaleDateString(undefined,{month:'long',day:'numeric',year:'numeric'})}. Everything you've gotten right, saved or added.`:'Everything you get right or save shows up here, with the time you learned it.'}</p></div>
@@ -3372,8 +3456,1649 @@ function sayEntry(s,back){
 }
 ACT.sayings=()=>openSayings();
 
+const HIST=[
+[-3200,"Sumerians develop cuneiform writing","W","One of the first writing systems let people keep records, laws, and stories."],
+[-2560,"Great Pyramid of Giza completed","W","It was built as a tomb for the pharaoh Khufu and is the last standing Ancient Wonder."],
+[-1754,"Code of Hammurabi written","W","One of the earliest written law codes, it set rules and punishments in Babylon."],
+[-776,"First recorded Olympic Games","W","Greek city-states competed at Olympia, starting a tradition that lasts today."],
+[-509,"Roman Republic founded","W","Romans replaced their king with elected leaders, an idea later used by the US."],
+[-507,"Democracy begins in Athens","W","Cleisthenes' reforms let male citizens vote on laws, the first democracy we know of."],
+[-336,"Alexander the Great becomes king","W","He went on to build a huge empire that spread Greek culture from Egypt to India."],
+[-221,"Qin Shi Huang unites China","W","China's first emperor standardized writing, money, and measurements."],
+[-44,"Julius Caesar is assassinated","W","His death led to civil war and the end of the Roman Republic."],
+[-27,"Augustus becomes first Roman emperor","W","His rule began the Roman Empire and a long period of peace called the Pax Romana."],
+[79,"Mount Vesuvius buries Pompeii","W","The ash preserved a Roman city, showing us how ordinary Romans lived."],
+[313,"Edict of Milan","W","Emperor Constantine made Christianity legal in the Roman Empire."],
+[476,"Fall of the Western Roman Empire","W","The last western emperor was removed, often used to mark the start of the Middle Ages."],
+[622,"Muhammad's journey to Medina","W","This move, called the Hijra, marks year one of the Islamic calendar."],
+[800,"Charlemagne crowned emperor","W","The pope crowned him, uniting much of Western Europe under one ruler."],
+[1066,"Norman Conquest of England","W","William the Conqueror won the Battle of Hastings and changed English language and rule."],
+[1095,"First Crusade is called","W","Pope Urban II began a series of wars between Christians and Muslims over the Holy Land."],
+[1206,"Genghis Khan unites the Mongols","W","The Mongols went on to build the largest connected land empire in history."],
+[1215,"Magna Carta signed","W","It said even the English king had to follow the law, an early step toward rights."],
+[1347,"Black Death reaches Europe","W","The plague killed about a third of Europe's people and changed its society."],
+[1440,"Gutenberg develops the printing press","W","Books became cheaper and ideas spread much faster across Europe."],
+[1453,"Ottomans capture Constantinople","W","The Byzantine Empire ended and the city became the Ottoman capital, later called Istanbul."],
+[1492,"Columbus reaches the Americas","W","His voyage started lasting contact between Europe and the Americas."],
+[1498,"Vasco da Gama reaches India by sea","W","He opened a sea route from Europe around Africa to Asia."],
+[1517,"Luther posts the 95 Theses","W","His challenge to the Catholic Church started the Protestant Reformation."],
+[1519,"Magellan's voyage around the world begins","W","His crew became the first to sail all the way around the Earth."],
+[1521,"Cortes conquers the Aztec capital","W","Spain took Tenochtitlan, beginning its empire in Mexico."],
+[1543,"Copernicus says Earth orbits the Sun","W","His sun-centered model helped start the Scientific Revolution."],
+[1565,"St. Augustine founded in Florida","US","It is the oldest continuously lived-in European-founded city in the US."],
+[1588,"English defeat the Spanish Armada","W","England's win weakened Spain and helped England become a sea power."],
+[1607,"Jamestown founded in Virginia","US","It was the first permanent English settlement in North America."],
+[1609,"Galileo turns a telescope to the sky","W","He saw Jupiter's moons and other proof that supported Copernicus."],
+[1619,"First enslaved Africans arrive in Virginia","US","Their arrival is often seen as the start of slavery in English North America."],
+[1620,"Pilgrims sign the Mayflower Compact","US","Settlers agreed to govern themselves, an early idea of self-rule."],
+[1687,"Newton publishes his laws of motion","W","His book explained gravity and motion, building the base of physics."],
+[1754,"French and Indian War begins","US","Britain won, but its war debts led to new taxes on the colonies."],
+[1765,"Stamp Act passed","US","Colonists protested taxation without representation in Parliament."],
+[1769,"James Watt patents improved steam engine","W","Better steam power helped drive the Industrial Revolution."],
+[1773,"Boston Tea Party","US","Colonists dumped British tea into the harbor to protest a tax."],
+[1775,"Battles of Lexington and Concord","US","The first shots of the American Revolution were fired."],
+[1776,"Declaration of Independence","US","The colonies declared themselves free from Britain on July 4."],
+[1777,"Battle of Saratoga","US","This American win convinced France to join the war on their side."],
+[1781,"British surrender at Yorktown","US","This was the last major battle of the American Revolution."],
+[1783,"Treaty of Paris ends the Revolution","US","Britain officially recognized the United States as independent."],
+[1787,"US Constitution is written","US","Delegates in Philadelphia created the plan for the US government."],
+[1789,"Washington becomes first president","US","The new government under the Constitution began."],
+[1789,"French Revolution begins","W","The storming of the Bastille started a fight against the king and for citizens' rights."],
+[1791,"Bill of Rights ratified","US","The first 10 amendments protect freedoms like speech and religion."],
+[1793,"Eli Whitney invents the cotton gin","US","Cotton became very profitable, which sadly made slavery expand in the South."],
+[1803,"Louisiana Purchase","US","The US bought land from France and doubled its size."],
+[1804,"Haiti wins independence","W","Formerly enslaved people founded the first Black-led republic."],
+[1812,"War of 1812 begins","US","The US fought Britain again, boosting American national pride."],
+[1815,"Napoleon defeated at Waterloo","W","His final defeat ended his rule and reshaped Europe."],
+[1820,"Missouri Compromise","US","It tried to balance free and slave states as the country grew."],
+[1830,"Indian Removal Act","US","It led to Native nations being forced from their lands in the Southeast."],
+[1833,"Britain abolishes slavery in its empire","W","The law freed enslaved people in most British colonies."],
+[1846,"Mexican-American War begins","US","The US won and gained California and much of the Southwest."],
+[1848,"Seneca Falls Convention","US","It was the first big meeting for women's rights in the US."],
+[1848,"Communist Manifesto published","W","Marx and Engels' ideas later shaped revolutions in the 1900s."],
+[1857,"Dred Scott decision","US","The Supreme Court ruled Black Americans could not be citizens."],
+[1859,"Darwin publishes On the Origin of Species","W","He explained evolution by natural selection."],
+[1860,"Abraham Lincoln elected president","US","Southern states began to secede after his win."],
+[1861,"Civil War begins at Fort Sumter","US","Confederate forces fired on a US fort in South Carolina."],
+[1863,"Emancipation Proclamation","US","Lincoln declared enslaved people in Confederate states free."],
+[1863,"Battle of Gettysburg","US","A major Union win and turning point in the Civil War."],
+[1865,"Lee surrenders at Appomattox","US","This surrender effectively ended the Civil War."],
+[1865,"Lincoln is assassinated","US","John Wilkes Booth shot him days after the war ended."],
+[1865,"13th Amendment ends slavery","US","Slavery became illegal everywhere in the United States."],
+[1868,"14th Amendment ratified","US","It made formerly enslaved people citizens and promised equal protection."],
+[1868,"Meiji Restoration in Japan","W","Japan rapidly modernized and became a world power."],
+[1869,"Transcontinental Railroad completed","US","Trains could now cross the country from coast to coast."],
+[1870,"15th Amendment ratified","US","It said voting rights could not be denied because of race."],
+[1871,"Germany is unified","W","Prussia led the German states into one new empire."],
+[1876,"Bell patents the telephone","US","People could talk across long distances for the first time."],
+[1877,"Reconstruction ends","US","Federal troops left the South, and Black Americans lost many rights."],
+[1879,"Edison's practical light bulb","US","Electric light began to change homes and cities."],
+[1884,"Berlin Conference divides Africa","W","European powers set rules for taking African land without Africans present."],
+[1896,"Plessy v. Ferguson","US","The Supreme Court allowed segregation under separate but equal."],
+[1898,"Spanish-American War","US","The US won and gained Puerto Rico, Guam, and the Philippines."],
+[1903,"Wright brothers' first flight","US","The first powered airplane flight happened at Kitty Hawk."],
+[1905,"Einstein's special relativity","W","His ideas changed how we understand space, time, and energy."],
+[1912,"Titanic sinks","W","More than 1,500 people died, leading to new ship safety rules."],
+[1914,"World War I begins","W","The killing of Archduke Franz Ferdinand set off a war across Europe."],
+[1916,"Battle of the Somme","W","Over a million soldiers were killed or wounded in this WWI battle."],
+[1917,"US enters World War I","US","American troops helped the Allies win the war."],
+[1917,"Russian Revolution","W","The Bolsheviks under Lenin took power and created a communist state."],
+[1918,"World War I ends","W","An armistice on November 11 stopped the fighting."],
+[1919,"Treaty of Versailles","W","Its harsh terms on Germany helped lead to World War II."],
+[1920,"19th Amendment gives women the vote","US","Women gained the right to vote nationwide."],
+[1920,"League of Nations founded","W","It was the first world group made to keep peace, though it later failed."],
+[1928,"Fleming discovers penicillin","W","The first antibiotic has saved millions of lives."],
+[1929,"Stock market crash","US","The crash helped start the Great Depression."],
+[1930,"Gandhi's Salt March","W","His peaceful protest boosted India's fight for independence."],
+[1933,"FDR's New Deal begins","US","Government programs gave jobs and relief during the Depression."],
+[1933,"Hitler becomes chancellor of Germany","W","He soon made himself dictator and led the Nazi party's rule."],
+[1938,"Munich Agreement","W","Britain and France let Hitler take part of Czechoslovakia to avoid war."],
+[1939,"Germany invades Poland","W","Britain and France declared war, starting World War II in Europe."],
+[1940,"Battle of Britain","W","The Royal Air Force stopped Germany from invading Britain."],
+[1941,"Germany invades the Soviet Union","W","This huge attack opened the deadliest front of the war."],
+[1941,"Attack on Pearl Harbor","US","Japan's surprise attack on December 7 brought the US into WWII."],
+[1942,"Japanese American incarceration begins","US","About 120,000 people of Japanese descent were forced into camps."],
+[1942,"Wannsee Conference","W","Nazi officials organized the Holocaust, in which about six million Jews were murdered."],
+[1942,"Battle of Midway","US","The US Navy beat Japan, a turning point in the Pacific."],
+[1942,"Battle of Stalingrad begins","W","The Soviet victory in early 1943 was a major turning point in Europe."],
+[1944,"D-Day landings in Normandy","W","Allied troops invaded France on June 6 to free Western Europe."],
+[1945,"Germany surrenders","W","Victory in Europe Day, May 8, ended the war in Europe."],
+[1945,"Atomic bombs dropped on Japan","US","The US bombed Hiroshima and Nagasaki, the only nuclear attacks in war."],
+[1945,"Japan surrenders, WWII ends","W","Japan's surrender ended the deadliest war in history."],
+[1945,"United Nations founded","W","Nations joined together to keep peace and work on world problems."],
+[1947,"India and Pakistan gain independence","W","British rule in India ended and two new nations were formed."],
+[1948,"State of Israel founded","W","Israel was created, followed by war with neighboring Arab states."],
+[1948,"Berlin Airlift begins","W","The US and Britain flew supplies into West Berlin during a Soviet blockade."],
+[1949,"NATO is formed","W","The US, Canada, and Western European nations agreed to defend each other."],
+[1949,"People's Republic of China founded","W","Mao Zedong's Communists won China's civil war."],
+[1950,"Korean War begins","W","North Korea invaded South Korea, and the US and UN fought back."],
+[1953,"Structure of DNA discovered","W","Watson and Crick, using Rosalind Franklin's data, found DNA's double helix."],
+[1954,"Brown v. Board of Education","US","The Supreme Court ruled segregation in public schools unconstitutional."],
+[1955,"Montgomery Bus Boycott","US","After Rosa Parks' arrest, Black riders boycotted buses for over a year."],
+[1957,"Little Rock Nine","US","Nine Black students integrated a high school, protected by federal troops."],
+[1957,"Sputnik launched","W","The Soviet satellite started the space race."],
+[1957,"Ghana gains independence","W","It was one of the first African colonies to win freedom from Europe."],
+[1959,"Castro takes power in Cuba","W","Cuba became a communist state close to the US."],
+[1961,"Yuri Gagarin orbits Earth","W","The Soviet cosmonaut was the first human in space."],
+[1961,"Berlin Wall built","W","East Germany walled off West Berlin, a symbol of the Cold War."],
+[1962,"Cuban Missile Crisis","US","The US and USSR came close to nuclear war over missiles in Cuba."],
+[1963,"March on Washington","US","Martin Luther King Jr. gave his I Have a Dream speech."],
+[1963,"President Kennedy assassinated","US","JFK was shot in Dallas, Texas."],
+[1964,"Civil Rights Act","US","It banned discrimination based on race, color, religion, sex, or national origin."],
+[1965,"Voting Rights Act","US","It outlawed tests and tricks used to stop Black citizens from voting."],
+[1965,"US combat troops land in Vietnam","US","The Vietnam War grew into a long and divisive conflict."],
+[1966,"Cultural Revolution begins in China","W","Mao's campaign caused years of chaos and persecution."],
+[1968,"Martin Luther King Jr. assassinated","US","His death shocked the nation and sparked unrest in many cities."],
+[1969,"Apollo 11 Moon landing","US","Neil Armstrong became the first person to walk on the Moon."],
+[1972,"Watergate break-in","US","The cover-up became a huge political scandal."],
+[1974,"Nixon resigns","US","He became the only US president to resign from office."],
+[1975,"Fall of Saigon ends Vietnam War","W","North Vietnam took the South's capital and united the country."],
+[1979,"Iranian Revolution","W","Iran's shah was overthrown and an Islamic republic was created."],
+[1986,"Chernobyl nuclear disaster","W","An explosion at a Soviet power plant spread radiation across Europe."],
+[1989,"Tiananmen Square protests","W","China's government violently crushed a pro-democracy movement."],
+[1989,"Fall of the Berlin Wall","W","East Germans crossed freely, a sign the Cold War was ending."],
+[1990,"Germany reunites","W","East and West Germany became one country again."],
+[1990,"Nelson Mandela released from prison","W","After 27 years, he walked free and worked to end apartheid."],
+[1991,"World Wide Web goes public","W","Tim Berners-Lee's web made the internet easy for everyone to use."],
+[1991,"Soviet Union collapses","W","The USSR broke into 15 countries, ending the Cold War."],
+[1993,"European Union formed","W","European nations joined in a closer economic and political union."],
+[1994,"Rwandan genocide","W","About 800,000 people, mostly Tutsi, were killed in about 100 days."],
+[1994,"Mandela elected president of South Africa","W","He became the country's first Black president after apartheid ended."],
+[1997,"Hong Kong returned to China","W","Britain handed back Hong Kong after about 150 years of rule."],
+[2001,"September 11 attacks","US","Terrorists killed nearly 3,000 people, leading to the war in Afghanistan."],
+[2003,"Iraq War begins","US","A US-led invasion removed Saddam Hussein from power."],
+[2003,"Human Genome Project completed","W","Scientists mapped almost all human genes, helping medicine."],
+[2007,"Apple introduces the iPhone","US","It made smartphones part of everyday life."],
+[2008,"Global financial crisis","W","Bank failures caused the worst recession since the Great Depression."],
+[2008,"Barack Obama elected president","US","He became the first Black president of the United States."],
+[2010,"Arab Spring begins in Tunisia","W","Protests spread across the Middle East and North Africa."],
+[2015,"Same-sex marriage legal nationwide","US","The Supreme Court ruled in Obergefell v. Hodges."],
+[2015,"Paris Climate Agreement","W","Nearly every country agreed to work on limiting global warming."],
+[2016,"UK votes to leave the EU","W","The Brexit vote led the UK to exit the European Union in 2020."],
+[2020,"COVID-19 declared a pandemic","W","The virus spread worldwide and changed daily life for billions."]
+];
+
+const PRES=[
+["George Washington",1789,1797,"None","Led the Continental Army and set the two-term tradition."],
+["John Adams",1797,1801,"Federalist","First president to live in the White House."],
+["Thomas Jefferson",1801,1809,"Democratic-Republican","Wrote the Declaration of Independence and made the Louisiana Purchase."],
+["James Madison",1809,1817,"Democratic-Republican","Called the Father of the Constitution; led during the War of 1812."],
+["James Monroe",1817,1825,"Democratic-Republican","Issued the Monroe Doctrine."],
+["John Quincy Adams",1825,1829,"Democratic-Republican","Son of John Adams, the second president."],
+["Andrew Jackson",1829,1837,"Democratic","Signed the Indian Removal Act."],
+["Martin Van Buren",1837,1841,"Democratic","First president born as a US citizen."],
+["William Henry Harrison",1841,1841,"Whig","Died about a month after taking office, the shortest presidency."],
+["John Tyler",1841,1845,"Whig","First vice president to take over after a president died."],
+["James K. Polk",1845,1849,"Democratic","Expanded the US to the Pacific after the Mexican-American War."],
+["Zachary Taylor",1849,1850,"Whig","A war hero who died in office after 16 months."],
+["Millard Fillmore",1850,1853,"Whig","Signed the Compromise of 1850."],
+["Franklin Pierce",1853,1857,"Democratic","Signed the Kansas-Nebraska Act."],
+["James Buchanan",1857,1861,"Democratic","The only president who never married."],
+["Abraham Lincoln",1861,1865,"Republican","Led the Union in the Civil War and issued the Emancipation Proclamation."],
+["Andrew Johnson",1865,1869,"National Union","First president to be impeached."],
+["Ulysses S. Grant",1869,1877,"Republican","Led the Union Army to victory in the Civil War."],
+["Rutherford B. Hayes",1877,1881,"Republican","Reconstruction ended early in his term."],
+["James A. Garfield",1881,1881,"Republican","Was shot and died months after taking office."],
+["Chester A. Arthur",1881,1885,"Republican","Signed the Pendleton Act to reform government hiring."],
+["Grover Cleveland",1885,1889,"Democratic","First president to serve two non-consecutive terms."],
+["Benjamin Harrison",1889,1893,"Republican","Grandson of President William Henry Harrison."],
+["Grover Cleveland",1893,1897,"Democratic","Came back to win a second, non-consecutive term."],
+["William McKinley",1897,1901,"Republican","Led during the Spanish-American War and was assassinated."],
+["Theodore Roosevelt",1901,1909,"Republican","Protected huge areas of land and won the Nobel Peace Prize."],
+["William Howard Taft",1909,1913,"Republican","Later became Chief Justice of the Supreme Court."],
+["Woodrow Wilson",1913,1921,"Democratic","Led the US in World War I and pushed for the League of Nations."],
+["Warren G. Harding",1921,1923,"Republican","His term was hurt by the Teapot Dome scandal; he died in office."],
+["Calvin Coolidge",1923,1929,"Republican","Nicknamed Silent Cal for being quiet."],
+["Herbert Hoover",1929,1933,"Republican","The Great Depression began during his term."],
+["Franklin D. Roosevelt",1933,1945,"Democratic","The only president elected four times; created the New Deal."],
+["Harry S. Truman",1945,1953,"Democratic","Decided to use the atomic bomb to end World War II."],
+["Dwight D. Eisenhower",1953,1961,"Republican","Commanded the D-Day invasion and started the Interstate Highway System."],
+["John F. Kennedy",1961,1963,"Democratic","Youngest person elected president; set the goal of reaching the Moon."],
+["Lyndon B. Johnson",1963,1969,"Democratic","Signed the Civil Rights Act and the Voting Rights Act."],
+["Richard Nixon",1969,1974,"Republican","The only president to resign, because of Watergate."],
+["Gerald Ford",1974,1977,"Republican","The only president never elected as president or vice president."],
+["Jimmy Carter",1977,1981,"Democratic","Helped make the Camp David Accords and later won the Nobel Peace Prize."],
+["Ronald Reagan",1981,1989,"Republican","A former Hollywood actor and governor of California."],
+["George H. W. Bush",1989,1993,"Republican","Led the coalition in the Gulf War."],
+["Bill Clinton",1993,2001,"Democratic","Second president to be impeached; the Senate did not remove him."],
+["George W. Bush",2001,2009,"Republican","Was president during the September 11 attacks."],
+["Barack Obama",2009,2017,"Democratic","The first Black president; signed the Affordable Care Act."],
+["Donald Trump",2017,2021,"Republican","A businessman and TV personality before becoming president."],
+["Joe Biden",2021,2025,"Democratic","Served eight years as Barack Obama's vice president."],
+["Donald Trump",2025,null,"Republican","Second president to serve two non-consecutive terms."]
+];
+
+const HPEOPLE=[
+["Hammurabi","King of Babylon known for his written law code","1700s BCE","W"],
+["Confucius","Chinese teacher whose ideas on respect and order shaped Asia","500s BCE","W"],
+["Siddhartha Gautama","Founder of Buddhism, known as the Buddha","500s BCE","W"],
+["Socrates","Greek philosopher who taught by asking questions","400s BCE","W"],
+["Aristotle","Greek thinker who wrote about science, logic, and politics","300s BCE","W"],
+["Alexander the Great","Macedonian king who conquered an empire to India","300s BCE","W"],
+["Qin Shi Huang","First emperor of a united China","200s BCE","W"],
+["Julius Caesar","Roman general and dictator whose death ended the Republic","1st century BCE","W"],
+["Cleopatra","Last active ruler of ancient Egypt","1st century BCE","W"],
+["Muhammad","Prophet and founder of Islam","600s","W"],
+["Charlemagne","King of the Franks crowned emperor in 800","Around 800","W"],
+["Genghis Khan","Founder of the Mongol Empire","1200s","W"],
+["Mansa Musa","Very wealthy ruler of the Mali Empire","1300s","W"],
+["Joan of Arc","French teen who led armies against England","1400s","W"],
+["Johannes Gutenberg","German inventor of the printing press in Europe","1400s","W"],
+["Christopher Columbus","Explorer whose voyages linked Europe and the Americas","1400s","W"],
+["Leonardo da Vinci","Renaissance artist and inventor who painted the Mona Lisa","1400s","W"],
+["Martin Luther","German monk who started the Protestant Reformation","1500s","W"],
+["Nicolaus Copernicus","Astronomer who said Earth orbits the Sun","1500s","W"],
+["Elizabeth I","Queen of England during its golden age","1500s","W"],
+["William Shakespeare","English playwright of Romeo and Juliet and Hamlet","Around 1600","W"],
+["Galileo Galilei","Scientist who used a telescope to study the sky","1600s","W"],
+["Isaac Newton","Scientist who explained gravity and motion","1600s","W"],
+["John Locke","English thinker who said people have natural rights","1600s","W"],
+["Voltaire","French writer who fought for free speech","1700s","W"],
+["Toussaint Louverture","Leader of the Haitian Revolution","1790s","W"],
+["Napoleon Bonaparte","French general who became emperor","1800s","W"],
+["Simon Bolivar","Leader who freed much of South America from Spain","1800s","W"],
+["Charles Darwin","Scientist who explained evolution by natural selection","1800s","W"],
+["Karl Marx","Thinker whose ideas became the basis of communism","1800s","W"],
+["Marie Curie","Scientist who studied radioactivity and won two Nobel Prizes","1900s","W"],
+["Albert Einstein","Physicist famous for the theory of relativity","1900s","W"],
+["Vladimir Lenin","Leader of the Russian Revolution and founder of the USSR","1900s","W"],
+["Winston Churchill","British prime minister who led Britain in WWII","1900s","W"],
+["Adolf Hitler","Nazi dictator of Germany who started WWII in Europe","1900s","W"],
+["Joseph Stalin","Soviet dictator during WWII and the early Cold War","1900s","W"],
+["Mao Zedong","Communist leader who founded the People's Republic of China","1900s","W"],
+["Mahatma Gandhi","Led India's independence movement through nonviolence","1900s","W"],
+["Anne Frank","Jewish teen whose diary describes hiding from the Nazis","1900s","W"],
+["Nelson Mandela","Anti-apartheid leader and South Africa's first Black president","1900s","W"],
+["Yuri Gagarin","Soviet cosmonaut and first human in space","1960s","W"],
+["Mikhail Gorbachev","Last leader of the Soviet Union","1980s","W"],
+["Tim Berners-Lee","British scientist who invented the World Wide Web","1990s","W"],
+["Malala Yousafzai","Pakistani activist for girls' education, youngest Nobel winner","2010s","W"],
+["Pocahontas","Powhatan woman linked to the Jamestown colony","1600s","US"],
+["Benjamin Franklin","Founder, inventor, and diplomat who helped win French support","1700s","US"],
+["George Washington","Revolutionary War general and first US president","1700s","US"],
+["Thomas Jefferson","Main writer of the Declaration of Independence","1700s","US"],
+["Alexander Hamilton","Founder who created the US financial system","1700s","US"],
+["Sacagawea","Shoshone woman who helped guide Lewis and Clark","1800s","US"],
+["Harriet Tubman","Escaped slavery and led others to freedom on the Underground Railroad","1800s","US"],
+["Frederick Douglass","Escaped slavery and became a powerful abolitionist speaker","1800s","US"],
+["Abraham Lincoln","President who led the Union and ended slavery","1800s","US"],
+["Susan B. Anthony","Leader in the fight for women's right to vote","1800s","US"],
+["Sitting Bull","Lakota leader who resisted US takeover of Native lands","1800s","US"],
+["Thomas Edison","Inventor of the phonograph and a practical light bulb","1800s","US"],
+["Wright brothers","Brothers who made the first powered airplane flight","1900s","US"],
+["Theodore Roosevelt","President who protected nature and broke up big monopolies","1900s","US"],
+["W.E.B. Du Bois","Scholar and co-founder of the NAACP","1900s","US"],
+["Henry Ford","Carmaker who used the assembly line to build the Model T","1900s","US"],
+["Franklin D. Roosevelt","President during the Great Depression and WWII","1900s","US"],
+["Eleanor Roosevelt","First lady who championed human rights at the UN","1900s","US"],
+["Amelia Earhart","First woman to fly solo across the Atlantic","1900s","US"],
+["Jackie Robinson","First Black player in modern Major League Baseball","1900s","US"],
+["Thurgood Marshall","Won Brown v. Board and became the first Black Supreme Court justice","1900s","US"],
+["Rosa Parks","Refused to give up her bus seat, sparking the Montgomery Bus Boycott","1900s","US"],
+["Martin Luther King Jr.","Civil rights leader who used peaceful protest","1900s","US"],
+["Malcolm X","Civil rights leader who spoke for Black pride and power","1900s","US"],
+["John F. Kennedy","President during the Cuban Missile Crisis","1900s","US"],
+["Neil Armstrong","Astronaut and first person to walk on the Moon","1900s","US"],
+["Cesar Chavez","Labor leader who fought for farmworkers' rights","1900s","US"],
+["Steve Jobs","Apple co-founder behind the Mac and iPhone","1900s","US"],
+["Barack Obama","First Black president of the United States","2000s","US"]
+];
+
+/* ================= History ================= */
+const yr=y=>y<0?`${-y} BCE`:String(y);
+const ERAS=[{id:'anc',t:'Ancient world',d:'Before 500 CE',a:-1e4,b:500},{id:'med',t:'Middle Ages',d:'500 to 1450',a:500,b:1450},{id:'early',t:'Exploration and Renaissance',d:'1450 to 1750',a:1450,b:1750},{id:'rev',t:'Revolutions and industry',d:'1750 to 1914',a:1750,b:1914},{id:'ww',t:'The World Wars',d:'1914 to 1945',a:1914,b:1946},{id:'mod',t:'Modern world',d:'1946 to today',a:1946,b:3000}];
+const eraOf=y=>ERAS.find(e=>y>=e.a&&y<e.b);
+const hkb=h=>({k:'hist:'+h[1],t:`${h[1]} (${yr(h[0])})`,d:h[3],c:'History',i:''});
+const PORD=n=>n+(n%100>=11&&n%100<=13?'th':['th','st','nd','rd'][n%10]||'th');
+function yearChoices(y){
+  const spread=y<0?400:y<1450?120:y<1800?40:y<1900?20:8;const set=new Set([y]);let guard=0;
+  while(set.size<4&&guard++<200){let o=Math.round((Math.random()*2-1)*spread);if(Math.abs(o)<Math.max(2,spread/6))continue;let c=y+o;if(y<1800&&y>0)c=Math.round(c/ (spread>=40?5:1))*(spread>=40?5:1);if(c>2025||(y>0&&c<=0)||(y<0&&c>=0)||c===y)continue;set.add(c)}
+  return shuffle([...set].map(yr))}
+function histWhen(h){return{type:'mc',key:'hw:'+h[1],prompt:'When did this happen?',big:`<span class="bigdef">${esc(h[1])}</span>`,a:yr(h[0]),choices:yearChoices(h[0]),extra:h[3],kb:hkb(h),missText:`${h[1]}: ${yr(h[0])}`}}
+function histFirst(a,b){const[e,l]=a[0]<b[0]?[a,b]:[b,a];return{type:'mc',key:'hf:'+e[1]+'|'+l[1],prompt:'Which came first?',big:'',a:e[1],choices:shuffle([a[1],b[1]]),extra:`${e[1]}: ${yr(e[0])}. ${l[1]}: ${yr(l[0])}.`,kb:hkb(e),missText:e[1]}}
+function histWho(p){return{type:'mc',key:'hp:'+p[0],prompt:'Who was this?',big:`<span class="bigdef">${esc(p[1])}</span><br><span class="muted small">${esc(p[2])}</span>`,a:p[0],choices:shuffle([p[0],...shuffle(HPEOPLE.filter(x=>x[0]!==p[0]&&x[3]===p[3])).slice(0,3).map(x=>x[0])]),kb:{k:'who:'+p[0],t:`${p[0]}: ${p[1]}`,c:'History',i:''},missText:p[0]}}
+function presItem(i){const p=PRES[i],n=i+1;const others=()=>shuffle([...new Set(PRES.map(x=>x[0]).filter(x=>x!==p[0]))]);
+  const r=Math.random();const kb={k:'pres:'+n,t:`${p[0]} was the ${PORD(n)} president (${p[1]}${p[2]?'–'+p[2]:' to now'})`,c:'History',i:''};
+  if(r<.4){const near=[...new Set(PRES.slice(Math.max(0,i-6),i+7).map(x=>x[0]).filter(x=>x!==p[0]))];return{type:'mc',key:'pn:'+n,prompt:`Who was the ${PORD(n)} president?`,big:`<span class="bigdef">${p[1]}${p[2]?' to '+p[2]:' to now'}</span>`,a:p[0],choices:shuffle([p[0],...shuffle(near).slice(0,3)]),extra:p[4],kb,missText:p[0]}}
+  if(r<.7&&i>0){const prev=PRES[i-1];const near=[...new Set(PRES.slice(Math.max(0,i-5),i+6).map(x=>x[0]).filter(x=>x!==p[0]&&x!==prev[0]))];return{type:'mc',key:'pa:'+n,prompt:`Who came right after ${prev[0]}?`,big:'',a:p[0],choices:shuffle([p[0],...shuffle(near).slice(0,3)]),extra:`${p[0]}, ${p[1]}${p[2]?' to '+p[2]:' to now'}. ${p[4]}`,kb,missText:p[0]}}
+  return{type:'mc',key:'pf:'+n,prompt:'Which president?',big:`<span class="bigdef">${esc(p[4])}</span>`,a:p[0],choices:shuffle([p[0],...others().slice(0,3)]),extra:`The ${PORD(n)} president, ${p[1]}${p[2]?' to '+p[2]:' to now'}.`,kb,missText:p[0]}}
+function histQuiz(kind,filt){
+  const pool=HIST.filter(h=>(!filt||!filt.r||h[2]===filt.r)&&(!filt||!filt.era||eraOf(h[0]).id===filt.era));let items=[];
+  if(kind==='when')items=prioritize(pool.map(histWhen),10);
+  else if(kind==='first'){for(let k=0;k<30;k++){const a=pick(pool),b=pick(pool);if(a[0]!==b[0])items.push(histFirst(a,b))}items=items.slice(0,10)}
+  else if(kind==='who')items=prioritize(HPEOPLE.filter(p=>!filt||!filt.r||p[3]===filt.r).map(histWho),10);
+  else if(kind==='pres')items=prioritize(PRES.map((_,i)=>presItem(i)),10);
+  else if(kind==='mix'){items=shuffle([...prioritize(pool.map(histWhen),4),...prioritize(HPEOPLE.map(histWho),3),...(()=>{const o=[];for(let k=0;k<3;k++){const a=pick(pool),b=pick(pool);if(a[0]!==b[0])o.push(histFirst(a,b))}return o})()])}
+  if(kind!=='pres'&&kind!=='who'&&pool.length>=4){const pp=shuffle(pool).filter((h,i,a)=>a.findIndex(x=>x[0]===h[0])===i).slice(0,4);items.splice(Math.min(5,items.length),0,{type:'pairs',key:'hm:'+pp.map(x=>x[1]).join('|'),prompt:'Match each event to its year',pairs:pp.map(h=>[esc(h[1]),esc(yr(h[0]))]),a:''})}
+  lesson({theme:'world',items,onFinish:()=>markDone('history'),again:()=>histQuiz(kind,filt)});
+}
+function openHistory(){
+  push('world',el=>{
+    const known=Object.keys(KB).filter(k=>k.startsWith('hist:')).length,kp=Object.keys(KB).filter(k=>k.startsWith('pres:')).length,kw=Object.keys(KB).filter(k=>k.startsWith('who:')).length;
+    const row=(id,ic,t,d,run)=>{ACT[id]=run;return`<button class="rowcard t-world" data-act="${id}">${bi(ic,{s:52})}<span style="min-width:0"><b>${t}</b><span class="d">${d}</span></span>${ICON.chev}</button>`};
+    page(el,'History',`<div class="hero">${bi('book',{s:76})}<h2>History</h2><p>${HIST.length} events, ${PRES.length} presidencies and ${HPEOPLE.length} people. You know ${known+kp+kw} so far.</p></div>
+      <div class="duo"><button class="fcard fill t-world" data-act="h-mix">${bi('sparkle',{s:46})}<div><b>Mixed quiz</b><span>Dates, people, what came first</span></div><span class="fc-go">Start</span></button>
+      <button class="fcard fill t-mind" data-act="h-pres">${bi('star',{s:46})}<div><b>Presidents</b><span>All ${PRES.length}, in order</span></div><span class="fc-go">Start</span></button></div>
+      <div class="sec"><h2>Quizzes</h2></div><div class="rows">
+      ${row('h-when','hash','When did it happen?','Pick the year','()=>0')}${row('h-first','dots','Which came first?','Put history in order',0)}${row('h-who','speech','Who was this?',`${HPEOPLE.length} people who changed things`,0)}${row('h-us','star','US history only','From the colonies to today',0)}</div>
+      <div class="sec"><h2>Timeline by era</h2></div>
+      <div class="lgrid">${ERAS.map(e=>`<button class="lt t-world" data-era="${e.id}">${bi('scroll',{s:44})}<b>${esc(e.t)}</b><span class="d">${esc(e.d)} · ${HIST.filter(h=>eraOf(h[0])===e).length} events</span></button>`).join('')}</div>
+      <div class="rows" style="margin-top:12px">${row('h-plist','star','All presidents','The list, with one fact each',0)}${row('h-ppl','bookmark','People','Who they were and when',0)}</div>`);
+    ACT['h-mix']=()=>histQuiz('mix');ACT['h-pres']=()=>histQuiz('pres');ACT['h-when']=()=>histQuiz('when');ACT['h-first']=()=>histQuiz('first');ACT['h-who']=()=>histQuiz('who');ACT['h-us']=()=>histQuiz('mix',{r:'US'});ACT['h-plist']=openPresList;ACT['h-ppl']=openPeople;
+    el.querySelector('.lgrid').onclick=e=>{const b=e.target.closest('[data-era]');if(b)openEra(b.dataset.era)};
+  });
+}
+function openEra(id){const E=ERAS.find(e=>e.id===id);
+  push('world',el=>{let r='all';
+    const draw=()=>{const ev=HIST.filter(h=>eraOf(h[0])===E&&(r==='all'||h[2]===r));
+      page(el,E.t,`<div class="hero"><h2>${esc(E.t)}</h2><p>${esc(E.d)}. Tap an event to add it to your knowledge book.</p></div>
+        ${seg('rg',[{v:'all',l:'All'},{v:'W',l:'World'},{v:'US',l:'United States'}],r)}
+        <div class="tline-list">${ev.map(h=>`<button class="tev${KB['hist:'+h[1]]?' known':''}" data-t="${esc(h[1])}"><span class="ty">${esc(yr(h[0]))}</span><span class="tb"><b>${esc(h[1])}</b><span>${esc(h[3])}</span></span></button>`).join('')||'<p class="empty">Nothing here for this filter.</p>'}</div>`,
+        `<button class="btn c block" id="qz" ${ev.length<4?'disabled':''}>Quiz this era</button>`);
+      bindSeg(el,'rg',v=>{r=v;draw()});
+      el.querySelector('#qz').onclick=()=>histQuiz('mix',{era:id,r:r==='all'?null:r});
+      el.querySelector('.tline-list').onclick=e=>{const b=e.target.closest('.tev');if(!b)return;const h=HIST.find(x=>x[1]===b.dataset.t);addKnowledge(hkb(h));b.classList.add('known');tone(true)}};
+    draw()});
+}
+function openPresList(){push('world',el=>{page(el,'Presidents',`<div class="hero"><h2>US presidents</h2><p>Grover Cleveland and Donald Trump each served two terms that weren't back to back, so they show up twice.</p></div>
+  <div class="list">${PRES.map((p,i)=>`<div class="li"><span class="pn">${i+1}</span><div style="min-width:0"><b style="color:var(--head)">${esc(p[0])}</b><span class="s">${p[1]}${p[2]?'–'+p[2]:' to now'} · ${esc(p[3])}</span><span class="s">${esc(p[4])}</span></div></div>`).join('')}</div>`,'<button class="btn c block" id="qz">Quiz me</button>');el.querySelector('#qz').onclick=()=>histQuiz('pres')})}
+function openPeople(){push('world',el=>{page(el,'People',`<div class="hero"><h2>People in history</h2></div>
+  <div class="list">${[...HPEOPLE].sort((a,b)=>a[0].localeCompare(b[0])).map(p=>`<div class="li"><div style="min-width:0"><b style="color:var(--head)">${esc(p[0])}</b><span class="s">${esc(p[1])}</span><span class="s">${esc(p[2])}${p[3]==='US'?' · United States':''}</span></div></div>`).join('')}</div>`,'<button class="btn c block" id="qz">Quiz me</button>');el.querySelector('#qz').onclick=()=>histQuiz('who')})}
+ACT.history=()=>openHistory();
+
+// Beginner course data for five languages.
+const LANGS={
+  es:{name:"Spanish",native:"Español",flag:"es",speech:"es-MX",rtl:false,space:true,units:[
+    {title:"Greetings",
+     tip:"Use \"buenos días\" until about noon, \"buenas tardes\" in the afternoon, and \"buenas noches\" at night for both hello and goodbye.",
+     words:[
+      ["hola","","hello"],
+      ["adiós","","goodbye"],
+      ["buenos días","","good morning"],
+      ["buenas tardes","","good afternoon"],
+      ["buenas noches","","good night"],
+      ["gracias","","thank you"],
+      ["por favor","","please"],
+      ["de nada","","you're welcome"],
+      ["hasta luego","","see you later"],
+      ["perdón","","sorry"]
+     ],
+     phrases:[
+      ["¿Cómo estás?","","How are you?",["¿Cómo","estás?"]],
+      ["Estoy bien, gracias","","I am fine, thanks",["Estoy","bien,","gracias"]],
+      ["Mucho gusto","","Nice to meet you",["Mucho","gusto"]],
+      ["¿Qué tal?","","How's it going?",["¿Qué","tal?"]],
+      ["Hasta mañana","","See you tomorrow",["Hasta","mañana"]]
+     ]},
+    {title:"About me",
+     tip:"Use \"tú\" with friends and classmates and \"usted\" with teachers and adults you do not know well.",
+     words:[
+      ["yo","","I"],
+      ["tú","","you (informal)"],
+      ["usted","","you (formal)"],
+      ["el nombre","","name"],
+      ["estudiante","","student"],
+      ["soy","","I am"],
+      ["de","","from"],
+      ["me llamo","","my name is"],
+      ["los Estados Unidos","","the United States"],
+      ["años","","years"]
+     ],
+     phrases:[
+      ["Me llamo Ana","","My name is Ana",["Me","llamo","Ana"]],
+      ["Soy estudiante","","I am a student",["Soy","estudiante"]],
+      ["Soy de los Estados Unidos","","I am from the United States",["Soy","de","los","Estados","Unidos"]],
+      ["¿Cómo te llamas?","","What is your name?",["¿Cómo","te","llamas?"]],
+      ["Tengo quince años","","I am fifteen years old",["Tengo","quince","años"]]
+     ]},
+    {title:"Numbers 1-10",
+     tip:"To say your age in Spanish you \"have\" years: \"Tengo quince años\" means \"I am fifteen.\"",
+     words:[
+      ["uno","","one"],
+      ["dos","","two"],
+      ["tres","","three"],
+      ["cuatro","","four"],
+      ["cinco","","five"],
+      ["seis","","six"],
+      ["siete","","seven"],
+      ["ocho","","eight"],
+      ["nueve","","nine"],
+      ["diez","","ten"]
+     ],
+     phrases:[
+      ["Tengo dos hermanos","","I have two brothers",["Tengo","dos","hermanos"]],
+      ["¿Cuántos años tienes?","","How old are you?",["¿Cuántos","años","tienes?"]],
+      ["Tengo tres libros","","I have three books",["Tengo","tres","libros"]],
+      ["Son las cinco","","It is five o'clock",["Son","las","cinco"]],
+      ["Necesito diez minutos","","I need ten minutes",["Necesito","diez","minutos"]]
+     ]},
+    {title:"Food and drink",
+     tip:"Spanish uses \"tener\" for hunger and thirst: \"Tengo hambre\" is literally \"I have hunger.\"",
+     words:[
+      ["el agua","","water"],
+      ["la leche","","milk"],
+      ["el pan","","bread"],
+      ["la manzana","","apple"],
+      ["el arroz","","rice"],
+      ["el pollo","","chicken"],
+      ["el queso","","cheese"],
+      ["el jugo","","juice"],
+      ["el café","","coffee"],
+      ["la comida","","food"]
+     ],
+     phrases:[
+      ["Tengo hambre","","I am hungry",["Tengo","hambre"]],
+      ["Quiero agua, por favor","","I want water, please",["Quiero","agua,","por","favor"]],
+      ["Me gusta el pollo","","I like chicken",["Me","gusta","el","pollo"]],
+      ["La comida está rica","","The food is delicious",["La","comida","está","rica"]],
+      ["¿Tienes sed?","","Are you thirsty?",["¿Tienes","sed?"]]
+     ]},
+    {title:"Family",
+     tip:"The masculine plural can mean a mixed group, so \"mis hermanos\" can mean \"my brothers\" or \"my siblings.\"",
+     words:[
+      ["la madre","","mother"],
+      ["el padre","","father"],
+      ["el hermano","","brother"],
+      ["la hermana","","sister"],
+      ["el abuelo","","grandfather"],
+      ["la abuela","","grandmother"],
+      ["la familia","","family"],
+      ["el hijo","","son"],
+      ["la hija","","daughter"],
+      ["el tío","","uncle"]
+     ],
+     phrases:[
+      ["Esta es mi madre","","This is my mother",["Esta","es","mi","madre"]],
+      ["Tengo una hermana","","I have a sister",["Tengo","una","hermana"]],
+      ["Mi familia es grande","","My family is big",["Mi","familia","es","grande"]],
+      ["Mi abuelo es simpático","","My grandfather is nice",["Mi","abuelo","es","simpático"]],
+      ["¿Tienes hermanos?","","Do you have siblings?",["¿Tienes","hermanos?"]]
+     ]},
+    {title:"School",
+     tip:"Every noun has a gender: \"el\" goes with masculine nouns and \"la\" with feminine ones, so learn each word with its article.",
+     words:[
+      ["la escuela","","school"],
+      ["la maestra","","teacher (female)"],
+      ["el libro","","book"],
+      ["el lápiz","","pencil"],
+      ["el cuaderno","","notebook"],
+      ["la clase","","class"],
+      ["la tarea","","homework"],
+      ["el examen","","test"],
+      ["la mochila","","backpack"],
+      ["la computadora","","computer"]
+     ],
+     phrases:[
+      ["Tengo mucha tarea","","I have a lot of homework",["Tengo","mucha","tarea"]],
+      ["¿Dónde está mi libro?","","Where is my book?",["¿Dónde","está","mi","libro?"]],
+      ["La clase es interesante","","The class is interesting",["La","clase","es","interesante"]],
+      ["Mi maestra es muy buena","","My teacher is very good",["Mi","maestra","es","muy","buena"]],
+      ["Tengo un examen hoy","","I have a test today",["Tengo","un","examen","hoy"]]
+     ]},
+    {title:"Places and directions",
+     tip:"Use \"estar\" for location: \"¿Dónde está el baño?\" Also, \"a\" plus \"el\" combines into \"al,\" as in \"Voy al parque.\"",
+     words:[
+      ["la casa","","house"],
+      ["el parque","","park"],
+      ["la tienda","","store"],
+      ["el restaurante","","restaurant"],
+      ["la biblioteca","","library"],
+      ["el baño","","bathroom"],
+      ["a la derecha","","to the right"],
+      ["a la izquierda","","to the left"],
+      ["cerca","","near"],
+      ["lejos","","far"]
+     ],
+     phrases:[
+      ["¿Dónde está el baño?","","Where is the bathroom?",["¿Dónde","está","el","baño?"]],
+      ["La tienda está cerca","","The store is near",["La","tienda","está","cerca"]],
+      ["Voy al parque","","I am going to the park",["Voy","al","parque"]],
+      ["Dobla a la derecha","","Turn right",["Dobla","a","la","derecha"]],
+      ["Mi casa está lejos","","My house is far",["Mi","casa","está","lejos"]]
+     ]},
+    {title:"Days and time",
+     tip:"Days of the week are not capitalized in Spanish, and \"el lunes\" means \"on Monday.\"",
+     words:[
+      ["lunes","","Monday"],
+      ["martes","","Tuesday"],
+      ["miércoles","","Wednesday"],
+      ["jueves","","Thursday"],
+      ["viernes","","Friday"],
+      ["sábado","","Saturday"],
+      ["domingo","","Sunday"],
+      ["hoy","","today"],
+      ["mañana","","tomorrow"],
+      ["ayer","","yesterday"]
+     ],
+     phrases:[
+      ["Hoy es lunes","","Today is Monday",["Hoy","es","lunes"]],
+      ["¿Qué hora es?","","What time is it?",["¿Qué","hora","es?"]],
+      ["Es la una","","It is one o'clock",["Es","la","una"]],
+      ["Mañana es sábado","","Tomorrow is Saturday",["Mañana","es","sábado"]],
+      ["Nos vemos el viernes","","See you on Friday",["Nos","vemos","el","viernes"]]
+     ]},
+    {title:"Feelings",
+     tip:"Use \"estar\" for feelings, and change the -o ending to -a if you are a girl: \"cansado\" becomes \"cansada.\"",
+     words:[
+      ["feliz","","happy"],
+      ["triste","","sad"],
+      ["cansado","","tired"],
+      ["enojado","","angry"],
+      ["nervioso","","nervous"],
+      ["aburrido","","bored"],
+      ["emocionado","","excited"],
+      ["tranquilo","","calm"],
+      ["preocupado","","worried"]
+     ],
+     phrases:[
+      ["Estoy feliz","","I am happy",["Estoy","feliz"]],
+      ["Estoy muy cansado","","I am very tired",["Estoy","muy","cansado"]],
+      ["¿Estás bien?","","Are you okay?",["¿Estás","bien?"]],
+      ["No estoy triste","","I am not sad",["No","estoy","triste"]],
+      ["Estoy nervioso hoy","","I am nervous today",["Estoy","nervioso","hoy"]]
+     ]},
+    {title:"Everyday actions",
+     tip:"Spanish says \"Me gusta\" for \"I like,\" which literally means \"it pleases me.\"",
+     words:[
+      ["comer","","to eat"],
+      ["beber","","to drink"],
+      ["ir","","to go"],
+      ["querer","","to want"],
+      ["tener","","to have"],
+      ["gustar","","to like"],
+      ["hablar","","to speak"],
+      ["dormir","","to sleep"],
+      ["vivir","","to live"],
+      ["leer","","to read"]
+     ],
+     phrases:[
+      ["Quiero comer","","I want to eat",["Quiero","comer"]],
+      ["Me gusta leer","","I like to read",["Me","gusta","leer"]],
+      ["Hablo inglés","","I speak English",["Hablo","inglés"]],
+      ["Voy a dormir","","I am going to sleep",["Voy","a","dormir"]],
+      ["¿Quieres ir?","","Do you want to go?",["¿Quieres","ir?"]]
+     ]},
+    {title:"Colors and clothes",
+     tip:"Colors usually come after the noun and match it in gender and number: \"los zapatos negros.\"",
+     words:[
+      ["rojo","","red"],
+      ["azul","","blue"],
+      ["verde","","green"],
+      ["amarillo","","yellow"],
+      ["negro","","black"],
+      ["blanco","","white"],
+      ["la camisa","","shirt"],
+      ["los pantalones","","pants"],
+      ["los zapatos","","shoes"],
+      ["la chaqueta","","jacket"]
+     ],
+     phrases:[
+      ["Me gusta tu camisa","","I like your shirt",["Me","gusta","tu","camisa"]],
+      ["Mis zapatos son negros","","My shoes are black",["Mis","zapatos","son","negros"]],
+      ["¿De qué color es?","","What color is it?",["¿De","qué","color","es?"]],
+      ["La chaqueta es azul","","The jacket is blue",["La","chaqueta","es","azul"]],
+      ["Quiero una camisa roja","","I want a red shirt",["Quiero","una","camisa","roja"]]
+     ]},
+    {title:"Weather",
+     tip:"Spanish uses \"hace\" for many weather phrases: \"Hace calor\" is literally \"it makes heat.\"",
+     words:[
+      ["el sol","","sun"],
+      ["la lluvia","","rain"],
+      ["la nieve","","snow"],
+      ["el viento","","wind"],
+      ["el calor","","heat"],
+      ["el frío","","cold"],
+      ["nublado","","cloudy"],
+      ["soleado","","sunny"],
+      ["el clima","","weather"]
+     ],
+     phrases:[
+      ["Hace calor","","It is hot",["Hace","calor"]],
+      ["Hace mucho frío","","It is very cold",["Hace","mucho","frío"]],
+      ["Está lloviendo","","It is raining",["Está","lloviendo"]],
+      ["¿Qué tiempo hace?","","What is the weather like?",["¿Qué","tiempo","hace?"]],
+      ["Está nublado","","It is cloudy",["Está","nublado"]]
+     ]},
+    {title:"Body and health",
+     tip:"To say something hurts, use \"me duele\" plus the body part with \"el\" or \"la,\" not \"mi.\"",
+     words:[
+      ["la cabeza","","head"],
+      ["el brazo","","arm"],
+      ["la mano","","hand"],
+      ["la pierna","","leg"],
+      ["el pie","","foot"],
+      ["el ojo","","eye"],
+      ["la boca","","mouth"],
+      ["el estómago","","stomach"],
+      ["el médico","","doctor"],
+      ["enfermo","","sick"]
+     ],
+     phrases:[
+      ["Me duele la cabeza","","My head hurts",["Me","duele","la","cabeza"]],
+      ["Estoy enfermo","","I am sick",["Estoy","enfermo"]],
+      ["Necesito un médico","","I need a doctor",["Necesito","un","médico"]],
+      ["Me duele el estómago","","My stomach hurts",["Me","duele","el","estómago"]],
+      ["Me siento mejor","","I feel better",["Me","siento","mejor"]]
+     ]},
+    {title:"Hanging out with friends",
+     tip:"\"¿Vamos...?\" is a friendly way to suggest plans, like saying \"Should we go...?\"",
+     words:[
+      ["el amigo","","friend (male)"],
+      ["la amiga","","friend (female)"],
+      ["la fiesta","","party"],
+      ["la película","","movie"],
+      ["el juego","","game"],
+      ["divertido","","fun"],
+      ["genial","","awesome"],
+      ["el fin de semana","","weekend"],
+      ["salir","","to go out"],
+      ["la música","","music"]
+     ],
+     phrases:[
+      ["¿Qué haces?","","What are you doing?",["¿Qué","haces?"]],
+      ["¿Vamos al cine?","","Should we go to the movies?",["¿Vamos","al","cine?"]],
+      ["Vamos a la fiesta","","Let's go to the party",["Vamos","a","la","fiesta"]],
+      ["¿Quieres jugar?","","Do you want to play?",["¿Quieres","jugar?"]],
+      ["Nos vemos el fin de semana","","See you on the weekend",["Nos","vemos","el","fin","de","semana"]]
+     ]}
+  ]},
+  fr:{name:"French",native:"Français",flag:"fr",speech:"fr-FR",rtl:false,space:true,units:[
+    {title:"Greetings",
+     tip:"\"Bonjour\" works all day until evening, while \"salut\" is a casual hi for friends.",
+     words:[
+      ["bonjour","","hello"],
+      ["salut","","hi"],
+      ["au revoir","","goodbye"],
+      ["bonsoir","","good evening"],
+      ["bonne nuit","","good night"],
+      ["merci","","thank you"],
+      ["s'il vous plaît","","please"],
+      ["de rien","","you're welcome"],
+      ["à bientôt","","see you soon"],
+      ["pardon","","excuse me"]
+     ],
+     phrases:[
+      ["Comment ça va ?","","How are you?",["Comment","ça","va ?"]],
+      ["Ça va bien, merci","","I am fine, thanks",["Ça","va","bien,","merci"]],
+      ["Je vais bien","","I am doing well",["Je","vais","bien"]],
+      ["À demain","","See you tomorrow",["À","demain"]],
+      ["Bonne journée","","Have a good day",["Bonne","journée"]]
+     ]},
+    {title:"About me",
+     tip:"Use \"tu\" with friends and family and \"vous\" with teachers, adults you do not know, or a group.",
+     words:[
+      ["je","","I"],
+      ["tu","","you (informal)"],
+      ["vous","","you (formal)"],
+      ["le nom","","name"],
+      ["l'élève","","student"],
+      ["je suis","","I am"],
+      ["de","","from"],
+      ["je m'appelle","","my name is"],
+      ["les États-Unis","","the United States"],
+      ["américain","","American"]
+     ],
+     phrases:[
+      ["Je m'appelle Léa","","My name is Léa",["Je","m'appelle","Léa"]],
+      ["Je suis élève","","I am a student",["Je","suis","élève"]],
+      ["Je suis américain","","I am American",["Je","suis","américain"]],
+      ["Je viens des États-Unis","","I come from the United States",["Je","viens","des","États-Unis"]],
+      ["Comment tu t'appelles ?","","What is your name?",["Comment","tu","t'appelles ?"]]
+     ]},
+    {title:"Numbers 1-10",
+     tip:"In French you \"have\" your age: \"J'ai quinze ans\" means \"I am fifteen.\"",
+     words:[
+      ["un","","one"],
+      ["deux","","two"],
+      ["trois","","three"],
+      ["quatre","","four"],
+      ["cinq","","five"],
+      ["six","","six"],
+      ["sept","","seven"],
+      ["huit","","eight"],
+      ["neuf","","nine"],
+      ["dix","","ten"]
+     ],
+     phrases:[
+      ["J'ai quinze ans","","I am fifteen years old",["J'ai","quinze","ans"]],
+      ["J'ai deux frères","","I have two brothers",["J'ai","deux","frères"]],
+      ["Il est trois heures","","It is three o'clock",["Il","est","trois","heures"]],
+      ["Tu as quel âge ?","","How old are you?",["Tu","as","quel","âge ?"]],
+      ["Je compte jusqu'à dix","","I count to ten",["Je","compte","jusqu'à","dix"]]
+     ]},
+    {title:"Food and drink",
+     tip:"Use \"du,\" \"de la\" or \"de l'\" to mean \"some\": \"Je voudrais de l'eau\" means \"I would like some water.\"",
+     words:[
+      ["l'eau","","water"],
+      ["le lait","","milk"],
+      ["le pain","","bread"],
+      ["la pomme","","apple"],
+      ["le fromage","","cheese"],
+      ["le poulet","","chicken"],
+      ["le riz","","rice"],
+      ["le jus","","juice"],
+      ["le café","","coffee"],
+      ["la nourriture","","food"]
+     ],
+     phrases:[
+      ["J'ai faim","","I am hungry",["J'ai","faim"]],
+      ["Je voudrais de l'eau","","I would like some water",["Je","voudrais","de","l'eau"]],
+      ["J'aime le fromage","","I like cheese",["J'aime","le","fromage"]],
+      ["C'est délicieux","","It is delicious",["C'est","délicieux"]],
+      ["Tu as soif ?","","Are you thirsty?",["Tu","as","soif ?"]]
+     ]},
+    {title:"Family",
+     tip:"\"Mon,\" \"ma\" and \"mes\" all mean \"my\": use \"mon\" for masculine, \"ma\" for feminine and \"mes\" for plural.",
+     words:[
+      ["la mère","","mother"],
+      ["le père","","father"],
+      ["le frère","","brother"],
+      ["la sœur","","sister"],
+      ["le grand-père","","grandfather"],
+      ["la grand-mère","","grandmother"],
+      ["la famille","","family"],
+      ["le fils","","son"],
+      ["la fille","","daughter"],
+      ["l'oncle","","uncle"]
+     ],
+     phrases:[
+      ["Voici ma mère","","This is my mother",["Voici","ma","mère"]],
+      ["J'ai une sœur","","I have a sister",["J'ai","une","sœur"]],
+      ["Ma famille est grande","","My family is big",["Ma","famille","est","grande"]],
+      ["Mon père est gentil","","My father is kind",["Mon","père","est","gentil"]],
+      ["Tu as des frères ?","","Do you have brothers?",["Tu","as","des","frères ?"]]
+     ]},
+    {title:"School",
+     tip:"In middle and high school a student is \"un élève,\" while \"un étudiant\" is a college student.",
+     words:[
+      ["l'école","","school"],
+      ["le professeur","","teacher"],
+      ["le livre","","book"],
+      ["le crayon","","pencil"],
+      ["le stylo","","pen"],
+      ["le cahier","","notebook"],
+      ["le cours","","class"],
+      ["les devoirs","","homework"],
+      ["l'examen","","exam"],
+      ["le sac à dos","","backpack"]
+     ],
+     phrases:[
+      ["J'ai beaucoup de devoirs","","I have a lot of homework",["J'ai","beaucoup","de","devoirs"]],
+      ["Où est mon livre ?","","Where is my book?",["Où","est","mon","livre ?"]],
+      ["Le cours est intéressant","","The class is interesting",["Le","cours","est","intéressant"]],
+      ["Mon professeur est sympa","","My teacher is nice",["Mon","professeur","est","sympa"]],
+      ["J'aime mon école","","I like my school",["J'aime","mon","école"]]
+     ]},
+    {title:"Places and directions",
+     tip:"\"À\" plus \"le\" becomes \"au,\" so you say \"Je vais au parc\" for \"I am going to the park.\"",
+     words:[
+      ["la maison","","house"],
+      ["le parc","","park"],
+      ["le magasin","","store"],
+      ["la bibliothèque","","library"],
+      ["les toilettes","","bathroom"],
+      ["à droite","","to the right"],
+      ["à gauche","","to the left"],
+      ["tout droit","","straight ahead"],
+      ["près","","near"],
+      ["loin","","far"]
+     ],
+     phrases:[
+      ["Où sont les toilettes ?","","Where is the bathroom?",["Où","sont","les","toilettes ?"]],
+      ["Tournez à droite","","Turn right",["Tournez","à","droite"]],
+      ["Je vais au parc","","I am going to the park",["Je","vais","au","parc"]],
+      ["Le parc est loin","","The park is far",["Le","parc","est","loin"]],
+      ["C'est à gauche","","It is on the left",["C'est","à","gauche"]]
+     ]},
+    {title:"Days and time",
+     tip:"Days of the week are not capitalized in French, and they are all masculine.",
+     words:[
+      ["lundi","","Monday"],
+      ["mardi","","Tuesday"],
+      ["mercredi","","Wednesday"],
+      ["jeudi","","Thursday"],
+      ["vendredi","","Friday"],
+      ["samedi","","Saturday"],
+      ["dimanche","","Sunday"],
+      ["aujourd'hui","","today"],
+      ["demain","","tomorrow"],
+      ["hier","","yesterday"]
+     ],
+     phrases:[
+      ["Aujourd'hui, c'est lundi","","Today is Monday",["Aujourd'hui,","c'est","lundi"]],
+      ["Quelle heure est-il ?","","What time is it?",["Quelle","heure","est-il ?"]],
+      ["Il est midi","","It is noon",["Il","est","midi"]],
+      ["Demain, c'est samedi","","Tomorrow is Saturday",["Demain,","c'est","samedi"]],
+      ["À vendredi","","See you Friday",["À","vendredi"]]
+     ]},
+    {title:"Feelings",
+     tip:"Many adjectives change for girls: \"fatigué\" becomes \"fatiguée\" and \"heureux\" becomes \"heureuse.\"",
+     words:[
+      ["heureux","","happy"],
+      ["triste","","sad"],
+      ["fatigué","","tired"],
+      ["en colère","","angry"],
+      ["nerveux","","nervous"],
+      ["calme","","calm"],
+      ["inquiet","","worried"],
+      ["malade","","sick"],
+      ["stressé","","stressed"]
+     ],
+     phrases:[
+      ["Je suis heureux","","I am happy",["Je","suis","heureux"]],
+      ["Je suis très fatigué","","I am very tired",["Je","suis","très","fatigué"]],
+      ["Ça va ?","","Are you okay?",["Ça","va ?"]],
+      ["Je ne suis pas triste","","I am not sad",["Je","ne","suis","pas","triste"]],
+      ["Je suis stressé aujourd'hui","","I am stressed today",["Je","suis","stressé","aujourd'hui"]]
+     ]},
+    {title:"Everyday actions",
+     tip:"To say \"not,\" wrap \"ne ... pas\" around the verb: \"Je ne mange pas\" means \"I am not eating.\"",
+     words:[
+      ["manger","","to eat"],
+      ["boire","","to drink"],
+      ["aller","","to go"],
+      ["vouloir","","to want"],
+      ["avoir","","to have"],
+      ["aimer","","to like"],
+      ["parler","","to speak"],
+      ["dormir","","to sleep"],
+      ["habiter","","to live"],
+      ["lire","","to read"]
+     ],
+     phrases:[
+      ["Je veux manger","","I want to eat",["Je","veux","manger"]],
+      ["J'aime lire","","I like to read",["J'aime","lire"]],
+      ["Je parle anglais","","I speak English",["Je","parle","anglais"]],
+      ["Je vais dormir","","I am going to sleep",["Je","vais","dormir"]],
+      ["Tu veux venir ?","","Do you want to come?",["Tu","veux","venir ?"]]
+     ]}
+  ]},
+  zh:{name:"Mandarin Chinese",native:"中文",flag:"cn",speech:"zh-CN",rtl:false,space:false,units:[
+    {title:"Greetings",
+     tip:"Add 吗 (ma) to the end of a statement to turn it into a yes or no question.",
+     words:[
+      ["你好","nǐ hǎo","hello"],
+      ["您好","nín hǎo","hello (polite)"],
+      ["再见","zàijiàn","goodbye"],
+      ["谢谢","xièxie","thank you"],
+      ["不客气","bú kèqi","you're welcome"],
+      ["对不起","duìbuqǐ","sorry"],
+      ["没关系","méi guānxi","it's okay"],
+      ["早上好","zǎoshang hǎo","good morning"],
+      ["晚安","wǎn'ān","good night"],
+      ["请","qǐng","please"]
+     ],
+     phrases:[
+      ["你好吗？","Nǐ hǎo ma?","How are you?",["你好","吗？"]],
+      ["我很好","Wǒ hěn hǎo","I am fine",["我","很","好"]],
+      ["认识你很高兴","Rènshi nǐ hěn gāoxìng","Nice to meet you",["认识","你","很","高兴"]],
+      ["明天见","Míngtiān jiàn","See you tomorrow",["明天","见"]],
+      ["谢谢你","Xièxie nǐ","Thank you",["谢谢","你"]]
+     ]},
+    {title:"About me",
+     tip:"Add 人 (rén, person) after a country name to say a nationality: 美国人 means \"American.\"",
+     words:[
+      ["我","wǒ","I"],
+      ["你","nǐ","you"],
+      ["是","shì","to be"],
+      ["叫","jiào","to be called"],
+      ["名字","míngzi","name"],
+      ["学生","xuésheng","student"],
+      ["美国","Měiguó","the United States"],
+      ["中国","Zhōngguó","China"],
+      ["人","rén","person"],
+      ["岁","suì","years old"]
+     ],
+     phrases:[
+      ["我叫安娜","Wǒ jiào Ānnà","My name is Anna",["我","叫","安娜"]],
+      ["我是学生","Wǒ shì xuésheng","I am a student",["我","是","学生"]],
+      ["我是美国人","Wǒ shì Měiguórén","I am American",["我","是","美国人"]],
+      ["你叫什么名字？","Nǐ jiào shénme míngzi?","What is your name?",["你","叫","什么","名字？"]],
+      ["我十五岁","Wǒ shíwǔ suì","I am fifteen years old",["我","十五","岁"]]
+     ]},
+    {title:"Numbers 1-10",
+     tip:"Before a measure word like 个 (ge), \"two\" is 两 (liǎng), not 二 (èr).",
+     words:[
+      ["一","yī","one"],
+      ["二","èr","two"],
+      ["三","sān","three"],
+      ["四","sì","four"],
+      ["五","wǔ","five"],
+      ["六","liù","six"],
+      ["七","qī","seven"],
+      ["八","bā","eight"],
+      ["九","jiǔ","nine"],
+      ["十","shí","ten"]
+     ],
+     phrases:[
+      ["我有两个哥哥","Wǒ yǒu liǎng ge gēge","I have two older brothers",["我","有","两","个","哥哥"]],
+      ["你多大？","Nǐ duō dà?","How old are you?",["你","多大？"]],
+      ["我有三本书","Wǒ yǒu sān běn shū","I have three books",["我","有","三","本","书"]],
+      ["现在五点","Xiànzài wǔ diǎn","It is five o'clock",["现在","五","点"]],
+      ["一共十块","Yígòng shí kuài","Ten yuan in total",["一共","十","块"]]
+     ]},
+    {title:"Food and drink",
+     tip:"The verb 吃 (chī) means \"to eat\" and 喝 (hē) means \"to drink,\" and 好吃 (hǎochī) means \"delicious.\"",
+     words:[
+      ["水","shuǐ","water"],
+      ["牛奶","niúnǎi","milk"],
+      ["米饭","mǐfàn","rice"],
+      ["面条","miàntiáo","noodles"],
+      ["鸡肉","jīròu","chicken"],
+      ["苹果","píngguǒ","apple"],
+      ["茶","chá","tea"],
+      ["咖啡","kāfēi","coffee"],
+      ["面包","miànbāo","bread"],
+      ["饺子","jiǎozi","dumplings"]
+     ],
+     phrases:[
+      ["我饿了","Wǒ è le","I am hungry",["我","饿","了"]],
+      ["我要一杯水","Wǒ yào yì bēi shuǐ","I want a glass of water",["我","要","一","杯","水"]],
+      ["我喜欢吃饺子","Wǒ xǐhuan chī jiǎozi","I like eating dumplings",["我","喜欢","吃","饺子"]],
+      ["很好吃","Hěn hǎochī","It is delicious",["很","好吃"]],
+      ["你渴吗？","Nǐ kě ma?","Are you thirsty?",["你","渴","吗？"]]
+     ]},
+    {title:"Family",
+     tip:"Chinese has separate words for older and younger siblings, such as 哥哥 (older brother) and 弟弟 (younger brother).",
+     words:[
+      ["妈妈","māma","mom"],
+      ["爸爸","bàba","dad"],
+      ["哥哥","gēge","older brother"],
+      ["姐姐","jiějie","older sister"],
+      ["弟弟","dìdi","younger brother"],
+      ["妹妹","mèimei","younger sister"],
+      ["爷爷","yéye","grandpa (dad's father)"],
+      ["奶奶","nǎinai","grandma (dad's mother)"],
+      ["家","jiā","family"]
+     ],
+     phrases:[
+      ["这是我妈妈","Zhè shì wǒ māma","This is my mom",["这","是","我","妈妈"]],
+      ["我有一个妹妹","Wǒ yǒu yí ge mèimei","I have a younger sister",["我","有","一","个","妹妹"]],
+      ["我家有四口人","Wǒ jiā yǒu sì kǒu rén","There are four people in my family",["我","家","有","四","口","人"]],
+      ["你有哥哥吗？","Nǐ yǒu gēge ma?","Do you have an older brother?",["你","有","哥哥","吗？"]],
+      ["我爱我的家","Wǒ ài wǒ de jiā","I love my family",["我","爱","我的","家"]]
+     ]},
+    {title:"School",
+     tip:"Put the place word 在 (zài) before 哪儿 (nǎr) to ask where something is: 书在哪儿？",
+     words:[
+      ["学校","xuéxiào","school"],
+      ["老师","lǎoshī","teacher"],
+      ["书","shū","book"],
+      ["笔","bǐ","pen"],
+      ["作业","zuòyè","homework"],
+      ["考试","kǎoshì","test"],
+      ["同学","tóngxué","classmate"],
+      ["教室","jiàoshì","classroom"],
+      ["课","kè","class"],
+      ["中文","Zhōngwén","Chinese (language)"]
+     ],
+     phrases:[
+      ["我的作业很多","Wǒ de zuòyè hěn duō","I have a lot of homework",["我的","作业","很","多"]],
+      ["我的书在哪儿？","Wǒ de shū zài nǎr?","Where is my book?",["我的","书","在","哪儿？"]],
+      ["老师很好","Lǎoshī hěn hǎo","The teacher is nice",["老师","很","好"]],
+      ["明天有考试","Míngtiān yǒu kǎoshì","There is a test tomorrow",["明天","有","考试"]],
+      ["我学中文","Wǒ xué Zhōngwén","I study Chinese",["我","学","中文"]]
+     ]},
+    {title:"Places and directions",
+     tip:"Use 去 (qù) plus a place to say where you are going: 我去公园 means \"I am going to the park.\"",
+     words:[
+      ["家","jiā","home"],
+      ["公园","gōngyuán","park"],
+      ["商店","shāngdiàn","store"],
+      ["饭馆","fànguǎn","restaurant"],
+      ["图书馆","túshūguǎn","library"],
+      ["洗手间","xǐshǒujiān","restroom"],
+      ["左","zuǒ","left"],
+      ["右","yòu","right"],
+      ["近","jìn","near"],
+      ["远","yuǎn","far"]
+     ],
+     phrases:[
+      ["洗手间在哪儿？","Xǐshǒujiān zài nǎr?","Where is the restroom?",["洗手间","在","哪儿？"]],
+      ["往左走","Wǎng zuǒ zǒu","Go left",["往","左","走"]],
+      ["我去公园","Wǒ qù gōngyuán","I am going to the park",["我","去","公园"]],
+      ["商店很近","Shāngdiàn hěn jìn","The store is near",["商店","很","近"]],
+      ["学校不远","Xuéxiào bù yuǎn","The school is not far",["学校","不","远"]]
+     ]},
+    {title:"Days and time",
+     tip:"Weekdays are just 星期 (xīngqī, week) plus a number, starting with Monday as 星期一.",
+     words:[
+      ["星期一","xīngqīyī","Monday"],
+      ["星期二","xīngqī'èr","Tuesday"],
+      ["星期三","xīngqīsān","Wednesday"],
+      ["星期四","xīngqīsì","Thursday"],
+      ["星期五","xīngqīwǔ","Friday"],
+      ["星期六","xīngqīliù","Saturday"],
+      ["星期天","xīngqītiān","Sunday"],
+      ["今天","jīntiān","today"],
+      ["明天","míngtiān","tomorrow"],
+      ["昨天","zuótiān","yesterday"]
+     ],
+     phrases:[
+      ["今天星期一","Jīntiān xīngqīyī","Today is Monday",["今天","星期一"]],
+      ["现在几点？","Xiànzài jǐ diǎn?","What time is it?",["现在","几","点？"]],
+      ["明天是星期六","Míngtiān shì xīngqīliù","Tomorrow is Saturday",["明天","是","星期六"]],
+      ["我八点上课","Wǒ bā diǎn shàngkè","I have class at eight",["我","八","点","上课"]],
+      ["星期五见","Xīngqīwǔ jiàn","See you Friday",["星期五","见"]]
+     ]},
+    {title:"Feelings",
+     tip:"Adjectives usually need 很 (hěn) before them, so \"I am happy\" is 我很高兴, with no word for \"am.\"",
+     words:[
+      ["高兴","gāoxìng","happy"],
+      ["难过","nánguò","sad"],
+      ["累","lèi","tired"],
+      ["生气","shēngqì","angry"],
+      ["紧张","jǐnzhāng","nervous"],
+      ["无聊","wúliáo","bored"],
+      ["担心","dānxīn","worried"],
+      ["忙","máng","busy"],
+      ["舒服","shūfu","comfortable"]
+     ],
+     phrases:[
+      ["我很高兴","Wǒ hěn gāoxìng","I am happy",["我","很","高兴"]],
+      ["我今天很累","Wǒ jīntiān hěn lèi","I am very tired today",["我","今天","很","累"]],
+      ["你怎么了？","Nǐ zěnme le?","What is wrong?",["你","怎么","了？"]],
+      ["别担心","Bié dānxīn","Don't worry",["别","担心"]],
+      ["我有点紧张","Wǒ yǒudiǎn jǐnzhāng","I am a little nervous",["我","有点","紧张"]]
+     ]},
+    {title:"Everyday actions",
+     tip:"Chinese verbs never change form, so 吃 (chī) is the same for \"I eat,\" \"she eats\" and \"they eat.\"",
+     words:[
+      ["吃","chī","to eat"],
+      ["喝","hē","to drink"],
+      ["去","qù","to go"],
+      ["要","yào","to want"],
+      ["喜欢","xǐhuan","to like"],
+      ["有","yǒu","to have"],
+      ["说","shuō","to speak"],
+      ["睡觉","shuìjiào","to sleep"],
+      ["看","kàn","to watch"],
+      ["学习","xuéxí","to study"]
+     ],
+     phrases:[
+      ["我想吃饭","Wǒ xiǎng chīfàn","I want to eat",["我","想","吃饭"]],
+      ["我喜欢看书","Wǒ xǐhuan kàn shū","I like to read",["我","喜欢","看","书"]],
+      ["我会说英语","Wǒ huì shuō Yīngyǔ","I can speak English",["我","会","说","英语"]],
+      ["我要睡觉了","Wǒ yào shuìjiào le","I am going to sleep",["我","要","睡觉","了"]],
+      ["你想去吗？","Nǐ xiǎng qù ma?","Do you want to go?",["你","想","去","吗？"]]
+     ]}
+  ]},
+  hi:{name:"Hindi",native:"हिन्दी",flag:"in",speech:"hi-IN",rtl:false,space:true,units:[
+    {title:"Greetings",
+     tip:"\"Namaste\" works for both hello and goodbye, often said with palms pressed together.",
+     words:[
+      ["नमस्ते","namaste","hello"],
+      ["धन्यवाद","dhanyavaad","thank you"],
+      ["शुक्रिया","shukriya","thanks"],
+      ["अलविदा","alvida","goodbye"],
+      ["फिर मिलेंगे","phir milenge","see you again"],
+      ["माफ़ कीजिए","maaf keejiye","excuse me"],
+      ["सुप्रभात","suprabhaat","good morning"],
+      ["शुभ रात्रि","shubh raatri","good night"],
+      ["हाँ","haan","yes"],
+      ["नहीं","nahin","no"]
+     ],
+     phrases:[
+      ["आप कैसे हैं?","aap kaise hain?","How are you?",["आप","कैसे","हैं?"]],
+      ["मैं ठीक हूँ","main theek hoon","I am fine",["मैं","ठीक","हूँ"]],
+      ["आपसे मिलकर ख़ुशी हुई","aapse milkar khushi hui","Nice to meet you",["आपसे","मिलकर","ख़ुशी","हुई"]],
+      ["कल मिलते हैं","kal milte hain","See you tomorrow",["कल","मिलते","हैं"]],
+      ["बहुत धन्यवाद","bahut dhanyavaad","Thank you very much",["बहुत","धन्यवाद"]]
+     ]},
+    {title:"About me",
+     tip:"Hindi puts the verb at the end: \"main chhaatra hoon\" is literally \"I student am.\"",
+     words:[
+      ["मैं","main","I"],
+      ["आप","aap","you (formal)"],
+      ["तुम","tum","you (informal)"],
+      ["नाम","naam","name"],
+      ["मेरा","mera","my"],
+      ["छात्र","chhaatra","student"],
+      ["हूँ","hoon","am"],
+      ["से","se","from"],
+      ["अमेरिका","amerika","America"],
+      ["साल","saal","years"]
+     ],
+     phrases:[
+      ["मेरा नाम माया है","mera naam maaya hai","My name is Maya",["मेरा","नाम","माया","है"]],
+      ["मैं छात्र हूँ","main chhaatra hoon","I am a student",["मैं","छात्र","हूँ"]],
+      ["मैं अमेरिका से हूँ","main amerika se hoon","I am from America",["मैं","अमेरिका","से","हूँ"]],
+      ["आपका नाम क्या है?","aapka naam kya hai?","What is your name?",["आपका","नाम","क्या","है?"]],
+      ["मैं पंद्रह साल का हूँ","main pandrah saal ka hoon","I am fifteen years old",["मैं","पंद्रह","साल","का","हूँ"]]
+     ]},
+    {title:"Numbers 1-10",
+     tip:"To say \"I have\" for things, Hindi says \"mere paas,\" meaning \"near me.\"",
+     words:[
+      ["एक","ek","one"],
+      ["दो","do","two"],
+      ["तीन","teen","three"],
+      ["चार","chaar","four"],
+      ["पाँच","paanch","five"],
+      ["छह","chhah","six"],
+      ["सात","saat","seven"],
+      ["आठ","aath","eight"],
+      ["नौ","nau","nine"],
+      ["दस","das","ten"]
+     ],
+     phrases:[
+      ["मेरे दो भाई हैं","mere do bhaai hain","I have two brothers",["मेरे","दो","भाई","हैं"]],
+      ["मेरे पास तीन किताबें हैं","mere paas teen kitaaben hain","I have three books",["मेरे","पास","तीन","किताबें","हैं"]],
+      ["अभी पाँच बजे हैं","abhi paanch baje hain","It is five o'clock now",["अभी","पाँच","बजे","हैं"]],
+      ["आपकी उम्र क्या है?","aapki umr kya hai?","How old are you?",["आपकी","उम्र","क्या","है?"]],
+      ["यह दस रुपये का है","yah das rupaye ka hai","This costs ten rupees",["यह","दस","रुपये","का","है"]]
+     ]},
+    {title:"Food and drink",
+     tip:"\"Mujhe ... chaahiye\" means \"I need\" or \"I want,\" and \"mujhe ... pasand hai\" means \"I like.\"",
+     words:[
+      ["पानी","paani","water"],
+      ["दूध","doodh","milk"],
+      ["रोटी","roti","flatbread"],
+      ["चावल","chaaval","rice"],
+      ["दाल","daal","lentils"],
+      ["सब्ज़ी","sabzi","vegetables"],
+      ["चाय","chaay","tea"],
+      ["सेब","seb","apple"],
+      ["फल","phal","fruit"],
+      ["खाना","khaana","food"]
+     ],
+     phrases:[
+      ["मुझे भूख लगी है","mujhe bhookh lagi hai","I am hungry",["मुझे","भूख","लगी","है"]],
+      ["मुझे पानी चाहिए","mujhe paani chaahiye","I need water",["मुझे","पानी","चाहिए"]],
+      ["मुझे चाय पसंद है","mujhe chaay pasand hai","I like tea",["मुझे","चाय","पसंद","है"]],
+      ["खाना बहुत अच्छा है","khaana bahut achchha hai","The food is very good",["खाना","बहुत","अच्छा","है"]],
+      ["क्या आपको प्यास लगी है?","kya aapko pyaas lagi hai?","Are you thirsty?",["क्या","आपको","प्यास","लगी","है?"]]
+     ]},
+    {title:"Family",
+     tip:"Hindi has different words for relatives on each side, like \"daada\" for your father's father and \"naana\" for your mother's father.",
+     words:[
+      ["माँ","maan","mother"],
+      ["पिता","pita","father"],
+      ["भाई","bhaai","brother"],
+      ["बहन","bahan","sister"],
+      ["दादा","daada","grandfather (dad's side)"],
+      ["दादी","daadi","grandmother (dad's side)"],
+      ["परिवार","parivaar","family"],
+      ["बेटा","beta","son"],
+      ["बेटी","beti","daughter"],
+      ["चाचा","chaacha","uncle (dad's younger brother)"]
+     ],
+     phrases:[
+      ["यह मेरी माँ हैं","yah meri maan hain","This is my mother",["यह","मेरी","माँ","हैं"]],
+      ["मेरी एक बहन है","meri ek bahan hai","I have one sister",["मेरी","एक","बहन","है"]],
+      ["मेरा परिवार बड़ा है","mera parivaar bada hai","My family is big",["मेरा","परिवार","बड़ा","है"]],
+      ["मेरे पिता डॉक्टर हैं","mere pita doctor hain","My father is a doctor",["मेरे","पिता","डॉक्टर","हैं"]],
+      ["क्या आपका कोई भाई है?","kya aapka koi bhaai hai?","Do you have a brother?",["क्या","आपका","कोई","भाई","है?"]]
+     ]},
+    {title:"School",
+     tip:"Hindi speakers often mix in English school words like \"skool\" and \"homework.\"",
+     words:[
+      ["स्कूल","skool","school"],
+      ["शिक्षक","shikshak","teacher"],
+      ["किताब","kitaab","book"],
+      ["कलम","kalam","pen"],
+      ["कॉपी","copy","notebook"],
+      ["कक्षा","kaksha","class"],
+      ["होमवर्क","homework","homework"],
+      ["परीक्षा","pareeksha","exam"],
+      ["दोस्त","dost","friend"],
+      ["बस्ता","basta","school bag"]
+     ],
+     phrases:[
+      ["मेरे पास बहुत होमवर्क है","mere paas bahut homework hai","I have a lot of homework",["मेरे","पास","बहुत","होमवर्क","है"]],
+      ["मेरी किताब कहाँ है?","meri kitaab kahaan hai?","Where is my book?",["मेरी","किताब","कहाँ","है?"]],
+      ["कल मेरी परीक्षा है","kal meri pareeksha hai","I have an exam tomorrow",["कल","मेरी","परीक्षा","है"]],
+      ["मेरे शिक्षक अच्छे हैं","mere shikshak achchhe hain","My teacher is good",["मेरे","शिक्षक","अच्छे","हैं"]],
+      ["मैं हिंदी सीख रहा हूँ","main hindi seekh raha hoon","I am learning Hindi",["मैं","हिंदी","सीख","रहा","हूँ"]]
+     ]},
+    {title:"Places and directions",
+     tip:"Polite commands end in \"-iye,\" like \"jaaiye\" (please go) and \"mudiye\" (please turn).",
+     words:[
+      ["घर","ghar","home"],
+      ["बाज़ार","baazaar","market"],
+      ["दुकान","dukaan","shop"],
+      ["पार्क","paark","park"],
+      ["अस्पताल","aspataal","hospital"],
+      ["बाथरूम","baathroom","bathroom"],
+      ["बाएँ","baayen","left"],
+      ["दाएँ","daayen","right"],
+      ["पास","paas","near"],
+      ["दूर","door","far"]
+     ],
+     phrases:[
+      ["बाथरूम कहाँ है?","baathroom kahaan hai?","Where is the bathroom?",["बाथरूम","कहाँ","है?"]],
+      ["दाएँ मुड़िए","daayen mudiye","Turn right",["दाएँ","मुड़िए"]],
+      ["सीधे जाइए","seedhe jaaiye","Go straight",["सीधे","जाइए"]],
+      ["मैं पार्क जा रहा हूँ","main paark ja raha hoon","I am going to the park",["मैं","पार्क","जा","रहा","हूँ"]],
+      ["बाज़ार दूर नहीं है","baazaar door nahin hai","The market is not far",["बाज़ार","दूर","नहीं","है"]]
+     ]},
+    {title:"Days and time",
+     tip:"\"Kal\" means both \"tomorrow\" and \"yesterday,\" so the verb tense tells you which one.",
+     words:[
+      ["सोमवार","somvaar","Monday"],
+      ["मंगलवार","mangalvaar","Tuesday"],
+      ["बुधवार","budhvaar","Wednesday"],
+      ["गुरुवार","guruvaar","Thursday"],
+      ["शुक्रवार","shukravaar","Friday"],
+      ["शनिवार","shanivaar","Saturday"],
+      ["रविवार","ravivaar","Sunday"],
+      ["आज","aaj","today"],
+      ["कल","kal","tomorrow or yesterday"],
+      ["समय","samay","time"]
+     ],
+     phrases:[
+      ["आज सोमवार है","aaj somvaar hai","Today is Monday",["आज","सोमवार","है"]],
+      ["कितने बजे हैं?","kitne baje hain?","What time is it?",["कितने","बजे","हैं?"]],
+      ["कल शनिवार है","kal shanivaar hai","Tomorrow is Saturday",["कल","शनिवार","है"]],
+      ["मैं रविवार को खेलता हूँ","main ravivaar ko khelta hoon","I play on Sunday",["मैं","रविवार","को","खेलता","हूँ"]],
+      ["अभी दो बजे हैं","abhi do baje hain","It is two o'clock now",["अभी","दो","बजे","हैं"]]
+     ]},
+    {title:"Feelings",
+     tip:"Some feelings use \"mujhe,\" like \"mujhe dar lag raha hai\" (I am scared), which is literally \"fear is striking me.\"",
+     words:[
+      ["ख़ुश","khush","happy"],
+      ["उदास","udaas","sad"],
+      ["थका हुआ","thaka hua","tired"],
+      ["नाराज़","naaraaz","angry"],
+      ["परेशान","pareshaan","worried"],
+      ["बीमार","beemaar","sick"],
+      ["डर","dar","fear"],
+      ["ठीक","theek","okay"],
+      ["शांत","shaant","calm"]
+     ],
+     phrases:[
+      ["मैं ख़ुश हूँ","main khush hoon","I am happy",["मैं","ख़ुश","हूँ"]],
+      ["मैं बहुत थका हुआ हूँ","main bahut thaka hua hoon","I am very tired",["मैं","बहुत","थका","हुआ","हूँ"]],
+      ["क्या आप ठीक हैं?","kya aap theek hain?","Are you okay?",["क्या","आप","ठीक","हैं?"]],
+      ["मैं उदास नहीं हूँ","main udaas nahin hoon","I am not sad",["मैं","उदास","नहीं","हूँ"]],
+      ["मुझे डर लग रहा है","mujhe dar lag raha hai","I am scared",["मुझे","डर","लग","रहा","है"]]
+     ]},
+    {title:"Everyday actions",
+     tip:"Verbs change for gender: a boy says \"main bolta hoon\" and a girl says \"main bolti hoon.\"",
+     words:[
+      ["खाना","khaana","to eat"],
+      ["पीना","peena","to drink"],
+      ["जाना","jaana","to go"],
+      ["चाहना","chaahna","to want"],
+      ["पसंद करना","pasand karna","to like"],
+      ["बोलना","bolna","to speak"],
+      ["सोना","sona","to sleep"],
+      ["पढ़ना","padhna","to read"],
+      ["देखना","dekhna","to watch"],
+      ["खेलना","khelna","to play"]
+     ],
+     phrases:[
+      ["मैं कुछ खाना चाहता हूँ","main kuchh khaana chaahta hoon","I want to eat something",["मैं","कुछ","खाना","चाहता","हूँ"]],
+      ["मुझे पढ़ना पसंद है","mujhe padhna pasand hai","I like to read",["मुझे","पढ़ना","पसंद","है"]],
+      ["मैं अंग्रेज़ी बोलता हूँ","main angrezi bolta hoon","I speak English",["मैं","अंग्रेज़ी","बोलता","हूँ"]],
+      ["मैं सोने जा रहा हूँ","main sone ja raha hoon","I am going to sleep",["मैं","सोने","जा","रहा","हूँ"]],
+      ["क्या आप आएँगे?","kya aap aayenge?","Will you come?",["क्या","आप","आएँगे?"]]
+     ]}
+  ]},
+  ar:{name:"Arabic",native:"العربية",flag:"sa",speech:"ar-SA",rtl:true,space:true,units:[
+    {title:"Greetings",
+     tip:"\"As-salaamu alaykum\" means \"peace be upon you,\" and the reply is \"wa alaykum as-salaam.\"",
+     words:[
+      ["مرحبا","marhaban","hello"],
+      ["السلام عليكم","as-salaamu alaykum","peace be upon you"],
+      ["شكرا","shukran","thank you"],
+      ["عفوا","afwan","you're welcome"],
+      ["مع السلامة","maa as-salaama","goodbye"],
+      ["صباح الخير","sabaah al-khayr","good morning"],
+      ["مساء الخير","masaa al-khayr","good evening"],
+      ["من فضلك","min fadlak","please"],
+      ["آسف","aasif","sorry"],
+      ["نعم","naam","yes"]
+     ],
+     phrases:[
+      ["كيف حالك؟","kayfa haaluk?","How are you?",["كيف","حالك؟"]],
+      ["أنا بخير","ana bikhayr","I am fine",["أنا","بخير"]],
+      ["فرصة سعيدة","fursa saeeda","Nice to meet you",["فرصة","سعيدة"]],
+      ["إلى اللقاء","ilaa al-liqaa","See you later",["إلى","اللقاء"]],
+      ["أهلا وسهلا","ahlan wa sahlan","Welcome",["أهلا","وسهلا"]]
+     ]},
+    {title:"About me",
+     tip:"Arabic has no word for \"am,\" so \"ana taalib\" simply means \"I am a student.\"",
+     words:[
+      ["أنا","ana","I"],
+      ["أنت","anta","you"],
+      ["اسم","ism","name"],
+      ["اسمي","ismi","my name"],
+      ["طالب","taalib","student (male)"],
+      ["طالبة","taaliba","student (female)"],
+      ["من","min","from"],
+      ["أمريكا","amreeka","America"],
+      ["أمريكي","amreeki","American"],
+      ["عمري","umri","my age"]
+     ],
+     phrases:[
+      ["اسمي سارة","ismi saara","My name is Sara",["اسمي","سارة"]],
+      ["أنا طالب","ana taalib","I am a student",["أنا","طالب"]],
+      ["أنا من أمريكا","ana min amreeka","I am from America",["أنا","من","أمريكا"]],
+      ["ما اسمك؟","maa ismuk?","What is your name?",["ما","اسمك؟"]],
+      ["عمري خمسة عشر عاما","umri khamsata ashara aaman","I am fifteen years old",["عمري","خمسة","عشر","عاما"]]
+     ]},
+    {title:"Numbers 1-10",
+     tip:"Arabic is written right to left, but numbers are read left to right, and \"indi\" means \"I have.\"",
+     words:[
+      ["واحد","waahid","one"],
+      ["اثنان","ithnaan","two"],
+      ["ثلاثة","thalaatha","three"],
+      ["أربعة","arbaa","four"],
+      ["خمسة","khamsa","five"],
+      ["ستة","sitta","six"],
+      ["سبعة","sabaa","seven"],
+      ["ثمانية","thamaaniya","eight"],
+      ["تسعة","tisaa","nine"],
+      ["عشرة","ashara","ten"]
+     ],
+     phrases:[
+      ["عندي أخوان","indi akhawaan","I have two brothers",["عندي","أخوان"]],
+      ["عندي ثلاثة كتب","indi thalaathat kutub","I have three books",["عندي","ثلاثة","كتب"]],
+      ["عندي خمسة أقلام","indi khamsat aqlaam","I have five pens",["عندي","خمسة","أقلام"]],
+      ["كم عمرك؟","kam umruk?","How old are you?",["كم","عمرك؟"]]
+     ]},
+    {title:"Food and drink",
+     tip:"\"Al-\" means \"the,\" and before some letters it blends in, as in \"ash-shaay\" (the tea).",
+     words:[
+      ["ماء","maa","water"],
+      ["حليب","haleeb","milk"],
+      ["خبز","khubz","bread"],
+      ["أرز","aruzz","rice"],
+      ["دجاج","dajaaj","chicken"],
+      ["تفاح","tuffaah","apples"],
+      ["شاي","shaay","tea"],
+      ["قهوة","qahwa","coffee"],
+      ["عصير","aseer","juice"],
+      ["طعام","taaam","food"]
+     ],
+     phrases:[
+      ["أنا جائع","ana jaai","I am hungry",["أنا","جائع"]],
+      ["أريد ماء من فضلك","ureed maa min fadlak","I want water, please",["أريد","ماء","من","فضلك"]],
+      ["أحب الشاي","uhibb ash-shaay","I like tea",["أحب","الشاي"]],
+      ["الطعام لذيذ","at-taaam ladheedh","The food is delicious",["الطعام","لذيذ"]],
+      ["هل أنت عطشان؟","hal anta atshaan?","Are you thirsty?",["هل","أنت","عطشان؟"]]
+     ]},
+    {title:"Family",
+     tip:"Add \"-i\" to a word to say \"my\": \"umm\" (mother) becomes \"ummi\" (my mother).",
+     words:[
+      ["أم","umm","mother"],
+      ["أب","ab","father"],
+      ["أخ","akh","brother"],
+      ["أخت","ukht","sister"],
+      ["جد","jadd","grandfather"],
+      ["جدة","jadda","grandmother"],
+      ["عائلة","aaila","family"],
+      ["ابن","ibn","son"],
+      ["بنت","bint","daughter"],
+      ["عم","amm","uncle (dad's brother)"]
+     ],
+     phrases:[
+      ["هذه أمي","haadhihi ummi","This is my mother",["هذه","أمي"]],
+      ["عندي أخت واحدة","indi ukht waahida","I have one sister",["عندي","أخت","واحدة"]],
+      ["عائلتي كبيرة","aailati kabeera","My family is big",["عائلتي","كبيرة"]],
+      ["أبي طبيب","abi tabeeb","My father is a doctor",["أبي","طبيب"]],
+      ["هل عندك إخوة؟","hal indak ikhwa?","Do you have siblings?",["هل","عندك","إخوة؟"]]
+     ]},
+    {title:"School",
+     tip:"Many Arabic words share a three-letter root: \"kitaab\" (book) and \"maktaba\" (library) both come from k-t-b, \"to write.\"",
+     words:[
+      ["مدرسة","madrasa","school"],
+      ["معلم","muallim","teacher"],
+      ["كتاب","kitaab","book"],
+      ["قلم","qalam","pen"],
+      ["دفتر","daftar","notebook"],
+      ["فصل","fasl","classroom"],
+      ["واجب","waajib","homework"],
+      ["امتحان","imtihaan","exam"],
+      ["صديق","sadeeq","friend"],
+      ["حقيبة","haqeeba","bag"]
+     ],
+     phrases:[
+      ["عندي واجبات كثيرة","indi waajibaat katheera","I have a lot of homework",["عندي","واجبات","كثيرة"]],
+      ["أين كتابي؟","ayna kitaabi?","Where is my book?",["أين","كتابي؟"]],
+      ["المعلم لطيف","al-muallim lateef","The teacher is kind",["المعلم","لطيف"]],
+      ["عندي امتحان غدا","indi imtihaan ghadan","I have an exam tomorrow",["عندي","امتحان","غدا"]],
+      ["أدرس العربية","adrus al-arabiyya","I study Arabic",["أدرس","العربية"]]
+     ]},
+    {title:"Places and directions",
+     tip:"\"Ayna\" means \"where,\" so \"ayna al-hammaam?\" asks \"Where is the bathroom?\"",
+     words:[
+      ["بيت","bayt","house"],
+      ["حديقة","hadeeqa","park"],
+      ["متجر","matjar","store"],
+      ["مطعم","matam","restaurant"],
+      ["مكتبة","maktaba","library"],
+      ["حمام","hammaam","bathroom"],
+      ["يمين","yameen","right"],
+      ["يسار","yasaar","left"],
+      ["قريب","qareeb","near"],
+      ["بعيد","baeed","far"]
+     ],
+     phrases:[
+      ["أين الحمام؟","ayna al-hammaam?","Where is the bathroom?",["أين","الحمام؟"]],
+      ["اذهب يمينا","idhhab yameenan","Go right",["اذهب","يمينا"]],
+      ["المطعم قريب","al-matam qareeb","The restaurant is near",["المطعم","قريب"]],
+      ["أنا ذاهب إلى الحديقة","ana dhaahib ilaa al-hadeeqa","I am going to the park",["أنا","ذاهب","إلى","الحديقة"]],
+      ["البيت ليس بعيدا","al-bayt laysa baeedan","The house is not far",["البيت","ليس","بعيدا"]]
+     ]},
+    {title:"Days and time",
+     tip:"In many Arab countries the weekend is Friday and Saturday, and Sunday is a school day.",
+     words:[
+      ["الاثنين","al-ithnayn","Monday"],
+      ["الثلاثاء","ath-thulaathaa","Tuesday"],
+      ["الأربعاء","al-arbiaa","Wednesday"],
+      ["الخميس","al-khamees","Thursday"],
+      ["الجمعة","al-jumua","Friday"],
+      ["السبت","as-sabt","Saturday"],
+      ["الأحد","al-ahad","Sunday"],
+      ["اليوم","al-yawm","today"],
+      ["غدا","ghadan","tomorrow"],
+      ["أمس","ams","yesterday"]
+     ],
+     phrases:[
+      ["اليوم الاثنين","al-yawm al-ithnayn","Today is Monday",["اليوم","الاثنين"]],
+      ["كم الساعة؟","kam as-saaa?","What time is it?",["كم","الساعة؟"]],
+      ["غدا السبت","ghadan as-sabt","Tomorrow is Saturday",["غدا","السبت"]],
+      ["أراك يوم الجمعة","araaka yawm al-jumua","See you on Friday",["أراك","يوم","الجمعة"]]
+     ]},
+    {title:"Feelings",
+     tip:"Girls add \"-a\" (written ة) to most feeling words: \"saeed\" becomes \"saeeda.\"",
+     words:[
+      ["سعيد","saeed","happy"],
+      ["حزين","hazeen","sad"],
+      ["متعب","mutab","tired"],
+      ["غاضب","ghaadib","angry"],
+      ["قلق","qaliq","worried"],
+      ["خائف","khaaif","scared"],
+      ["مريض","mareed","sick"],
+      ["مشغول","mashghool","busy"],
+      ["هادئ","haadi","calm"]
+     ],
+     phrases:[
+      ["أنا سعيد","ana saeed","I am happy",["أنا","سعيد"]],
+      ["أنا متعب جدا","ana mutab jiddan","I am very tired",["أنا","متعب","جدا"]],
+      ["هل أنت بخير؟","hal anta bikhayr?","Are you okay?",["هل","أنت","بخير؟"]],
+      ["لست حزينا","lastu hazeenan","I am not sad",["لست","حزينا"]],
+      ["لا تقلق","laa taqlaq","Don't worry",["لا","تقلق"]]
+     ]},
+    {title:"Everyday actions",
+     tip:"Present tense \"I\" verbs start with \"a\" or \"u,\" like \"aktub\" (I write) and \"uhibb\" (I like).",
+     words:[
+      ["آكل","aakul","I eat"],
+      ["أشرب","ashrab","I drink"],
+      ["أذهب","adhhab","I go"],
+      ["أريد","ureed","I want"],
+      ["أحب","uhibb","I like"],
+      ["عندي","indi","I have"],
+      ["أتكلم","atakallam","I speak"],
+      ["أنام","anaam","I sleep"],
+      ["أقرأ","aqra","I read"],
+      ["أكتب","aktub","I write"]
+     ],
+     phrases:[
+      ["أريد أن آكل","ureed an aakul","I want to eat",["أريد","أن","آكل"]],
+      ["أحب الرياضة","uhibb ar-riyaada","I like sports",["أحب","الرياضة"]],
+      ["أتكلم الإنجليزية","atakallam al-injileeziyya","I speak English",["أتكلم","الإنجليزية"]],
+      ["سأنام الآن","sa-anaam al-aan","I will sleep now",["سأنام","الآن"]],
+      ["هل تريد أن تذهب؟","hal tureed an tadhhab?","Do you want to go?",["هل","تريد","أن","تذهب؟"]]
+     ]}
+  ]}
+};
+
+/* ================= Other languages (Spanish, French, Mandarin, Hindi, Arabic) ================= */
+const LANG_ORDER=['ja','es','fr','zh','hi','ar'];
+const LANG_META={ja:{name:'Japanese',native:'日本語',flag:'jp'},...Object.fromEntries(Object.entries(LANGS).map(([k,v])=>[k,{name:v.name,native:v.native,flag:v.flag}]))};
+const lflag=code=>flag((LANG_META[code]||{}).flag||'un');
+/* romanization lookup so word tiles can show how to say them */
+const LROM={};Object.entries(LANGS).forEach(([c,L])=>{const m={};L.units.forEach(u=>u.words.forEach(w=>{if(w[1])m[w[0]]=w[1]}));LROM[c]=m});
+function langLessons(code){const L=LANGS[code];const out=[];L.units.forEach((u,ui)=>{out.push({id:`${code}-${ui}-w`,unit:ui,kind:'words',title:u.title,sub:'Words'});out.push({id:`${code}-${ui}-p`,unit:ui,kind:'phrases',title:u.title,sub:'Phrases'})});return out}
+const lpDone=code=>store.get('lpath:'+code,[]);
+const lpNext=code=>{const ls=langLessons(code),d=lpDone(code);const n=ls.findIndex(l=>!d.includes(l.id));return n<0?ls.length-1:n};
+const lkb=(code,w)=>({k:`lang:${code}:${w[0]}`,t:`${w[0]}${w[1]?` (${w[1]})`:''} means "${w[2]}"`,c:'Languages',i:''});
+function langItems(code,li){
+  const L=LANGS[code],les=langLessons(code)[li],u=L.units[les.unit],seq=[];
+  const base={lang:L.speech,rtl:L.rtl};
+  const show=w=>`<span class="lword" lang="${L.speech}"${L.rtl?' dir="rtl"':''}>${esc(w[0])}</span>${w[1]?`<span class="lrom">${esc(w[1])}</span>`:''}`;
+  const allWords=L.units.slice(0,les.unit+1).flatMap(x=>x.words);
+  const meanMC=w=>({...base,type:'mc',key:`lw:${code}:${w[0]}`,prompt:'What does this mean?',big:show(w),a:w[2],choices:shuffle([w[2],...shuffle([...new Set(allWords.map(x=>x[2]))].filter(x=>x!==w[2])).slice(0,3)]),say:w[0],kb:lkb(code,w),missText:`${w[0]} = ${w[2]}`});
+  const pickMC=w=>{const opts=shuffle(allWords.filter(x=>x[2]!==w[2]&&x[0]!==w[0])).slice(0,3);return{...base,type:'mc',key:`lr:${code}:${w[0]}`,prompt:`How do you say "${w[2]}"?`,big:'',a:w[0]+(w[1]?` (${w[1]})`:''),choices:shuffle([w,...opts].map(x=>x[0]+(x[1]?` (${x[1]})`:''))),optLang:L.speech,optRtl:L.rtl,say:w[0],kb:lkb(code,w),missText:`${w[2]} = ${w[0]}`}};
+  if(les.kind==='words'){
+    const ws=u.words;
+    for(let k=0;k<ws.length;k+=3){const grp=ws.slice(k,k+3);grp.forEach(w=>seq.push({...base,type:'card',prompt:'New word',t:w[0],rom:w[1],en:w[2]}));grp.forEach(w=>seq.push(meanMC(w)))}
+    const pw=shuffle(ws).slice(0,5);
+    seq.push({type:'pairs',key:`lpp:${code}:${les.id}`,prompt:'Tap the matching pairs',pairs:pw.map(w=>[`<span lang="${L.speech}">${esc(w[0])}</span>`,esc(w[2])]),a:''});
+    shuffle(ws).slice(0,6).forEach(w=>seq.push(pickMC(w)));
+  }else{
+    const ps=u.phrases;const others=L.units.flatMap(x=>x.phrases).flatMap(p=>p[3]);
+    ps.forEach(p=>{seq.push({...base,type:'card',prompt:'New phrase',t:p[0],rom:p[1],en:p[2]})});
+    ps.forEach(p=>{const extra=shuffle([...new Set(others.filter(t=>!p[3].includes(t)))]).slice(0,3);const tiles=shuffle([...p[3],...extra]);
+      const tileRom={};if(L.speech!=='es-MX'&&L.speech!=='fr-FR')tiles.forEach(t=>{const r=LROM[code][t.replace(/[？?،,.!！]/g,'')];if(r)tileRom[t]=r});
+      seq.push({...base,type:'tiles',key:`lt:${code}:${p[0]}`,prompt:`Write this in ${L.name}`,big:`<span class="bigdef">${esc(p[2])}</span>`,tiles,ans:p[3],a:p[0]+(p[1]?` (${p[1]})`:''),tileRom,say:p[0],kb:lkb(code,p),missText:p[0]})});
+    shuffle(ps).slice(0,2).forEach(p=>seq.push({...base,type:'mc',key:`lpm:${code}:${p[0]}`,prompt:'What does this mean?',big:show(p),a:p[2],choices:shuffle([p[2],...shuffle(L.units.flatMap(x=>x.phrases).map(x=>x[2]).filter(x=>x!==p[2])).slice(0,3)]),say:p[0],kb:lkb(code,p)}));
+    shuffle(u.words).slice(0,3).forEach(w=>seq.push(meanMC(w)));
+  }
+  return seq;
+}
+function openLangLesson(code,li){
+  const L=LANGS[code],les=langLessons(code)[li],u=L.units[les.unit],all=langLessons(code);
+  push('jp',el=>{
+    const list=les.kind==='words'?u.words:u.phrases;
+    page(el,L.name,`<div class="hero"><span class="flabel" style="color:var(--c)">Unit ${les.unit+1} · lesson ${li+1} of ${all.length}</span><h2>${esc(u.title)}: ${les.sub.toLowerCase()}</h2>
+      <p>${les.kind==='words'?`You'll meet ${u.words.length} words, three at a time, then practice them.`:`Put real sentences together from word tiles.`}</p></div>
+      <p class="note">${esc(u.tip)}</p>
+      <div>${list.map(w=>`<div class="iw"><span class="jp" lang="${L.speech}"${L.rtl?' dir="rtl"':''}>${esc(w[0])}${w[1]?`<small class="lrom">${esc(w[1])}</small>`:''}</span><span class="en">${esc(w[2])}</span>${sayBtn(w[0],L.speech)}</div>`).join('')}</div>`,
+      '<button class="btn c block" id="go">Start lesson</button>');
+    el.querySelector('#go').onclick=()=>{
+      lesson({theme:'jp',items:langItems(code,li),onFinish:()=>{const d=lpDone(code);if(!d.includes(les.id)){d.push(les.id);store.set('lpath:'+code,d)}markDone('lang')},again:()=>openLangLesson(code,li)});
+    };
+  });
+}
+function langReview(code){const L=LANGS[code];const d=lpDone(code);const units=[...new Set(d.map(id=>+id.split('-')[1]))];if(!units.length){toast('Finish a lesson first');return}
+  const ws=units.flatMap(i=>L.units[i].words);
+  const items=prioritize(ws.map(w=>({lang:L.speech,type:'mc',key:`lw:${code}:${w[0]}`,prompt:'What does this mean?',big:`<span class="lword" lang="${L.speech}"${L.rtl?' dir="rtl"':''}>${esc(w[0])}</span>${w[1]?`<span class="lrom">${esc(w[1])}</span>`:''}`,a:w[2],choices:shuffle([w[2],...shuffle(ws.map(x=>x[2]).filter(x=>x!==w[2])).slice(0,3)]),say:w[0],kb:lkb(code,w)})),12);
+  lesson({theme:'jp',items,again:()=>langReview(code)})}
+function openPhrasebook(code){const L=LANGS[code];
+  push('jp',el=>{let q='';
+    const draw=()=>{const ql=norm(q);const lin=page(el,'Phrasebook',`<div class="hero">${bi('',{flag:lflag(code),s:64})}<h2>${esc(L.name)} phrasebook</h2><p>Every word and phrase in the course. Tap the speaker to hear it.</p></div>
+      <input class="search" id="q" placeholder="Search in English or ${esc(L.name)}" value="${esc(q)}" autocomplete="off">
+      ${L.units.map((u,i)=>{const rows=[...u.words,...u.phrases].filter(w=>!ql||norm(w[0]+' '+w[1]+' '+w[2]).includes(ql));if(!rows.length)return'';return`<p class="h2" style="margin:8px 0 0">${i+1}. ${esc(u.title)}</p><div class="list">${rows.map(w=>`<div class="li"><div style="min-width:0"><b lang="${L.speech}"${L.rtl?' dir="rtl"':''} style="color:var(--head);font-size:1.15rem">${esc(w[0])}</b>${w[1]?`<span class="s">${esc(w[1])}</span>`:''}<span class="s">${esc(w[2])}</span></div>${sayBtn(w[0],L.speech)}</div>`).join('')}</div>`}).join('')}`);
+      const qi=el.querySelector('#q');let t;qi.oninput=e=>{clearTimeout(t);t=setTimeout(()=>{q=e.target.value;const p=qi.selectionStart;draw();const n=el.querySelector('#q');n.focus();n.setSelectionRange(p,p)},200)}};
+    draw()});
+}
+function openLangTranslate(code){const L=LANGS[code];
+  push('jp',el=>{
+    page(el,'Translate',`<div class="hero">${bi('',{flag:lflag(code),s:64})}<h2>Say it in ${esc(L.name)}</h2><p>Type how you'd actually say it, slang and all. You'll get the natural way to say it, with how to pronounce it.</p></div>
+      <textarea class="ta" id="src" rows="3" placeholder="bro I'm so tired, we got a quiz tomorrow"></textarea><p class="status" id="st"></p><div id="out"></div>`,
+      '<button class="btn c block" id="go">Translate</button>');
+    const go=el.querySelector('#go'),st=el.querySelector('#st'),out=el.querySelector('#out');
+    go.onclick=async()=>{const v=el.querySelector('#src').value.trim();if(!v)return;busy(go,'Translating');st.textContent='';out.innerHTML='';
+      try{const r=await askJSON(`Translate this casual English from a US high schooler into natural, everyday ${L.name}${code==='es'?' (Latin American)':''}${code==='ar'?' (Modern Standard Arabic)':''}${code==='zh'?' (Simplified Chinese)':''}, the way a native speaker their age would say it. Keep the meaning and tone, replace slang with the closest natural equivalent, but keep it school-appropriate.
+English: """${v}"""
+Return JSON: {"translation":"...","romanization":"${['zh','hi','ar'].includes(code)?(code==='zh'?'pinyin with tone marks':'simple readable romanization'):''}","literal":"word-for-word English back-translation","notes":["1 to 3 short notes on word choices or slang swaps"],"words":[{"t":"word","r":"romanization or empty","en":"meaning"}]}`);
+        out.innerHTML=`<div class="card"><span class="eyebrow">${esc(L.name)}</span><p lang="${L.speech}"${L.rtl?' dir="rtl"':''} style="font-size:1.5rem;font-weight:800;color:var(--head)">${esc(r.translation||'')}</p>${r.romanization?`<p class="muted">${esc(r.romanization)}</p>`:''}<div>${sayBtn(r.translation||'',L.speech)}</div>${r.literal?`<p class="small muted">Word for word: ${esc(r.literal)}</p>`:''}</div>
+          ${(r.notes||[]).length?`<div class="card"><span class="eyebrow">Notes</span>${r.notes.map(n=>`<p>${esc(n)}</p>`).join('')}</div>`:''}
+          ${(r.words||[]).length?`<div class="list">${r.words.map(w=>`<div class="li"><div><b lang="${L.speech}">${esc(w.t)}</b>${w.r?`<span class="s">${esc(w.r)}</span>`:''}<span class="s">${esc(w.en)}</span></div></div>`).join('')}</div>`:''}
+          <button class="btn block" id="sv">Save to phrasebook notes</button>`;
+        addKnowledge({k:`lt:${code}:${r.translation}`,t:`"${v}" in ${L.name}: ${r.translation}`,c:'Languages',i:''});
+        out.querySelector('#sv').onclick=e=>{const k='lnotes:'+code;const a=store.get(k,[]);a.unshift({en:v,t:r.translation,r:r.romanization||'',at:Date.now()});store.set(k,a);e.target.disabled=true;e.target.textContent='Saved';tone(true)};
+      }catch(err){showAiError(st,err)}finally{unbusy(go)}};
+  });
+}
+function openLangNotes(code){const L=LANGS[code];
+  push('jp',el=>{const a=store.get('lnotes:'+code,[]);
+    page(el,'My sentences',`<div class="hero"><h2>My ${esc(L.name)} sentences</h2><p>${a.length?`${a.length} saved from Translate.`:'Sentences you save from Translate show up here.'}</p></div>
+      <div class="list">${a.map(x=>`<div class="li"><div style="min-width:0"><b lang="${L.speech}"${L.rtl?' dir="rtl"':''} style="color:var(--head);font-size:1.15rem">${esc(x.t)}</b>${x.r?`<span class="s">${esc(x.r)}</span>`:''}<span class="s">${esc(x.en)}</span></div>${sayBtn(x.t,L.speech)}</div>`).join('')}</div>`)})}
+/* the course view inside the Languages tab */
+function langViewHTML(code){
+  const L=LANGS[code],ls=langLessons(code),d=lpDone(code),nu=lpNext(code);const offs=[0,44,70,44,0,-44,-70,-44];let last=-1;
+  [['lt-tr',()=>openLangTranslate(code)],['lt-pb',()=>openPhrasebook(code)],['lt-rv',()=>langReview(code)],['lt-nt',()=>openLangNotes(code)]].forEach(([k,f])=>ACT[k]=f);
+  const tools=`<div class="jtools">${[['lt-tr','pencil','Translate'],['lt-pb','book','Phrasebook'],['lt-rv','sparkle','Review'],['lt-nt','notebook','My sentences']].map(([id,ic,t])=>`<button class="mini" data-act="${id}">${bi(ic,{s:52})}<b>${t}</b></button>`).join('')}</div>`;
+  const path=ls.map((l,i)=>{let ban='';if(l.unit!==last){last=l.unit;ban=`${i?'</div>':''}<div class="banner"${i?' style="margin-top:14px"':''}><small>Unit ${l.unit+1}</small><b>${esc(l.title)}</b><span>${esc(L.units[l.unit].words.slice(0,3).map(w=>w[0]).join(', '))}…</span></div><div class="path">`}
+    const done=d.includes(l.id),isNext=i===nu&&!done;ACT['lu'+i]=()=>openLangLesson(code,i);
+    return`${ban}<button class="node${done?' done':''}${isNext?' next':''}${l.kind==='phrases'?' wordsnode':''}" data-act="lu${i}" style="transform:translateX(${offs[i%8]}px)">${isNext?'<span class="bubble">START</span>':''}<span class="disc">${done?ICON.check:l.kind==='words'?String(l.unit+1):`<svg viewBox="0 0 24 24" style="width:44%;height:44%">${IC.speech}</svg>`}</span><span class="lbl">${esc(l.sub)}</span></button>`}).join('')+'</div>';
+  return tools+path;
+}
+
+/* ================= Onboarding: pick what to learn ================= */
+const SUBJECTS=[
+  {id:'world',t:'Countries and flags',d:'Every flag, capital and continent',th:'world',icon:()=>`<span class="obflag">${flag('JP')}${flag('BR')}</span>`},
+  {id:'us',t:'US states',d:'Map, capitals, nicknames',th:'world',ic:'pin'},
+  {id:'history',t:'History',d:'Dates, people, presidents',th:'world',ic:'scroll'},
+  {id:'math',t:'Quick math',d:'Faster mental math, every grade\'s terms',th:'mind',ic:'mix'},
+  {id:'geo',t:'Geometry',d:'Logic, angles, proofs',th:'mind',ic:'compass'},
+  {id:'reason',t:'Puzzles and reasoning',d:'Logic, patterns, predictions',th:'mind',ic:'puzzle'},
+  {id:'words',t:'Vocab and old sayings',d:'Sharper words, idioms',th:'words',ic:'aa'},
+  {id:'science',t:'Human body',d:'Muscles, bones, organs',th:'jp',text:'💪'},
+  {id:'rights',t:'Human rights',d:'Your rights, in plain words',th:'world',ic:'scroll'}
+];
+let ONB=store.get('onb',null);
+const wants=id=>!ONB||ONB.subjects.includes(id);
+const myLangs=()=>ONB?ONB.langs.filter(l=>l==='ja'||LANGS[l]):['ja'];
+function openOnboarding(edit){
+  const st={step:edit?1:0,name:SET.name||'',subjects:ONB?[...ONB.subjects]:SUBJECTS.map(s=>s.id),langs:ONB?[...ONB.langs]:(PDONE.length?['ja']:[])};
+  if(!ONB&&!PDONE.length&&!Object.keys(KB).length)st.subjects=[];
+  push('world',el=>{el.classList.add('onb');
+    const dots=()=>`<div class="obdots">${[0,1,2,3].map(i=>`<i class="${i===st.step?'on':i<st.step?'done':''}"></i>`).join('')}</div>`;
+    const draw=()=>{
+      let body='',foot='';
+      if(st.step===0){
+        body=`<div class="obhero">${bi('book',{s:96})}<h1>Study Desk</h1><p>Learn a little of everything, every day. No streaks, no gems, no guilt. Just stuff worth knowing.</p></div>
+          <label class="oblabel" for="nm">What should we call you?</label><input class="search" id="nm" placeholder="Your first name" value="${esc(st.name)}" autocomplete="given-name" maxlength="24">`;
+        foot='<button class="btn c block" id="nx">Get started</button>';
+      }else if(st.step===1){
+        body=`${dots()}<h2 class="obh">What do you want to learn?</h2><p class="obp">Pick as many as you want. You can change this any time in Settings.</p>
+          <div class="obgrid">${SUBJECTS.map(s=>`<button class="obt t-${s.th}${st.subjects.includes(s.id)?' on':''}" data-s="${s.id}">${s.icon?s.icon():bi(s.ic,{text:s.text,s:48})}<b>${esc(s.t)}</b><span>${esc(s.d)}</span><i class="obck">${ICON.check}</i></button>`).join('')}</div>`;
+        foot=`<button class="btn c block" id="nx" ${st.subjects.length?'':'disabled'}>${st.subjects.length?`Continue with ${st.subjects.length}`:'Pick at least one'}</button>`;
+      }else if(st.step===2){
+        body=`${dots()}<h2 class="obh">Any languages?</h2><p class="obp">Each one has a step-by-step course, a phrasebook, and a translator for the way you actually talk.</p>
+          <div class="obgrid langs">${LANG_ORDER.map(c=>{const m=LANG_META[c];return`<button class="obt t-jp${st.langs.includes(c)?' on':''}" data-l="${c}"><span class="obflag big">${lflag(c)}</span><b>${esc(m.name)}</b><span lang="${c}">${esc(m.native)}</span><i class="obck">${ICON.check}</i></button>`}).join('')}</div>`;
+        foot=`<button class="btn c block" id="nx">${st.langs.length?`Continue with ${st.langs.length}`:'Skip for now'}</button>`;
+      }else{
+        const S=SUBJECTS.filter(s=>st.subjects.includes(s.id));
+        body=`${dots()}<div class="obhero"><span class="bi t-world" style="--s:88px">${ICON.check}</span><h2 class="obh">You're all set${st.name?', '+esc(st.name):''}</h2><p class="obp">Here's your desk. Everything else is still in Learn whenever you get curious.</p></div>
+          <div class="obsum">${S.map(s=>`<span class="chip t-${s.th}">${esc(s.t)}</span>`).join('')}${st.langs.map(c=>`<span class="chip t-jp">${lflag(c)} ${esc(LANG_META[c].name)}</span>`).join('')}</div>`;
+        foot='<button class="btn c block" id="nx">Let\'s go</button>';
+      }
+      el.innerHTML=`<header class="lhead">${st.step>0&&!(edit&&st.step===1)?`<button class="iconbtn" id="bk" aria-label="Back">${ICON.back}</button>`:edit?`<button class="iconbtn" data-pop aria-label="Close">${ICON.close}</button>`:'<span></span>'}<span class="ltitle"></span></header><div class="lbody"><div class="lin obin">${body}</div></div><div class="lfoot"><div class="in">${foot}</div></div>`;
+      const nm=el.querySelector('#nm');if(nm)nm.oninput=e=>st.name=e.target.value.trim();
+      const bk=el.querySelector('#bk');if(bk)bk.onclick=()=>{st.step--;draw()};
+      el.querySelectorAll('[data-s]').forEach(b=>b.onclick=()=>{const id=b.dataset.s;st.subjects=st.subjects.includes(id)?st.subjects.filter(x=>x!==id):[...st.subjects,id];tone('tap');draw()});
+      el.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>{const id=b.dataset.l;st.langs=st.langs.includes(id)?st.langs.filter(x=>x!==id):[...st.langs,id];if(st.langs.includes(id))say(id==='ja'?'こんにちは':({es:'hola',fr:'bonjour',zh:'你好',hi:'नमस्ते',ar:'مرحبا'})[id],id==='ja'?null:LANGS[id].speech);tone('tap');draw()});
+      el.querySelector('#nx').onclick=()=>{
+        if(st.step<3){st.step++;tone('flip');draw();return}
+        ONB={done:true,subjects:st.subjects,langs:st.langs,at:Date.now()};store.set('onb',ONB);
+        if(st.name){SET.name=st.name;saveSet()}
+        if(st.langs.length&&!st.langs.includes(store.get('curLang','')))store.set('curLang',st.langs[0]);
+        tone('done');pop();
+      };
+    };
+    draw();
+  },{up:true});
+}
+ACT.onboard=()=>openOnboarding(true);
+
 /* ================= tabs ================= */
-const TABS=[{id:'home',l:'Home',t:'world',i:TABICON.home},{id:'learn',l:'Learn',t:'world',i:TABICON.world},{id:'tutor',l:'Tutor',t:'mind',i:TABICON.mind},{id:'jp',l:'Japanese',t:'jp',i:TABICON.jp},{id:'lib',l:'Library',t:'words',i:TABICON.words}];
+const TABS=[{id:'home',l:'Home',t:'world',i:TABICON.home},{id:'learn',l:'Learn',t:'world',i:TABICON.world},{id:'tutor',l:'Tutor',t:'mind',i:TABICON.mind},{id:'jp',l:'Languages',t:'jp',i:TABICON.jp},{id:'lib',l:'Library',t:'words',i:TABICON.words}];
 let TAB=store.get('tab2','home');if(['world','mind','words'].includes(TAB))TAB='learn';if(!TABS.some(t=>t.id===TAB))TAB='home';
 $('#tabbar').innerHTML=`<div class="in">${TABS.map(t=>`<button class="tab" data-tab="${t.id}" aria-label="${t.l}" aria-selected="${t.id===TAB}">${t.i}</button>`).join('')}</div>`;
 function syncTabs(){$$('.tab').forEach(x=>x.setAttribute('aria-selected',x.dataset.tab===TAB))}
@@ -3390,22 +5115,28 @@ function render(){
     const ff=factOfDay();const u=FB.user;const nm=(SET.name||(u&&u.displayName)||cloud.name||'').trim().split(' ')[0];
     const showInstall=IS_APP&&/iPhone|iPad|iPod/.test(navigator.userAgent)&&!navigator.standalone;
     const subs=subjectRows();subs.forEach((r,k)=>ACT['s'+k]=r.go);
-    ACT.daily=dailyQuiz;ACT.book=openBook;ACT.facts=()=>openFacts();ACT.contin=()=>unitIntro(nu);
-    const L=LESSONS[nu];const pct=Math.round(PDONE.length/LESSONS.length*100);
-    const quick=[
-      {id:'h-math',th:'mind',ic:'mix',t:'1-minute math',d:'Mixed problems',done:'math',run:()=>{M.len='60s';openMath('mix',true)}},
-      {id:'h-flags',th:'world',flag:pick(['🇳🇵','🇧🇹','🇰🇮','🇸🇨','🇲🇿','🇰🇬']),t:'10 flags',d:'Misses come back',done:'flags',run:()=>{G.len='10';G.mode='choose';G.cont='ALL';startGeo('flags')}},
-      {id:'h-say',th:'words',ic:'speech',t:'Old sayings',d:'10 idioms',done:'sayings',run:()=>sayingsQuiz()},
-      {id:'h-tr',th:'jp',text:'文',ja:true,t:'Translate',d:'Your day in Japanese',done:'translate',run:()=>openTranslate('to')},
-      {id:'h-lu',th:'words',ic:'aa',t:'Level up',d:'A sharper sentence',done:'levelup',run:openLevelUp},
-      {id:'h-pz',th:'mind',ic:'puzzle',t:'Two puzzles',d:'Logic warm-up',done:'puzzles',run:()=>openPuzzles('builtin',{limit:2})},
-      {id:'h-pr',th:'mind',ic:'sparkle',t:'Predict it',d:'What happens next',run:openPredict},
-      {id:'h-geo',th:'mind',ic:'compass',t:'Geometry',d:'Quiz prep',run:()=>{openGeometry();setTimeout(()=>ACT['gu-quiz']&&ACT['gu-quiz'](),350)}}
+    ACT.daily=dailyQuiz;ACT.book=openBook;ACT.facts=()=>openFacts();const ml=myLangs();const hl=ml.includes(store.get('curLang',''))?store.get('curLang'):ml[0];
+    let hero;
+    if(hl==='ja'){const L=LESSONS[nu];ACT.contin=()=>unitIntro(nu);hero={eye:'Continue Japanese',title:L.title,sub:`Lesson ${nu+1} of ${LESSONS.length}`,glyph:`<span lang="ja">${esc(L.label)}</span>`,pct:Math.round(PDONE.length/LESSONS.length*100),btn:PDONE.length?'Continue':'Start lesson 1'}}
+    else if(hl){const ls=langLessons(hl),n=lpNext(hl),l=ls[n],dn=lpDone(hl).length;ACT.contin=()=>openLangLesson(hl,n);hero={eye:'Continue '+LANG_META[hl].name,title:`${l.title}: ${l.sub.toLowerCase()}`,sub:`Lesson ${n+1} of ${ls.length}`,glyph:lflag(hl),pct:Math.round(dn/ls.length*100),btn:dn?'Continue':'Start lesson 1'}}
+    else{const k=Object.keys(KB).filter(x=>x.startsWith('hist:')).length;ACT.contin=()=>wants('history')?histQuiz('mix'):dailyQuiz();hero=wants('history')?{eye:'History',title:'Mixed history quiz',sub:`${k} of ${HIST.length} events learned`,glyph:'📜',pct:Math.round(k/HIST.length*100),btn:'Start'}:{eye:'Today',title:'Daily quiz',sub:'Review and forgotten basics',glyph:'✨',pct:dq?100:0,btn:'Start'}}
+    const quickAll=[
+      {id:'h-hist',sub:'history',th:'world',ic:'scroll',t:'History',d:'Dates and people',done:'history',run:()=>histQuiz('mix')},
+      ...ml.filter(c=>c!=='ja').map(c=>({id:'h-l'+c,sub:'lang',th:'jp',flag:lflag(c),t:LANG_META[c].name,d:'Next lesson',done:'',run:()=>openLangLesson(c,lpNext(c))})),
+      {id:'h-math',sub:'math',th:'mind',ic:'mix',t:'1-minute math',d:'Mixed problems',done:'math',run:()=>{M.len='60s';openMath('mix',true)}},
+      {id:'h-flags',sub:'world',th:'world',flag:flag(pick(['NP','BT','KI','SC','MZ','KG'])),t:'10 flags',d:'Misses come back',done:'flags',run:()=>{G.len='10';G.mode='choose';G.cont='ALL';startGeo('flags')}},
+      {id:'h-say',sub:'words',th:'words',ic:'speech',t:'Old sayings',d:'10 idioms',done:'sayings',run:()=>sayingsQuiz()},
+      {id:'h-tr',sub:'ja',th:'jp',text:'文',ja:true,t:'Translate',d:'Your day in Japanese',done:'translate',run:()=>openTranslate('to')},
+      {id:'h-lu',sub:'words',th:'words',ic:'aa',t:'Level up',d:'A sharper sentence',done:'levelup',run:openLevelUp},
+      {id:'h-pz',sub:'reason',th:'mind',ic:'puzzle',t:'Two puzzles',d:'Logic warm-up',done:'puzzles',run:()=>openPuzzles('builtin',{limit:2})},
+      {id:'h-pr',sub:'reason',th:'mind',ic:'sparkle',t:'Predict it',d:'What happens next',run:openPredict},
+      {id:'h-geo',sub:'geo',th:'mind',ic:'compass',t:'Geometry',d:'Quiz prep',run:()=>{openGeometry();setTimeout(()=>ACT['gu-quiz']&&ACT['gu-quiz'](),350)}}
     ];
+    let quick=quickAll.filter(o=>o.sub==='lang'||(o.sub==='ja'?ml.includes('ja'):wants(o.sub)));if(quick.length<4)quick=[...quick,...quickAll.filter(o=>!quick.includes(o)&&o.sub!=='ja'&&o.sub!=='lang')].slice(0,6);quick=quick.slice(0,8);if(quick.length%2)quick=quick.slice(0,-1);
     const sd=sayOfDay();
     V.innerHTML=`<div class="vhead"><div><h1>${greet()}${nm?', '+esc(nm):''}</h1><div class="eyebrow">${esc(new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}))}</div></div><div style="display:flex;gap:8px"><button class="iconbtn" data-act="account" aria-label="Account">${u||cloud.ok?`<span class="avatar">${esc(((u&&(u.displayName||u.email))||cloud.name||nm||'?')[0].toUpperCase())}</span>`:ICON.user}</button><button class="iconbtn" data-act="settings" aria-label="Settings">${ICON.gear}</button></div></div>
       ${showInstall?'<div class="callout">To install, tap <b>Share</b>, then <b>Add to Home Screen</b>.</div>':''}
-      <button class="herocard fill t-jp" data-act="contin"><div class="hc-top"><div style="min-width:0"><span class="hc-eye">Continue Japanese</span><b class="hc-title">${esc(L.title)}</b><span class="hc-sub">Lesson ${nu+1} of ${LESSONS.length}</span></div><span class="hc-glyph" lang="ja">${esc(L.label)}</span></div><div class="hc-bar"><i style="width:${Math.max(3,pct)}%"></i></div><span class="btn wbtn block">${PDONE.length?'Continue':'Start lesson 1'}</span></button>
+      <button class="herocard fill ${hl?'t-jp':'t-world'}" data-act="contin"><div class="hc-top"><div style="min-width:0"><span class="hc-eye">${esc(hero.eye)}</span><b class="hc-title">${esc(hero.title)}</b><span class="hc-sub">${esc(hero.sub)}</span></div><span class="hc-glyph">${hero.glyph}</span></div><div class="hc-bar"><i style="width:${Math.max(3,hero.pct)}%"></i></div><span class="btn wbtn block">${hero.btn}</span></button>
       <div class="sec"><h2>Today</h2></div>
       <div class="duo">
         <button class="fcard fill t-world" data-act="daily">${bi('sparkle',{s:46})}<div><b>Daily quiz</b><span>${dq?`Done · ${dq.f} of ${dq.t} right`:'Review and forgotten basics'}</span></div><span class="fc-go">${dq?'Again':'Start'}</span></button>
@@ -3429,25 +5160,30 @@ function render(){
     ACT.geom=openGeometry;ACT.terms=()=>openTerms();
     const T=(o)=>tile(o);
     const sec=(t,n)=>`<div class="sec"><h2>${t}</h2>${n?`<span class="cnt">${n}</span>`:''}</div>`;
+    const SECS=[
+      {id:'world',h:`${sec('World','6 topics')}
+      <div class="tiles t-world">${['flags','capitals','countries','continent','cfacts','compass'].map(v=>T({id:'g-'+v,...GINFO[v],run:()=>openGeo(v)})).join('')}</div>`},
+      {id:'us',h:`${sec('United States')}
+      <div class="tiles t-world">${T({id:'l-st',ic:'pin',t:'US states hub',d:'Map, capitals, nicknames, statehood',wide:true,run:openStates})}${T({id:'g-dir',...GINFO.dir,run:()=>openGeo('dir')})}${T({id:'r-bo',ic:'book',t:'Bill of Rights',d:'Amendments 1–10',run:()=>openRights('bor')})}</div>`},
+      {id:'math',h:`${sec('Math')}
+      <div class="tiles t-mind">${Object.entries(MINFO).map(([op,I],k)=>T({id:'m-'+op,ic:I[1],t:I[0],d:I[2],wide:k===0,run:()=>openMath(op)})).join('')}${T({id:'m-tr',ic:'bolt',t:'Tricks',d:'Shortcuts',run:openTricks})}${T({id:'m-tm',ic:'book',t:'Math terms',d:`${MTERMS.length} terms, every grade`,run:()=>openTerms()})}</div>`},
+      {id:'words',h:`${sec('Words')}
+      <div class="tiles t-words">${T({id:'w-say',ic:'speech',t:'Old sayings',d:`${SAYINGS.length} idioms and proverbs, like "beat around the bush"`,wide:true,run:()=>openSayings()})}${T({id:'w-lu',ic:'aa',t:'Level up',d:'Say it sharper',run:openLevelUp})}${T({id:'w-c',ic:'star',t:'Core words',d:'45 worth knowing',run:()=>wordQuiz(CORE)})}${T({id:'w-sq',ic:'puzzle',t:'Sayings quiz',d:'Finish the saying',run:()=>sayingsQuiz()})}${T({id:'w-b',ic:'bookmark',t:'Word bank',d:lists.words.length?`${lists.words.length} saved`:'Your saved words',run:openWordBank})}</div>`},
+      {id:'reason',h:`${sec('Reasoning')}
+      <div class="tiles t-mind">${T({id:'p-pr',ic:'sparkle',t:'Predict it',d:'Read the clues, predict what they say or what happens next',wide:true,run:openPredict})}${T({id:'p-b',ic:'puzzle',t:'Logic puzzles',d:`${PUZZLES.length} classics`,run:()=>openPuzzles('builtin')})}${T({id:'p-s',ic:'dots',t:'Patterns',d:'What comes next?',run:()=>openPuzzles('seq')})}${T({id:'p-a',ic:'bolt',t:'Fresh puzzles',d:'New from Claude',run:()=>openPuzzles('ai')})}${T({id:'p-gq',ic:'compass',t:'Geometry logic',d:'If-then statements',run:()=>{openGeometry();setTimeout(()=>ACT['gu-logic']&&ACT['gu-logic'](),350)}})}</div>`},
+      {id:'science',h:`${sec('Science')}
+      <div class="tiles t-jp">${T({id:'l-body',text:'💪',t:'Human body',d:'Muscles, bones and organs. Tap the part.',wide:true,run:openBody})}</div>`},
+      {id:'rights',h:`${sec('Human rights')}
+      <div class="tiles t-world">${T({id:'r-ud',ic:'scroll',t:'Which right?',d:'The UN\'s 30',run:()=>openRights('udhr')})}${T({id:'r-un',ic:'hash',t:'Which article?',d:'Rights by number',run:()=>openRights('udhrn')})}</div>`},
+      {id:'history',h:`${sec('History',HIST.length+' events')}<div class="tiles t-world">${T({id:'hi-hub',ic:'scroll',t:'History',d:'Timeline, eras, people and every US president',wide:true,run:openHistory})}${T({id:'hi-mix',ic:'sparkle',t:'Mixed quiz',d:'Dates, people, order',run:()=>histQuiz('mix')})}${T({id:'hi-pres',ic:'star',t:'Presidents',d:'All 47, in order',run:()=>histQuiz('pres')})}</div>`},
+    ];
+    const mine=SECS.filter(x=>wants(x.id)),rest=SECS.filter(x=>!wants(x.id));
     V.innerHTML=`<div class="vhead"><div><h1>Learn</h1><div class="eyebrow">Pick anything. It all goes in your knowledge book.</div></div></div>
       <div class="duo">
         <button class="fcard fill t-fact" data-act="dumb">${bi('',{text:'?',s:46})}<div><b>Make You Feel Dumb</b><span>Stuff you learned once and forgot</span></div><span class="fc-go">Try it</span></button>
         <button class="fcard fill t-mind" data-act="geom">${bi('compass',{s:46})}<div><b>Geometry Honors</b><span>Logic, angles, triangles</span></div><span class="fc-go">Open</span></button>
       </div>
-      ${sec('World','6 topics')}
-      <div class="tiles t-world">${['flags','capitals','countries','continent','cfacts','compass'].map(v=>T({id:'g-'+v,...GINFO[v],run:()=>openGeo(v)})).join('')}</div>
-      ${sec('United States')}
-      <div class="tiles t-world">${T({id:'l-st',ic:'pin',t:'US states hub',d:'Map, capitals, nicknames, statehood',wide:true,run:openStates})}${T({id:'g-dir',...GINFO.dir,run:()=>openGeo('dir')})}${T({id:'r-bo',ic:'book',t:'Bill of Rights',d:'Amendments 1–10',run:()=>openRights('bor')})}</div>
-      ${sec('Math')}
-      <div class="tiles t-mind">${Object.entries(MINFO).map(([op,I],k)=>T({id:'m-'+op,ic:I[1],t:I[0],d:I[2],wide:k===0,run:()=>openMath(op)})).join('')}${T({id:'m-tr',ic:'bolt',t:'Tricks',d:'Shortcuts',run:openTricks})}${T({id:'m-tm',ic:'book',t:'Math terms',d:`${MTERMS.length} terms, every grade`,run:()=>openTerms()})}</div>
-      ${sec('Words')}
-      <div class="tiles t-words">${T({id:'w-say',ic:'speech',t:'Old sayings',d:`${SAYINGS.length} idioms and proverbs, like "beat around the bush"`,wide:true,run:()=>openSayings()})}${T({id:'w-lu',ic:'aa',t:'Level up',d:'Say it sharper',run:openLevelUp})}${T({id:'w-c',ic:'star',t:'Core words',d:'45 worth knowing',run:()=>wordQuiz(CORE)})}${T({id:'w-sq',ic:'puzzle',t:'Sayings quiz',d:'Finish the saying',run:()=>sayingsQuiz()})}${T({id:'w-b',ic:'bookmark',t:'Word bank',d:lists.words.length?`${lists.words.length} saved`:'Your saved words',run:openWordBank})}</div>
-      ${sec('Reasoning')}
-      <div class="tiles t-mind">${T({id:'p-pr',ic:'sparkle',t:'Predict it',d:'Read the clues, predict what they say or what happens next',wide:true,run:openPredict})}${T({id:'p-b',ic:'puzzle',t:'Logic puzzles',d:`${PUZZLES.length} classics`,run:()=>openPuzzles('builtin')})}${T({id:'p-s',ic:'dots',t:'Patterns',d:'What comes next?',run:()=>openPuzzles('seq')})}${T({id:'p-a',ic:'bolt',t:'Fresh puzzles',d:'New from Claude',run:()=>openPuzzles('ai')})}${T({id:'p-gq',ic:'compass',t:'Geometry logic',d:'If-then statements',run:()=>{openGeometry();setTimeout(()=>ACT['gu-logic']&&ACT['gu-logic'](),350)}})}</div>
-      ${sec('Science')}
-      <div class="tiles t-jp">${T({id:'l-body',text:'💪',t:'Human body',d:'Muscles, bones and organs. Tap the part.',wide:true,run:openBody})}</div>
-      ${sec('Human rights')}
-      <div class="tiles t-world">${T({id:'r-ud',ic:'scroll',t:'Which right?',d:'The UN\'s 30',run:()=>openRights('udhr')})}${T({id:'r-un',ic:'hash',t:'Which article?',d:'Rights by number',run:()=>openRights('udhrn')})}</div>`;
+      ${mine.map(x=>x.h).join('')}${rest.length?`<div class="sec more"><h2>More to explore</h2><button class="link" data-act="onboard">Edit</button></div>${rest.map(x=>x.h).join('')}`:''}`;
   }else if(TAB==='tutor'){
     V.innerHTML=`<div class="vhead"><h1>Tutor</h1></div>
       <div class="hero" style="padding-top:0">${bi('speech',{s:72,th:'world'})}<p style="font-size:1.05rem">Snap a homework problem or ask what something means. Math always comes with the work shown the way your teacher wants it.</p></div>
@@ -3484,13 +5220,19 @@ function render(){
     ACT.terms=()=>openTerms();ACT.book=openBook;ACT.facts=()=>openFacts();ACT.wbank=openWordBank;ACT.jnb=openNotebook;ACT.rights=()=>rightsRead(false);
     $('#ws').onclick=e=>saveWord({word:wd.w,partOfSpeech:wd.pos,meaning:wd.def,example:wd.ex},e.target);
   }else if(TAB==='jp'){
+    const ml=myLangs();let cur=store.get('curLang',ml[0]||'ja');if(ml.length&&!ml.includes(cur))cur=ml[0];
+    ACT['lang-add']=()=>openOnboarding(true);
+    const chips=`<div class="lchips">${ml.map(c=>`<button class="lchip${c===cur?' on':''}" data-lc="${c}">${lflag(c)}<b>${esc(LANG_META[c].name)}</b></button>`).join('')}<button class="lchip add" data-act="lang-add">+ ${ml.length?'Add':'Pick a language'}</button></div>`;
+    const bindChips=()=>$$('[data-lc]',V).forEach(b=>b.onclick=()=>{store.set('curLang',b.dataset.lc);render();window.scrollTo({top:0})});
+    if(!ml.length){V.innerHTML=`<div class="vhead"><h1>Languages</h1></div><div class="hero">${bi('speech',{s:76,th:'jp'})}<h2>No languages yet</h2><p>Japanese, Spanish, French, Mandarin, Hindi or Arabic. Each has a step-by-step course and a translator.</p></div><button class="btn c block" data-act="lang-add">Pick a language</button>`;return}
+    if(cur!=='ja'){V.innerHTML=`<div class="vhead"><h1>${esc(LANG_META[cur].name)}</h1></div>${chips}${langViewHTML(cur)}<div class="spacer"></div>`;bindChips();return}
     const nu=nextUnit();let last='';const offs=[0,44,70,44,0,-44,-70,-44];const UD={Hiragana:['Unit 1','Hiragana','All 46 characters, a couple at a time'],'First phrases':['Unit 2','First phrases','Greetings, food, school, simple sentences']};
     const units=LESSONS.map((L,i)=>{let ban='';const newU=L.unit!==last;if(newU){last=L.unit;const U=UD[L.unit]||['',L.unit,''];ban=`${i?'</div>':''}<div class="banner"${i?' style="margin-top:14px"':''}><small>${U[0]}</small><b>${U[1]}</b><span>${U[2]}</span></div><div class="path">`}
       const done=PDONE.includes(L.id),isNext=i===nu&&!done;const g=done?ICON.check:esc(L.label);
       ACT['u'+i]=()=>unitIntro(i);
       return `${ban}<button class="node${done?' done':''}${isNext?' next':''}${L.kind==='words'?' wordsnode':''}" data-act="u${i}" style="transform:translateX(${offs[i%8]}px)">${isNext?'<span class="bubble">START</span>':''}<span class="disc" lang="ja">${g}</span><span class="lbl">${esc(L.title)}</span></button>`}).join('')+'</div>';
     V.innerHTML=`<div class="vhead"><h1>Japanese</h1><button class="iconbtn" id="rtt" aria-label="Show or hide the sounds above Japanese" style="color:${SET.rt?'var(--red)':'var(--dim)'}"><ruby lang="ja" style="font:700 1.05rem var(--f-jp)">あ<rt style="color:inherit">a</rt></ruby></button></div>
-      <div class="jtools">${[
+      ${ml.length>1||true?chips:''}<div class="jtools">${[
         {id:'j-dc',ic:'book',t:'Dictionary',run:()=>openJDict()},
         {id:'j-tr',text:'文',t:'Translate',run:()=>openTranslate('to')},
         {id:'j-ck',ic:'pencil',t:'Check mine',run:()=>openTranslate('check')},
@@ -3498,11 +5240,12 @@ function render(){
         {id:'j-st',ic:'speech',t:'Starters',run:openStarters},
         {id:'j-kn',text:'あ',t:'Kana drill',run:openKana}
       ].map(o=>{ACT[o.id]=o.run;return`<button class="mini" data-act="${o.id}">${bi(o.ic,{text:o.text,ja:!!o.text,s:52})}<b>${esc(o.t)}</b></button>`}).join('')}</div>${units}<div class="spacer"></div>`;
-    $('#rtt').onclick=()=>{SET.rt=!SET.rt;saveSet();toast(SET.rt?'Sounds shown':'Sounds hidden');render()};
+    bindChips();$('#rtt').onclick=()=>{SET.rt=!SET.rt;saveSet();toast(SET.rt?'Sounds shown':'Sounds hidden');render()};
   }
 }
 const dayIndex=()=>Math.floor((Date.now()-new Date().getTimezoneOffset()*60000)/864e5);
 render();
+if(!ONB)setTimeout(()=>openOnboarding(false),250);
 if(KEY_FROM_LINK)setTimeout(()=>toast('You\'re set up. The tutor and translator are ready.'),600);
 
 /* ================= offline (installed app) ================= */
